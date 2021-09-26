@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 router.post('/', async(req, res) => {
     const { usertype, username, email, password } = req.body;
@@ -15,7 +16,7 @@ router.post('/', async(req, res) => {
         res.json("SUCCESS!!");
     });
 });
-
+//res 여러개 = ERR_HTTP_HEADERS_SENT
 router.post('/login', async(req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({where: {email: email}});
@@ -24,10 +25,17 @@ router.post('/login', async(req, res) => {
     }
     bcrypt.compare(password, user.password).then((match) => {
         if(!match){
-            res.json({error: "WRONG USERNAME & PASSWORD!"});
+            //return res.json({error: "WRONG USERNAME & PASSWORD!"});
         }
-        res.json("YOU LOGGED IN!!");
+        //return res.json("YOU LOGGED IN!!");
     });
+
+    const accessToken = jwt.sign(
+        { email: user.email },
+        process.env.JWT_ACCESS_TOKEN_SECRET
+    );
+    
+    res.json({message: "FUCKING TOKEN!", token: accessToken});
 });
 
 module.exports = router;
