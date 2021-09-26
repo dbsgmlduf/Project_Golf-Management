@@ -1,10 +1,20 @@
+/*import module*/
+import React, {useEffect, useState} from 'react';
+
+/*import router*/
+import {Route, Switch} from 'react-router-dom';
+
+/*import routes*/
+import Routes from './routes';
+
+/*import css*/
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      
-    </div>
+    <Switch>
+      <Routes/>
+    </Switch>
   );
 }
 
