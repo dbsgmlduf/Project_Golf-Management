@@ -3,9 +3,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
-//const passport = require('passport');
+const passport = require('passport');
 const models = require('./models');
-//const passportConfig = require('./passport');
+const passportConfig = require('./passport');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -19,7 +19,7 @@ models.sequelize.sync().then(() => {
     });
 });
 
-//app.use(passport.initialize());
-//passportConfig();
+app.use(passport.initialize());
+passportConfig();
 
 module.exports = app;
