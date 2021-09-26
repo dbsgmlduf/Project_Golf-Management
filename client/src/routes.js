@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { Switch } from 'react-router';
 import PublicRoute from './lib/PublicRoute';
 import PrivateRoute from './lib/PrivateRoute';

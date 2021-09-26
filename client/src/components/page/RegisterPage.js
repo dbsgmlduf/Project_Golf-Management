@@ -29,7 +29,7 @@ const RegisterPage = () => {
             <div className="form_each">
                 <label>Name</label>
                 <input type="text" placeholder="Name" className="input_value"
-                 onChange={(e) => {setUsernameReg(e.target.value);}}/>
+                 onChange={(e) => {setUserNameReg(e.target.value);}}/>
             </div>
             <div className="form_each">
                 <label>Email</label>
