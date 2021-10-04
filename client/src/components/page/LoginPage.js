@@ -1,35 +1,56 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../_actions/user_actions';
 
-import axios from 'axios';
-
-const LoginPage = () => {
-
-    const [email, setUserEmail] = useState("");
-    const [pw, setUserPw] = useState("");
+const LoginPage = (props) => {
+    const dispatch = useDispatch();
+    const [Email, setUserEmail] = useState("");
+    const [Password, setUserPw] = useState("");
 
     /*EventHandler*/
-    const login = e => {
+    const onEmailHandler = (e)=>{
+        setUserEmail(e.currentTarget.value);
+    }
+    const onPasswordHandler = (e)=>{
+        setUserPw(e.currentTarget.value);
+    }
+    const onSubmitHandler = (e)=>{
+        e.preventDefault();
+        console.log('Email',Email);
+        console.log('Password',Password);
 
-    };
+        let data = {
+            email : Email,
+            password : Password
+        }
 
+        dispatch(loginUser(data)).then(response =>{
+            if(response.payload.loaginSuccess){
+                props.history.push('/')
+            }
+            else{
+                alert('실패')
+            }
+        })
+    }
+    
     return(
-        <div className="form_group_login">
-            <h2>LOG IN</h2>
-            <div className="form_each">
-                <label>Email</label>
-                <input type="text" placeholder="Email" className="input_value"
-                 onChange={(e)=>{setUserEmail(e.target.value);}}/>
-            </div>
-
-            <div className="form_each">
-                <label>Password</label>
-                <input type="password" placeholder="Password" className="input_value"
-                 onChange={(e)=>{setUserPw(e.target.value);}}/>
-            </div>
-            <div className="form_each">
-                <button className="btn" onClick={login}>Log in</button>
-            </div>
+    <form onSubmit={onSubmitHandler}>
+        <h2>LOG IN</h2>
+        <div className="form_each">
+            <label>Email</label>
+            <input type="text" placeholder="Email" className="input_value"
+            onChange={onEmailHandler}/>
         </div>
+        <div className="form_each">
+            <label>Password</label>
+            <input type="password" placeholder="Password" className="input_value"
+            onChange={onPasswordHandler}/>
+        </div>
+        <div className="form_each">
+            <button className="btn">Log in</button>
+        </div>
+    </form>
     );
 }
 
