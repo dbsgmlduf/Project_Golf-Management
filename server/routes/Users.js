@@ -19,17 +19,16 @@ router.post('/', async(req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {session: false}),
-        async (req, res, error) => {
-            const user = req.body
-            const accessToken = 
-                jwt.sign(
-                    { email: user.email },
-                    process.env.JWT_ACCESS_TOKEN_SECRET
-                );
-            res.json({
-                message: "LOGIN SUCCESS!",
-                accessToken
-            });
+    async (req, res, error) => {
+        const user = req.body
+        const accessToken = jwt.sign(
+                { email: user.email },
+                process.env.JWT_ACCESS_TOKEN_SECRET
+            );
+        res.json({
+            message: "LOGIN SUCCESS!",
+            accessToken
+        });
 });
 
 //res 여러개 = ERR_HTTP_HEADERS_SENT
