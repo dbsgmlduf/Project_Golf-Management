@@ -4,10 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const passport = require('passport');
+//const passport = require('passport');
 const models = require('./models');
-const passportConfig = require('./passport');
-const usersRouter = require('./routes/Users');
+//const passportConfig = require('./passport');
+//const usersRouter = require('./routes/Users');
 
 const app = express();
 
@@ -24,9 +24,9 @@ models.sequelize.sync().then(() => {
     });
 });
 
-app.use(passport.initialize());
-passportConfig();
+//app.use(passport.initialize());
+//passportConfig();
 
-app.use('/auth', usersRouter);
+//app.use('/auth', usersRouter);
 
 module.exports = app;
