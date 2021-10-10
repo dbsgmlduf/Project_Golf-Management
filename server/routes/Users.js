@@ -29,7 +29,7 @@ router.post('/login', passport.authenticate('local', {session: false}),
 async (req, res, error) => {
     const user = req.body
         const accessToken = jwt.sign(
-                { email: user.email },
+                { id: user.id },
                 process.env.JWT_ACCESS_TOKEN_SECRET
             );
         res.json({

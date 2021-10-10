@@ -1,12 +1,11 @@
 const bcrypt = require('bcrypt');
-const db_instructor = require('../models').Instructor;
-const db_learner = require('../models').Learner;
+const db = require('../models').User;
 
-const localConfig = { usernameField: 'email', passwordField: 'password' };
+const localConfig = { usernameField: 'id', passwordField: 'password' };
 
-const localVerify = async(email, password, done) => {
+const localVerify = async(id, password, done) => {
     try{
-        const user = await db.findOne({where: {email: email} });
+        const user = await db.findOne({where: {id: id} });
         if(!user){
             return done(null, false, {message: "NO FUCKING USER!"});
         }
