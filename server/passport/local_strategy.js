@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
-const db = require('../models').User;
+const db_instructor = require('../models').Instructor;
+const db_learner = require('../models').Learner;
 
 const localConfig = { usernameField: 'email', passwordField: 'password' };
 

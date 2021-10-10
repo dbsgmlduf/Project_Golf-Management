@@ -1,26 +1,54 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models');
+const { Instructor } = require('../models');
+const { Learner } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-router.post('/', async(req, res) => {
-    const { usertype, username, email, password } = req.body;
-    bcrypt.hash(password, 10).then((hash) => {
-        User.create({
+//instructor register API
+router.post('/instructorReg', async(req, res) => {
+    const { usertype, email, id, password, nickname, confirm_auth } = req.body;
+    try{
+        const hash = await bcrypt.hash(password, 10);
+        await Instructor.create({
             usertype: usertype,
-            name: username,
             email: email,
+            id: id,
             password: hash,
+            nickname: nickname,
+            confirm_auth: confirm_auth,
         });
-        res.json("SUCCESS!!");
-    });
+        res.json("INSTRUCTOR REGISTER SUCCESS!!");
+        
+    } catch (error){
+        console.log(error);
+    }
 });
 
+//learner register API
+router.post('/learnerReg', async(req, res) => {
+    const { usertype, email, id, password, nickname } = req.body;
+    try{
+        const hash = await bcrypt.hash(password, 10);
+        await Learner.create({
+            usertype: usertype,
+            email: email,
+            id: id,
+            password: hash,
+            nickname: nickname,
+        });
+        res.json("LEARNER REGISTER SUCCESS!!");
+        
+    } catch (error){
+        console.log(error);
+    }
+});
+
+
 router.post('/login', passport.authenticate('local', {session: false}),
-    async (req, res, error) => {
-        const user = req.body
+async (req, res, error) => {
+    const user = req.body
         const accessToken = jwt.sign(
                 { email: user.email },
                 process.env.JWT_ACCESS_TOKEN_SECRET
@@ -30,6 +58,20 @@ router.post('/login', passport.authenticate('local', {session: false}),
             accessToken
         });
 });
+
+// router.post('/learnerReg', async(req, res) => {
+//     const { usertype, email, id, password, nickname } = req.body;
+//     bcrypt.hash(password, 10).then((hash) => {
+//         Learner.create({
+//             usertype: usertype,
+//             email: email,
+//             id: id,
+//             password: hash,
+//             nickname: nickname,
+//         });
+//         res.json("LEARNER REGISTER SUCCESS!!");
+//     });
+// });
 
 //res 여러개 = ERR_HTTP_HEADERS_SENT
 // router.post('/login', async(req, res) => {
