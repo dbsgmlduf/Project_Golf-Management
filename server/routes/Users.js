@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { Instructor } = require('../models');
-const { Learner } = require('../models');
+const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 //instructor register API
-router.post('/instructorReg', async(req, res) => {
+router.post('/userReg', async(req, res) => {
     const { usertype, email, id, password, nickname, confirm_auth } = req.body;
     try{
         const hash = await bcrypt.hash(password, 10);
-        await Instructor.create({
+        await User.create({
             usertype: usertype,
             email: email,
             id: id,
@@ -25,26 +24,6 @@ router.post('/instructorReg', async(req, res) => {
         console.log(error);
     }
 });
-
-//learner register API
-router.post('/learnerReg', async(req, res) => {
-    const { usertype, email, id, password, nickname } = req.body;
-    try{
-        const hash = await bcrypt.hash(password, 10);
-        await Learner.create({
-            usertype: usertype,
-            email: email,
-            id: id,
-            password: hash,
-            nickname: nickname,
-        });
-        res.json("LEARNER REGISTER SUCCESS!!");
-        
-    } catch (error){
-        console.log(error);
-    }
-});
-
 
 router.post('/login', passport.authenticate('local', {session: false}),
 async (req, res, error) => {

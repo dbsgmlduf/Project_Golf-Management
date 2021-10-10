@@ -10,8 +10,9 @@ module.exports = function(sequelize, DataTypes) {
             },
         },
         {
-            tablename: 'enrollment',
-            timestamps: false,
+            tableName: 'enrollment',
+            timestamps: true,
+            underscored: true,
         }
     );
 };

@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define(
-        'instructor',
+        'user',
         {
             no: {
                 autoIncrement: true,
@@ -35,8 +35,10 @@ module.exports = function(sequelize, DataTypes) {
             },
         },
         {
-            tablename: 'instructor',
-            timestamps: false,
+            tableName: 'user',
+            timestamps: true,
+            paranoid: true,
+            underscored: true,
         }
     );
 };
