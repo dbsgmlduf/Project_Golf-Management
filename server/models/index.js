@@ -8,7 +8,6 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 //define model
 db.User = require('./user')(sequelize, Sequelize);
-//db.Learner = require('./learner')(sequelize, Sequelize);
 db.Enrollment = require('./enrollment')(sequelize, Sequelize);
 
 //define association
