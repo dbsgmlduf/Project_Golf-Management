@@ -71,11 +71,6 @@ const RegisterPage = (props) => {
                 </select> 
             </div>
             <div className="form_each">
-                <label>Name</label>
-                <input type="text" placeholder="Name" className="input_value"
-                 onChange={emailHandler}/>
-            </div>
-            <div className="form_each">
                 <label>Email</label>
                 <input type="text" placeholder="Email" className="input_value"
                  onChange={idHandler}/>
