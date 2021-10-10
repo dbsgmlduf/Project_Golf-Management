@@ -6,21 +6,24 @@ import {register} from '../../_actions/user_actions'
 const RegisterPage = (props) => {
 
     const dispatch = useDispatch();
-    const [Usertype, setUserTypeReg] = useState("");
-    const [Name, setUserNameReg] = useState("");
-    const [Email, setUserEmailReg] = useState("");
-    const [Password, setUserPwReg] = useState("");
-    const [ConfirmPassword, setUserConfirmPWReg] = useState("");
+    const [usertype, setUserTypeReg] = useState("");
+    const [email, setUserEmailReg] = useState("");
+    const [id, setUserIdReg] = useState("");
+    const [password, setUserPwReg] = useState("");
+    const [confirmPassword, setUserConfirmPWReg] = useState("");
+    const [nickname, setUserNicknameReg] = useState("");
+    const [confirmauth, setUserConfirmAuthReg] = useState("");
+    
 
     /*Event Handler*/
     const usertypeHandler = (e)=>{
         setUserTypeReg(e.currentTarget.value);
     }
-    const nameHandler = (e)=>{
-        setUserNameReg(e.currentTarget.value);
-    }
     const emailHandler = (e)=>{
         setUserEmailReg(e.currentTarget.value);
+    }
+    const idHandler = (e)=>{
+        setUserIdReg(e.currentTarget.value);
     }
     const passwordHandler = (e)=>{
         setUserPwReg(e.currentTarget.value);
@@ -28,16 +31,24 @@ const RegisterPage = (props) => {
     const confirmPWHandler = (e)=>{
         setUserConfirmPWReg(e.currentTarget.value);
     }
+    const nicknameHandler = (e)=>{
+        setUserNicknameReg(e.currentTarget.value);
+    }
+    const confirmAuthHandler = (e)=>{
+        setUserConfirmAuthReg(e.currentTarget.value);
+    }
     const submitHandler = (e)=>{
         e.preventDefault()
 
         const data = {
-            usertype : Usertype,
-            name : Name,
-            email : Email,
-            password : Password,
+            usertype : usertype,
+            email : email,
+            id : id,
+            password : password,
+            nickname : nickname,
+            confirmauth : confirmauth,
         }
-        if(Password === ConfirmPassword){
+        if(password === confirmPassword){
             dispatch(register(data)).then(res=>{
                 console.log(res);
                 alert("가입이 정상적으로 완료되었습니다");
@@ -62,12 +73,12 @@ const RegisterPage = (props) => {
             <div className="form_each">
                 <label>Name</label>
                 <input type="text" placeholder="Name" className="input_value"
-                 onChange={nameHandler}/>
+                 onChange={emailHandler}/>
             </div>
             <div className="form_each">
                 <label>Email</label>
                 <input type="text" placeholder="Email" className="input_value"
-                 onChange={emailHandler}/>
+                 onChange={idHandler}/>
             </div>
             <div className="form_each">
                 <label>Password</label>
@@ -78,6 +89,23 @@ const RegisterPage = (props) => {
                 <label>Password</label>
                 <input type="password" placeholder="Password" className="input_value"
                  onChange={confirmPWHandler}/>
+            </div>
+            <div className="form_each">
+                <label>nickname</label>
+                <input type="text" placeholder="NickName" className="input_value"
+                 onChange={nicknameHandler}/>
+            </div>
+            <div className="form_each">
+                Certification
+                <select name="auth" onClick={confirmAuthHandler}>
+                    <option value="none">=선택=</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select> 
             </div>
             <div className="form_each">
                 <button className="btn">Sign</button>
