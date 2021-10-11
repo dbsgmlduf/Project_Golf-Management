@@ -1,5 +1,3 @@
-'use strict';
-
 const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
@@ -9,12 +7,12 @@ const db = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 //define model
-db.Instructor = require('./instructor')(sequelize, Sequelize);
-db.Learner = require('./learner')(sequelize, Sequelize);
+db.User = require('./user')(sequelize, Sequelize);
+db.Enrollment = require('./enrollment')(sequelize, Sequelize);
 
 //define association
-db.Instructor.belongsToMany(db.Learner, {through: 'takes', foreignKey:'teacher'})
-db.Learner.belongsToMany(db.Instructor, {through:'takes', foreignKey:'student'})
+db.User.belongsToMany(db.User, {as: 'attendee', through: db.Enrollment, foreignKey:'lecturer_No'})
+db.User.belongsToMany(db.User, {as: 'lecturer', through: db.Enrollment, foreignKey:'attendee_No'})
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
