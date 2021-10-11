@@ -5,31 +5,53 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-router.post('/', async(req, res) => {
-    const { usertype, username, email, password } = req.body;
-    bcrypt.hash(password, 10).then((hash) => {
-        User.create({
+//instructor register API
+router.post('/userReg', async(req, res) => {
+    const { usertype, email, id, password, nickname, confirm_auth } = req.body;
+    try{
+        const hash = await bcrypt.hash(password, 10);
+        await User.create({
             usertype: usertype,
-            name: username,
             email: email,
+            id: id,
             password: hash,
+            nickname: nickname,
+            confirm_auth: confirm_auth,
         });
-        res.json("SUCCESS!!");
-    });
+        res.json("INSTRUCTOR REGISTER SUCCESS!!");
+        
+    } catch (error){
+        console.log(error);
+    }
 });
 
 router.post('/login', passport.authenticate('local', {session: false}),
-    async (req, res, error) => {
-        const user = req.body
+async (req, res, error) => {
+    const user = req.body
         const accessToken = jwt.sign(
-                { email: user.email },
+                { id: user.id },
                 process.env.JWT_ACCESS_TOKEN_SECRET
             );
         res.json({
+            loginSuccess: true,
             message: "LOGIN SUCCESS!",
-            accessToken
+            accessToken,
         });
 });
+
+// router.post('/learnerReg', async(req, res) => {
+//     const { usertype, email, id, password, nickname } = req.body;
+//     bcrypt.hash(password, 10).then((hash) => {
+//         Learner.create({
+//             usertype: usertype,
+//             email: email,
+//             id: id,
+//             password: hash,
+//             nickname: nickname,
+//         });
+//         res.json("LEARNER REGISTER SUCCESS!!");
+//     });
+// });
 
 //res 여러개 = ERR_HTTP_HEADERS_SENT
 // router.post('/login', async(req, res) => {
