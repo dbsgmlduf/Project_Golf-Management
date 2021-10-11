@@ -5,16 +5,14 @@ import PrivateRoute from './lib/PrivateRoute';
 import LandingPage from './components/page/LandingPage';
 import RegisterPage from './components/page/RegisterPage';
 import LoginPage from './components/page/LoginPage';
-import LecturePage from './components/page/LecturePage';
 
 const Routes = () => {
 
     return(
         <Switch>
-            <PublicRoute restricted component={LandingPage} exact path="/"/>
-            <PublicRoute restricted component={RegisterPage} exact path="/register"/>
-            <PublicRoute restricted component={LoginPage} exact path="/login"/>
-            <PrivateRoute component={LecturePage} exact path="/lecture"/>
+            <PublicRoute restricted={false} component={LandingPage} exact path="/"/>
+            <PublicRoute restricted={false} component={RegisterPage} exact path="/register"/>
+            <PublicRoute restricted={false} component={LoginPage} exact path="/login"/>
         </Switch>
     );
 }
