@@ -1,7 +1,7 @@
 import Header from './layout/Header';
 import Main from './layout/Main';
 import Footer from './layout/Footer';
-const LecturePage = (props) => {
+const LecturerPage = (props) => {
 
 
     return(
@@ -13,4 +13,4 @@ const LecturePage = (props) => {
     );
 }
 
-export default LecturePage;
+export default LecturerPage;
