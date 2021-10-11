@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {register} from '../../_actions/user_actions'
+import {register} from '../../../_actions/user_actions'
 
 
 const RegisterPage = (props) => {
