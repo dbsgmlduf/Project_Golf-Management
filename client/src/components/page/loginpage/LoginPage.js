@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux'
-import { loginUser } from '../../_actions/user_actions';
+import { loginUser } from '../../../_actions/user_actions';
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
@@ -27,7 +27,15 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response =>{
             if(response.payload.loginSuccess){
                 localStorage.setItem('accessToken', response.payload.accessToken);
+<<<<<<< HEAD:client/src/components/page/LoginPage.js
                 props.history.push('/')
+=======
+                if(response.payload.userType ==="lecture"){
+                    props.history.push('/lecture')
+                }else{
+                    props.history.push('/learner')
+                }
+>>>>>>> 99824670452bef3271ca4342d4b326e33b4d11f4:client/src/components/page/loginpage/LoginPage.js
             }
             else{
                 alert('실패')
