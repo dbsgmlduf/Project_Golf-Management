@@ -33,8 +33,9 @@ async (req, res, error) => {
                 process.env.JWT_ACCESS_TOKEN_SECRET
             );
         res.json({
+            loginSuccess: true,
             message: "LOGIN SUCCESS!",
-            accessToken
+            accessToken,
         });
 });
 

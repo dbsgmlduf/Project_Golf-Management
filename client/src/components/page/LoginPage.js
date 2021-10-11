@@ -16,16 +16,17 @@ const LoginPage = (props) => {
     }
     const onSubmitHandler = (e)=>{
         e.preventDefault();
-        console.log('Email', id);
+        console.log('id', id);
         console.log('Password', password);
 
         let data = {
             id : id,
-            password : password
+            password : password,
         }
 
         dispatch(loginUser(data)).then(response =>{
-            if(response.payload.loaginSuccess){
+            if(response.payload.loginSuccess){
+                localStorage.setItem('accessToken', response.payload.accessToken);
                 props.history.push('/')
             }
             else{
