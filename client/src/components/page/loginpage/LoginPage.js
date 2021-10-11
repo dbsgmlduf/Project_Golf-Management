@@ -27,7 +27,11 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response =>{
             if(response.payload.loginSuccess){
                 localStorage.setItem('accessToken', response.payload.accessToken);
-                props.history.push('/lecture')
+                if(response.payload.userType ==="lecture"){
+                    props.history.push('/lecture')
+                }else{
+                    props.history.push('/learner')
+                }
             }
             else{
                 alert('실패')
