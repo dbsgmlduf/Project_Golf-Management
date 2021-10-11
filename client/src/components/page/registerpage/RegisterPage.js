@@ -67,7 +67,7 @@ const RegisterPage = (props) => {
                 <select name="userType" onClick={usertypeHandler}>
                     <option value="none">=선택=</option>
                     <option value="learner">learner</option>
-                    <option value="lecture">lecture</option>
+                    <option value="lecturer">lecturer</option>
                 </select> 
             </div>
             <div className="form_each">
