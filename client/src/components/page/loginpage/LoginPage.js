@@ -28,9 +28,10 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response =>{
             if(response.payload.loginSuccess){
                 localStorage.setItem('accessToken', response.payload.accessToken);
-                if(response.payload.userType['usertype'] === 'lecturer'){
+                const userTypeRes = response.payload.userType['usertype'];
+                if(userTypeRes === 'lecturer'){
                     props.history.push('/lecturer')
-                }else{
+                }else if(userTypeRes === 'lecturer'){
                     props.history.push('/learner')
                 }
             }
