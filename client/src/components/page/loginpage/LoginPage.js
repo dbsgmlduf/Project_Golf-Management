@@ -6,7 +6,8 @@ const LoginPage = (props) => {
     const dispatch = useDispatch();
     const [id, setUserId] = useState("");
     const [password, setUserPw] = useState("");
-
+    const x= {"usertype": "lecturer"};
+    
     /*EventHandler*/
     const onIdHandler = (e)=>{
         setUserId(e.currentTarget.value);
@@ -27,9 +28,10 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response =>{
             if(response.payload.loginSuccess){
                 localStorage.setItem('accessToken', response.payload.accessToken);
-                if(response.payload.userType ==="lecture"){
-                    props.history.push('/lecture')
-                }else{
+                const userTypeRes = response.payload.userType['usertype'];
+                if(userTypeRes === 'lecturer'){
+                    props.history.push('/lecturer')
+                }else if(userTypeRes === 'lecturer'){
                     props.history.push('/learner')
                 }
             }

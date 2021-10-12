@@ -9,15 +9,13 @@ import LecturerPage from './components/page/lecturerpage/LecturerPage';
 import LearnerPage from './components/page/learnerpage/LearnerPage';
 
 
-
-
 const Routes = () => {
 
     return(
         <Switch>
-            <PublicRoute restricted component={LandingPage} exact path="/"/>
-            <PublicRoute restricted component={RegisterPage} exact path="/register"/>
-            <PublicRoute restricted component={LoginPage} exact path="/login"/>
+            <PublicRoute restricted={false} component={LandingPage} exact path="/"/>
+            <PublicRoute restricted={false} component={RegisterPage} exact path="/register"/>
+            <PublicRoute restricted={false} component={LoginPage} exact path="/login"/>
             <PrivateRoute component={LecturerPage} exact path="/lecturer"/>
             <PrivateRoute component={LearnerPage} exact path="/learner"/>
         </Switch>
