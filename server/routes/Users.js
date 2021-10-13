@@ -4,6 +4,8 @@ const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const {selectUserType} = require('../application/user');
+const {JWT_ACCESS_TOKEN_SECRET} = process.env
 
 //instructor register API
 router.post('/userReg', async(req, res) => {
@@ -30,11 +32,18 @@ async (req, res, error) => {
     const user = req.body
         const accessToken = jwt.sign(
                 { id: user.id },
-                process.env.JWT_ACCESS_TOKEN_SECRET
+                JWT_ACCESS_TOKEN_SECRET, {
+                    expiresIn: '14d',
+                }
             );
+        const userId = user.id;
+        
+        const userType = await selectUserType(userId);
+        console.log(typeof(userType));
         res.json({
             loginSuccess: true,
             message: "LOGIN SUCCESS!",
+            userType: userType,
             accessToken,
         });
 });

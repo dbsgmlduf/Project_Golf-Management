@@ -60,14 +60,14 @@ const RegisterPage = (props) => {
     }
 
     return(
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className="form_group_register">
             <h2>SIGN UP</h2>
             <div className="form_each">
                 User Type
                 <select name="userType" onClick={usertypeHandler}>
                     <option value="none">=선택=</option>
                     <option value="learner">learner</option>
-                    <option value="lecture">lecture</option>
+                    <option value="lecturer">lecturer</option>
                 </select> 
             </div>
             <div className="form_each">
@@ -86,7 +86,7 @@ const RegisterPage = (props) => {
                  onChange={passwordHandler}/>
             </div>
             <div className="form_each">
-                <label>Password</label>
+                <label>ConfirmPassword</label>
                 <input type="password" placeholder="Password" className="input_value"
                  onChange={confirmPWHandler}/>
             </div>
