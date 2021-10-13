@@ -8,7 +8,7 @@ const Header = () => {
             </Link>
             <div className="navbar_item">
                 <li id="login">
-                    <Link to = {'/logout'}>OUT</Link>
+                    <Link to = {'/logout'}>LOGOUT</Link>
                 </li>
             </div>
         </div>

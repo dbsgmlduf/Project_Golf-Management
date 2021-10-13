@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../../_actions/user_actions';
@@ -6,7 +7,6 @@ const LoginPage = (props) => {
     const dispatch = useDispatch();
     const [id, setUserId] = useState("");
     const [password, setUserPw] = useState("");
-    const x= {"usertype": "lecturer"};
     
     /*EventHandler*/
     const onIdHandler = (e)=>{
@@ -25,13 +25,21 @@ const LoginPage = (props) => {
             password : password,
         }
 
+        axios.interceptors.request.use((co) => {
+            co.headers = {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            };
+            co.timeout = 2000;
+            return co;  
+        })
+        
         dispatch(loginUser(data)).then(response =>{
             if(response.payload.loginSuccess){
                 localStorage.setItem('accessToken', response.payload.accessToken);
                 const userTypeRes = response.payload.userType['usertype'];
                 if(userTypeRes === 'lecturer'){
                     props.history.push('/lecturer')
-                }else if(userTypeRes === 'lecturer'){
+                }else if(userTypeRes === 'learner'){
                     props.history.push('/learner')
                 }
             }
