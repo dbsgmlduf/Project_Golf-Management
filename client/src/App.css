@@ -62,7 +62,7 @@ a {
   grid-template-rows: 40px 50px 50px 50px 50px 110px;
   align-items: center;
   width: 250px;
-  height: 350px;
+  /*height: 350px; */
   margin-left: 490px;
   margin-top: 130px;
   padding-left: 20px;
