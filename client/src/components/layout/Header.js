@@ -1,7 +1,7 @@
 import React from 'react';
-import LoginButton from '../UI/atoms/login_button/index';
-import LogoutButton from '../UI/atoms/logout_button/index';
-import RegisterButton from '../UI/atoms/register_button/index';
+import LoginButton from '../UI/atoms/title_signin/index';
+import LogoutButton from '../UI/atoms/title_signout/index';
+import RegisterButton from '../UI/atoms/title_signup/index';
 import isLogin from '../../lib/isLogin';
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';

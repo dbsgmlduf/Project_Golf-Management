@@ -64,9 +64,9 @@ const RegisterPage = (props) => {
 
     return (
 
-        <Grid onSubmit={submitHandler}>
+        <Grid>
             <Header />
-            <Paper elevation={10} className={classes.registerPaper}>
+            <Paper elevation={10} className={classes.registerPaper} onSubmit={submitHandler}>
                 <Grid align="center">
                     <Avatar className={classes.avatar}><MenuBookIcon className={classes.icon} /></Avatar>
                     <h2>SIGN UP</h2>
