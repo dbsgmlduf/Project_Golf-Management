@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../_actions/user_actions';
+import Header from '../layout/Header'
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
@@ -50,22 +51,24 @@ const LoginPage = (props) => {
     }
     
     return(
-    <form onSubmit={onSubmitHandler} className="form_group_login">
-        <h2>LOG IN</h2>
-        <div className="form_each">
-            <label>ID</label>
-            <input type="text" placeholder="ID" className="input_value"
-            onChange={onIdHandler}/>
-        </div>
-        <div className="form_each">
-            <label>Password</label>
-            <input type="password" placeholder="Password" className="input_value"
-            onChange={onPasswordHandler}/>
-        </div>
-        <div className="form_each">
-            <button className="btn">Log in</button>
-        </div>
-    </form>
+       
+        <form onSubmit={onSubmitHandler} className="form_group_login">
+            <Header/>
+            <h2>LOG IN</h2>
+            <div className="form_each">
+                <label>ID</label>
+                <input type="text" placeholder="ID" className="input_value"
+                onChange={onIdHandler}/>
+            </div>
+            <div className="form_each">
+                <label>Password</label>
+                <input type="password" placeholder="Password" className="input_value"
+                onChange={onPasswordHandler}/>
+            </div>
+            <div className="form_each">
+                <button className="btn">Log in</button>
+            </div>
+        </form>
     );
 }
 

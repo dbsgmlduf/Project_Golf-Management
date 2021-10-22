@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {register} from '../../_actions/user_actions'
-
+import Header from '../layout/Header'
 
 const RegisterPage = (props) => {
 
@@ -61,6 +61,7 @@ const RegisterPage = (props) => {
 
     return(
         <form onSubmit={submitHandler} className="form_group_register">
+            <Header/>
             <h2>SIGN UP</h2>
             <div className="form_each">
                 User Type
