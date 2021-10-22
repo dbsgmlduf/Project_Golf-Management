@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../_actions/user_actions'
 import Header from '../layout/Header'
-
+import { Grid, Paper, Avatar, TextField, Button, Select, InputLabel, FormControl, MenuItem ,FormLabel,RadioGroup,FormControlLabel,Radio} from '@material-ui/core';
+import useStyles from './style';
+import MenuBookIcon from '@material-ui/icons/MenuBook'
 const RegisterPage = (props) => {
 
     const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const RegisterPage = (props) => {
     const [nickname, setUserNicknameReg] = useState("");
     const [confirmauth, setUserConfirmAuthReg] = useState("");
 
+    const classes = useStyles();
 
     /*Event Handler*/
     const usertypeHandler = (e) => {
@@ -60,58 +63,41 @@ const RegisterPage = (props) => {
     }
 
     return (
-        <form onSubmit={submitHandler} className="form_group_register">
+
+        <Grid onSubmit={submitHandler}>
             <Header />
-            <h2>SIGN UP</h2>
-            <div className="form_each">
-                User Type
-                <select name="userType" onClick={usertypeHandler}>
-                    <option value="none">=선택=</option>
-                    <option value="learner">learner</option>
-                    <option value="lecturer">lecturer</option>
-                </select>
-            </div>
-            <div className="form_each">
-                <label>Email</label>
-                <input type="text" placeholder="Email" className="input_value"
-                    onChange={emailHandler} />
-            </div>
-            <div className="form_each">
-                <label>Id</label>
-                <input type="text" placeholder="Id" className="input_value"
-                    onChange={idHandler} />
-            </div>
-            <div className="form_each">
-                <label>Password</label>
-                <input type="password" placeholder="Password" className="input_value"
-                    onChange={passwordHandler} />
-            </div>
-            <div className="form_each">
-                <label>ConfirmPassword</label>
-                <input type="password" placeholder="Password" className="input_value"
-                    onChange={confirmPWHandler} />
-            </div>
-            <div className="form_each">
-                <label>nickname</label>
-                <input type="text" placeholder="NickName" className="input_value"
-                    onChange={nicknameHandler} />
-            </div>
-            <div className="form_each">
-                Certification
-                <select name="auth" onClick={confirmAuthHandler}>
-                    <option value="none">=선택=</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-            </div>
-            <div className="form_each">
-                <button className="btn">Sign</button>
-            </div>
-        </form>
+            <Paper elevation={10} className={classes.registerPaper}>
+                <Grid align="center">
+                    <Avatar className={classes.avatar}><MenuBookIcon className={classes.icon} /></Avatar>
+                    <h2>SIGN UP</h2>
+                </Grid>
+                <FormControl fullWidth required>
+                    <InputLabel>User Type</InputLabel>
+                    <Select
+                        //value={age}
+                        label="User Type"
+                        onChange={usertypeHandler}
+                    >
+                        <MenuItem value={"learner"}>learner</MenuItem>
+                        <MenuItem value={"lecturer"}>lecturer</MenuItem>
+                    </Select>
+                </FormControl>
+                <TextField label="Email" placeholder="Enter Email" fullWidth required onChange={emailHandler} />
+                <TextField label="User Id" placeholder="Enter User Id" fullWidth required onChange={idHandler} />
+                <TextField label="Password" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} />
+                <TextField label="ConfirmPassword" type="password" placeholder="Enter ConfirmPassword" fullWidth required onChange={confirmPWHandler} />
+                <TextField label="nickname" placeholder="NickName" fullWidth required onChange={nicknameHandler} />
+                <FormControl className={classes.radio} onClick={confirmAuthHandler}>
+                    <FormLabel>Certification</FormLabel>
+                    <RadioGroup row aria-label="certification">
+                        <FormControlLabel value="1" control={<Radio />} label="1" />
+                        <FormControlLabel value="2" control={<Radio />} label="2" />
+                        <FormControlLabel value="3" control={<Radio />} label="3" />
+                    </RadioGroup>
+                </FormControl>
+                <Button type="submit" color='primary' variant="contained" fullWidth className={classes.signinButton}>Sign</Button>
+            </Paper>
+        </Grid>
     )
 };
 
