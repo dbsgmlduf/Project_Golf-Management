@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {register} from '../../_actions/user_actions'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from '../../_actions/user_actions'
 import Header from '../layout/Header'
 
 const RegisterPage = (props) => {
@@ -13,55 +13,55 @@ const RegisterPage = (props) => {
     const [confirmPassword, setUserConfirmPWReg] = useState("");
     const [nickname, setUserNicknameReg] = useState("");
     const [confirmauth, setUserConfirmAuthReg] = useState("");
-    
+
 
     /*Event Handler*/
-    const usertypeHandler = (e)=>{
+    const usertypeHandler = (e) => {
         setUserTypeReg(e.currentTarget.value);
     }
-    const emailHandler = (e)=>{
+    const emailHandler = (e) => {
         setUserEmailReg(e.currentTarget.value);
     }
-    const idHandler = (e)=>{
+    const idHandler = (e) => {
         setUserIdReg(e.currentTarget.value);
     }
-    const passwordHandler = (e)=>{
+    const passwordHandler = (e) => {
         setUserPwReg(e.currentTarget.value);
     }
-    const confirmPWHandler = (e)=>{
+    const confirmPWHandler = (e) => {
         setUserConfirmPWReg(e.currentTarget.value);
     }
-    const nicknameHandler = (e)=>{
+    const nicknameHandler = (e) => {
         setUserNicknameReg(e.currentTarget.value);
     }
-    const confirmAuthHandler = (e)=>{
+    const confirmAuthHandler = (e) => {
         setUserConfirmAuthReg(e.currentTarget.value);
     }
-    const submitHandler = (e)=>{
+    const submitHandler = (e) => {
         e.preventDefault()
 
         const data = {
-            usertype : usertype,
-            email : email,
-            id : id,
-            password : password,
-            nickname : nickname,
-            confirmauth : confirmauth,
+            usertype: usertype,
+            email: email,
+            id: id,
+            password: password,
+            nickname: nickname,
+            confirmauth: confirmauth,
         }
-        if(password === confirmPassword){
-            dispatch(register(data)).then(res=>{
+        if (password === confirmPassword) {
+            dispatch(register(data)).then(res => {
                 console.log(res);
                 alert("가입이 정상적으로 완료되었습니다");
                 props.history.push("/login");
             })
-        }else{
+        } else {
             alert("비밀번호가 일치하지 않습니다.")
         }
     }
 
-    return(
+    return (
         <form onSubmit={submitHandler} className="form_group_register">
-            <Header/>
+            <Header />
             <h2>SIGN UP</h2>
             <div className="form_each">
                 User Type
@@ -69,32 +69,32 @@ const RegisterPage = (props) => {
                     <option value="none">=선택=</option>
                     <option value="learner">learner</option>
                     <option value="lecturer">lecturer</option>
-                </select> 
+                </select>
             </div>
             <div className="form_each">
                 <label>Email</label>
                 <input type="text" placeholder="Email" className="input_value"
-                 onChange={emailHandler}/>
+                    onChange={emailHandler} />
             </div>
             <div className="form_each">
                 <label>Id</label>
                 <input type="text" placeholder="Id" className="input_value"
-                 onChange={idHandler}/>
+                    onChange={idHandler} />
             </div>
             <div className="form_each">
                 <label>Password</label>
                 <input type="password" placeholder="Password" className="input_value"
-                 onChange={passwordHandler}/>
+                    onChange={passwordHandler} />
             </div>
             <div className="form_each">
                 <label>ConfirmPassword</label>
                 <input type="password" placeholder="Password" className="input_value"
-                 onChange={confirmPWHandler}/>
+                    onChange={confirmPWHandler} />
             </div>
             <div className="form_each">
                 <label>nickname</label>
                 <input type="text" placeholder="NickName" className="input_value"
-                 onChange={nicknameHandler}/>
+                    onChange={nicknameHandler} />
             </div>
             <div className="form_each">
                 Certification
@@ -106,7 +106,7 @@ const RegisterPage = (props) => {
                     <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
-                </select> 
+                </select>
             </div>
             <div className="form_each">
                 <button className="btn">Sign</button>

@@ -1,29 +1,34 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../_actions/user_actions';
 import Header from '../layout/Header'
+import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
+import useStyles from './style';
+import LockIcon from '@material-ui/icons/Lock'
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
     const [id, setUserId] = useState("");
     const [password, setUserPw] = useState("");
-    
+
+    const classes = useStyles();
+
     /*EventHandler*/
-    const onIdHandler = (e)=>{
+    const onIdHandler = (e) => {
         setUserId(e.currentTarget.value);
     }
-    const onPasswordHandler = (e)=>{
+    const onPasswordHandler = (e) => {
         setUserPw(e.currentTarget.value);
     }
-    const onSubmitHandler = (e)=>{
+    const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log('id', id);
         console.log('Password', password);
 
         let data = {
-            id : id,
-            password : password,
+            id: id,
+            password: password,
         }
 
         axios.interceptors.request.use((co) => {
@@ -31,44 +36,39 @@ const LoginPage = (props) => {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             };
             co.timeout = 2000;
-            return co;  
+            return co;
         })
-        
-        dispatch(loginUser(data)).then(response =>{
-            if(response.payload.loginSuccess){
+
+        dispatch(loginUser(data)).then(response => {
+            if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
                 const userTypeRes = response.payload.userType['usertype'];
-                if(userTypeRes === 'lecturer'){
+                if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
-                }else if(userTypeRes === 'learner'){
+                } else if (userTypeRes === 'learner') {
                     props.history.push('/learner')
                 }
             }
-            else{
+            else {
                 alert('실패')
             }
         })
     }
-    
-    return(
-       
-        <form onSubmit={onSubmitHandler} className="form_group_login">
-            <Header/>
-            <h2>LOG IN</h2>
-            <div className="form_each">
-                <label>ID</label>
-                <input type="text" placeholder="ID" className="input_value"
-                onChange={onIdHandler}/>
-            </div>
-            <div className="form_each">
-                <label>Password</label>
-                <input type="password" placeholder="Password" className="input_value"
-                onChange={onPasswordHandler}/>
-            </div>
-            <div className="form_each">
-                <button className="btn">Log in</button>
-            </div>
-        </form>
+
+    return (
+
+        <Grid onSubmit={onSubmitHandler}>
+            <Header />
+            <Paper elevation={10} className={classes.paper}>
+                <Grid align="center">
+                    <Avatar className={classes.avatar}><LockIcon className={classes.icon} /></Avatar>
+                    <h2>SIGN IN</h2>
+                </Grid>
+                <TextField label="Username" placeholder="Enter Username" fullWidth required onChange={onIdHandler} />
+                <TextField label="Password" type="password" placeholder="Enter Password" fullWidth required className={classes.password} onChange={onPasswordHandler} />
+                <Button type="submit" color='primary' variant="contained" fullWidth className={classes.signinButton}>SIGN IN</Button>
+            </Paper>
+        </Grid>
     );
 }
 
