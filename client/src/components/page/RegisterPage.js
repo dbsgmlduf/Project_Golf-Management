@@ -76,7 +76,7 @@ const RegisterPage = (props) => {
                     <Select
                         //value={age}
                         label="User Type"
-                        onChange={usertypeHandler}
+                        onChange={usertypeHandler}  
                     >
                         <MenuItem value={"learner"}>learner</MenuItem>
                         <MenuItem value={"lecturer"}>lecturer</MenuItem>
