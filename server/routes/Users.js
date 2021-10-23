@@ -33,7 +33,7 @@ async (req, res, error) => {
         const accessToken = jwt.sign(
                 { id: user.id },
                 JWT_ACCESS_TOKEN_SECRET, {
-                    expiresIn: '14d',
+                    expiresIn: '1h',
                 }
             );
         const userId = user.id;
