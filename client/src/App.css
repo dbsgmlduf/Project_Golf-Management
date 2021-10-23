@@ -37,17 +37,14 @@ a {
   justify-content: space-between;
   align-items: center;
   grid-area: header;
-  border: 3px solid black;
 }
 
 .page-main {
   grid-area: main;
-  border: 3px solid black;
 }
 
 .page-footer {
   grid-area: footer;
-  border: 3px solid black;
 }
 
 .navbar_item {
