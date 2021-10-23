@@ -1,17 +1,18 @@
 import Header from '../layout/Header';
-import Main from '../layout/Main';
 import Footer from '../layout/Footer';
-
+import { Grid } from '@material-ui/core';
+import useStyles from './style';
 
 const LearnerPage = (props) => {
+    
+    const classes = useStyles();
 
-
-    return(
-        <div className="page-container">
-            <Header/>
-            <Main/>
-            <Footer/>
-        </div>
+    return (
+        <Grid>
+            <Header />
+            
+            <Footer />
+        </Grid>
     );
 }
 

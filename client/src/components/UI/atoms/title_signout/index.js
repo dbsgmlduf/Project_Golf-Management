@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const LogoutButton = () => {
     return(
         //<Button variant = "signIn" href="/login" >SIGN IN</Button>
-        <Button variant = "signOut"><Link to="/login">OUT</Link></Button>
+        <Button variant = "signOut" onclick={localStorage.clear('accessToken')}><Link to="/login">OUT</Link></Button>
     );
 };
 
