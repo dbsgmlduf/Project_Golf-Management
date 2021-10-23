@@ -57,17 +57,19 @@ const LoginPage = (props) => {
 
     return (
 
-        <Grid onSubmit={onSubmitHandler}>
+        <Grid>
             <Header />
-            <Paper elevation={10} className={classes.paper}>
-                <Grid align="center">
-                    <Avatar className={classes.avatar}><LockIcon className={classes.icon} /></Avatar>
-                    <h2>SIGN IN</h2>
-                </Grid>
-                <TextField label="Username" placeholder="Enter Username" fullWidth required onChange={onIdHandler} />
-                <TextField label="Password" type="password" placeholder="Enter Password" fullWidth required className={classes.password} onChange={onPasswordHandler} />
-                <Button type="submit" color='primary' variant="contained" fullWidth className={classes.signinButton}>SIGN IN</Button>
-            </Paper>
+            <form onSubmit={onSubmitHandler}>
+                <Paper elevation={10} className={classes.paper}>
+                    <Grid align="center">
+                        <Avatar className={classes.avatar}><LockIcon className={classes.icon} /></Avatar>
+                        <h2>SIGN IN</h2>
+                    </Grid>
+                    <TextField label="Username" placeholder="Enter Username" fullWidth required onChange={onIdHandler} />
+                    <TextField label="Password" type="password" placeholder="Enter Password" fullWidth required className={classes.password} onChange={onPasswordHandler} />
+                    <Button type="submit" color='primary' variant="contained" fullWidth className={classes.signinButton}>SIGN IN</Button>
+                </Paper>
+            </form>
         </Grid>
     );
 }
