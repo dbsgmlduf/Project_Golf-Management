@@ -15,17 +15,17 @@ const Header = () => {
     if (isLogin()) {
         return (
 
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+            <div>
+                <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
-                        <IconButton><menuIcon /></IconButton>
+                        <IconButton><MenuIcon className={classes.icon} /></IconButton>
                         <Typography className={classes.title}>
                             <Link to="/"><h1>GOLFTAK</h1></Link>
                         </Typography>
                         <LogoutButton />
                     </Toolbar>
                 </AppBar>
-            </Box>
+            </div>
         )
     }
     else {
