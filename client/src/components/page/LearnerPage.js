@@ -1,5 +1,6 @@
-import Header from '../layout/Header';
-import Footer from '../layout/Footer';
+import Header from '../UI/modules/header/Header';
+import Main from '../UI/modules/learnerMain/Main';
+import Footer from '../UI/modules/footer/Footer';
 import { Grid } from '@material-ui/core';
 import useStyles from './style';
 
@@ -10,7 +11,7 @@ const LearnerPage = (props) => {
     return (
         <Grid>
             <Header />
-            
+            <Main/>
             <Footer />
         </Grid>
     );

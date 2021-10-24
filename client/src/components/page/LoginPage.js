@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../_actions/user_actions';
-import Header from '../layout/Header'
+import Header from '../UI/modules/header/Header';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import useStyles from './style';
 import LockIcon from '@material-ui/icons/Lock'

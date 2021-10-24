@@ -1,6 +1,6 @@
-import Header from '../layout/Header';
-import Main from '../layout/Main';
-import Footer from '../layout/Footer';
+import Header from '../UI/modules/header/Header';
+import Main from '../UI/modules/landingMain/Main';
+import Footer from '../UI/modules/footer/Footer';
 
 const LandingPage = (props) => {
 
