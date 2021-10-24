@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../_actions/user_actions'
-import Header from '../layout/Header'
+import Header from '../UI/modules/header/Header';
 import { Grid, Paper, Avatar, TextField, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import useStyles from './style';
 import MenuBookIcon from '@material-ui/icons/MenuBook'
