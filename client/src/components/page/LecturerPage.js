@@ -1,15 +1,17 @@
-import Header from '../layout/Header';
-import Main from '../layout/Main';
-import Footer from '../layout/Footer';
+import Header from '../UI/modules/header/Header';
+import Main from '../UI/modules/lecturerMain/Main';
+import Footer from '../UI/modules/footer/Footer';
+import { Grid } from '@material-ui/core';
+
 const LecturerPage = (props) => {
 
 
-    return(
-        <div className="page-container">
-            <Header/>
-            <Main/>
-            <Footer/>
-        </div>
+    return (
+        <Grid>
+            <Header />
+            <Main />
+            <Footer />
+        </Grid>
     );
 }
 

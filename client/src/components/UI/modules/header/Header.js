@@ -1,8 +1,8 @@
 import React from 'react';
-import LoginButton from '../UI/atoms/title_signin/index';
-import LogoutButton from '../UI/atoms/title_signout/index';
-import RegisterButton from '../UI/atoms/title_signup/index';
-import isLogin from '../../lib/isLogin';
+import LoginButton from '../../atoms/title_signin/index';
+import LogoutButton from '../../atoms/title_signout/index';
+import RegisterButton from '../../atoms/title_signup/index';
+import isLogin from '../../../../lib/isLogin';
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';
 import MenuIcon from "@material-ui/icons/Menu";
