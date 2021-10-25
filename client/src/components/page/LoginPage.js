@@ -26,23 +26,24 @@ const LoginPage = (props) => {
         e.preventDefault();
         console.log('id', id);
         console.log('Password', password);
-
+        
         let data = {
             id: id,
             password: password,
         }
-
-        axios.interceptors.request.use((co) => {
-            co.headers = {
-                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            };         
-            co.timeout = 2000;
-            return co;
-        })
-
+        
+        // axios.interceptors.request.use((co) => {
+        //     co.headers = {
+        //         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        //     };         
+        //     co.timeout = 2000;
+        //     return co;
+        // })
+        
         dispatch(loginUser(data)).then(response => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
+                localStorage.setItem('userType',response.payload.userType);
                 Swal.fire({
                     icon:'success',
                     title:'성공!!',
@@ -64,9 +65,9 @@ const LoginPage = (props) => {
             }
         })
     }
-
+    
     return (
-
+        
         <Grid>
             <Header />
             <form onSubmit={onSubmitHandler}>
