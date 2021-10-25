@@ -13,11 +13,9 @@ const RegisterPage = (props) => {
     const dispatch = useDispatch();
     const [usertype, setUserTypeReg] = useState("");
     const [email, setUserEmailReg] = useState("");
-    const [id, setUserIdReg] = useState("");
+    const [name, setUserNameReg] = useState("");
     const [password, setUserPwReg] = useState("");
     const [confirmPassword, setUserConfirmPWReg] = useState("");
-    const [nickname, setUserNicknameReg] = useState("");
-    const [confirmauth, setUserConfirmAuthReg] = useState("");
 
     /*Event Handler*/
     const usertypeHandler = (e) => {
@@ -28,9 +26,9 @@ const RegisterPage = (props) => {
         console.log(e.currentTarget.value);
         setUserEmailReg(e.currentTarget.value);
     }
-    const idHandler = (e) => {
+    const nameHandler = (e) => {
         console.log(e.currentTarget.value);
-        setUserIdReg(e.currentTarget.value);
+        setUserNameReg(e.currentTarget.value);
     }
     const passwordHandler = (e) => {
         console.log(e.currentTarget.value);
@@ -40,20 +38,13 @@ const RegisterPage = (props) => {
         console.log(e.currentTarget.value);
         setUserConfirmPWReg(e.currentTarget.value);
     }
-    const nicknameHandler = (e) => {
-        console.log(e.currentTarget.value);
-        setUserNicknameReg(e.currentTarget.value);
-    }
+
     const hasError = passwordEntered =>
         password.length < 5 ? true : false;
 
     const hasNotSameError = passwordEntered =>
         password != confirmPassword ? true : false;
 
-    const confirmAuthHandler = (e) => {
-        console.log(e.currentTarget.value);
-        setUserConfirmAuthReg(e.currentTarget.value);
-    }
     const submitHandler = (e) => {
 
         e.preventDefault()
@@ -63,10 +54,8 @@ const RegisterPage = (props) => {
         let data = {
             usertype: usertype,
             email: email,
-            id: id,
+            name: name,
             password: password,
-            nickname: nickname,
-            confirmauth: confirmauth,
         }
         dispatch(register(data)).then(res => {
             if(res.payload.registerSuccess){
@@ -107,20 +96,11 @@ const RegisterPage = (props) => {
                         </RadioGroup>
                     </FormControl>
                     <TextField label="Email" placeholder="Enter Email" fullWidth required onChange={emailHandler} />
-                    <TextField label="User Id" placeholder="Enter User Id" fullWidth required onChange={idHandler} />
-                    <TextField label="Password(5글자 이상 필수)" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} error={hasError('password')} />
+                    <TextField label="Name" placeholder="Enter User Name" fullWidth required onChange={nameHandler} />
+                    <TextField label="Password(5글자 이상 필수)" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} error={hasError('password')}  />
                     <TextField label="ConfirmPassword" type="password" placeholder="Enter ConfirmPassword" fullWidth required onChange={confirmPWHandler} error={hasNotSameError('confirmPassword')} helperText={
                             hasNotSameError('confirmPassword') ? "입력한 비밀번호와 일치하지 않습니다." : null
                         } />
-                    <TextField label="nickname" placeholder="NickName" fullWidth required onChange={nicknameHandler} />
-                    <FormControl className={classes.radio} >
-                        <FormLabel>Certification</FormLabel>
-                        <RadioGroup row aria-label="certification" onChange={confirmAuthHandler}>
-                            <FormControlLabel value={1} control={<Radio />} label="1" />
-                            <FormControlLabel value={2} control={<Radio />} label="2" />
-                            <FormControlLabel value={3} control={<Radio />} label="3" />
-                        </RadioGroup>
-                    </FormControl>
                     <Button type="submit" color='primary' variant="contained" fullWidth className={classes.signinButton}>Sign</Button>
                 </form>
             </Paper>
