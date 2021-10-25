@@ -16,8 +16,6 @@ const RegisterPage = (props) => {
     const [nickname, setUserNicknameReg] = useState("");
     const [confirmauth, setUserConfirmAuthReg] = useState("");
 
-    const classes = useStyles();
-
     /*Event Handler*/
     const usertypeHandler = (e) => {
         console.log('ff' + e.currentTarget.value);
@@ -43,6 +41,12 @@ const RegisterPage = (props) => {
         console.log(e.currentTarget.value);
         setUserNicknameReg(e.currentTarget.value);
     }
+    const hasError = passwordEntered =>
+        password.length < 5 ? true : false;
+
+    const hasNotSameError = passwordEntered =>
+        password != confirmPassword ? true : false;
+
     const confirmAuthHandler = (e) => {
         console.log(e.currentTarget.value);
         setUserConfirmAuthReg(e.currentTarget.value);
@@ -50,8 +54,10 @@ const RegisterPage = (props) => {
     const submitHandler = (e) => {
 
         e.preventDefault()
-
-        const data = {
+        if (password !== confirmPassword) {
+            return alert("비밀번호가 일치하지 않습니다.")
+        }
+        let data = {
             usertype: usertype,
             email: email,
             id: id,
@@ -59,17 +65,19 @@ const RegisterPage = (props) => {
             nickname: nickname,
             confirmauth: confirmauth,
         }
-        if (password === confirmPassword) {
-            dispatch(register(data)).then(res => {
+        dispatch(register(data)).then(res => {
+            if(res.payload.registerSuccess){
                 console.log(res);
                 alert("가입이 정상적으로 완료되었습니다");
                 props.history.push("/login");
-            })
-        } else {
-            alert("비밀번호가 일치하지 않습니다.")
-        }
-    }
+            }else{
+                alert('Error!!')
+            }
+            
+        })
 
+    }
+    const classes = useStyles();
     return (
 
         <Grid>
@@ -79,8 +87,8 @@ const RegisterPage = (props) => {
                     <Avatar className={classes.avatar}><MenuBookIcon className={classes.icon} /></Avatar>
                     <h2>SIGN UP</h2>
                 </Grid>
-                <form onSubmit={submitHandler}>
-                    <FormControl className={classes.radio} required >
+                <form onSubmit={submitHandler} noValidate>
+                    <FormControl className={classes.radio} required={true} >
                         <FormLabel>User Type</FormLabel>
                         <RadioGroup row aria-label="User Type" onChange={usertypeHandler}>
                             <FormControlLabel value="learner" control={<Radio />} label="learner" />
@@ -89,8 +97,10 @@ const RegisterPage = (props) => {
                     </FormControl>
                     <TextField label="Email" placeholder="Enter Email" fullWidth required onChange={emailHandler} />
                     <TextField label="User Id" placeholder="Enter User Id" fullWidth required onChange={idHandler} />
-                    <TextField label="Password" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} />
-                    <TextField label="ConfirmPassword" type="password" placeholder="Enter ConfirmPassword" fullWidth required onChange={confirmPWHandler} />
+                    <TextField label="Password(5글자 이상 필수)" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} error={hasError('password')} />
+                    <TextField label="ConfirmPassword" type="password" placeholder="Enter ConfirmPassword" fullWidth required onChange={confirmPWHandler} error={hasNotSameError('confirmPassword')} helperText={
+                            hasNotSameError('confirmPassword') ? "입력한 비밀번호와 일치하지 않습니다." : null
+                        } />
                     <TextField label="nickname" placeholder="NickName" fullWidth required onChange={nicknameHandler} />
                     <FormControl className={classes.radio} >
                         <FormLabel>Certification</FormLabel>
