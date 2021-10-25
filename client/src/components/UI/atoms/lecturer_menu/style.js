@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
     menuIcon : {
         color: '#000000',
         fontSize: '2rem',
-        position :'relative'
     }
 }));
 
