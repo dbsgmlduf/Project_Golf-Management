@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';
 import { Link } from 'react-router-dom';
 import LandingMenu from '../../atoms/landing_menu';
+import LearnerMenu from '../../atoms/learner_menu';
 
 
 const Header = () => {
@@ -18,7 +19,7 @@ const Header = () => {
             <div>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
-                        <LandingMenu />
+                        <LearnerMenu/>
                         <Typography className={classes.title}>
                             <Link to="/"><h1>GOLFTAK</h1></Link>
                         </Typography>
@@ -31,7 +32,7 @@ const Header = () => {
     }
     else {
         return (
-            <div>
+            <div className={classes.container}>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
                         <LandingMenu />

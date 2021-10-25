@@ -18,7 +18,10 @@ exports.register = async (req, res, next) => {
             nickname: nickname,
             confirm_auth: confirm_auth,
         });
-        res.json("INSTRUCTOR REGISTER SUCCESS!!");
+        res.json({
+            registerSuccess: true,
+            message: 'Register SUCCESS!!'
+        });
     } catch (error){
         res.status(400).json({
             message: "YOU FAILED!"

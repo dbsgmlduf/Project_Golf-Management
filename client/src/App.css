@@ -23,7 +23,7 @@ a {
 /*using grid-layout = there are 3 partition (header, main, footer)*/
 /*우선 화면 규격에 맞게 규격 설정(html 표준인지는 모름, 스크롤없이)*/
 .page-container {
-  display: 'flex';
+  display: 'grid';
   row-gap: 3px;
   grid-auto-rows: 50px 490px 80px;
   grid-template-areas:
