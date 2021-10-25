@@ -80,7 +80,7 @@ const RegisterPage = (props) => {
                     <h2>SIGN UP</h2>
                 </Grid>
                 <form onSubmit={submitHandler}>
-                    <FormControl className={classes.radio} >
+                    <FormControl className={classes.radio} required >
                         <FormLabel>User Type</FormLabel>
                         <RadioGroup row aria-label="User Type" onChange={usertypeHandler}>
                             <FormControlLabel value="learner" control={<Radio />} label="learner" />

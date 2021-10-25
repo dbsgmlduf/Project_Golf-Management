@@ -1,34 +1,35 @@
 import React, { useState } from "react";
-import { Box, SwipeableDrawer, List, Divider, IconButton, Grid, Button, Container,Stack } from "@material-ui/core";
+import { Box, SwipeableDrawer, List, Divider, IconButton, Button, Grid } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu"
 import { mainListItems } from "../list_items";
 import useStyles from "./style";
-import LoginButton from "../title_signin";
-import RegisterButton from "../title_signup";
+import LogoutButton from "../title_signout";
 
-const LandingMenu = () => {
+
+const LearnerMenu = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
     return (
-        <div>
+        <Grid>
             <Button>
-            <IconButton edge="start" aria-label="open drawer" onClick={() => setOpen(true)}>
-                <MenuIcon className={classes.menuIcon} />
-            </IconButton></Button>
+                <IconButton edge="start" aria-label="open drawer" onClick={() => setOpen(true)}>
+                    <MenuIcon className={classes.menuIcon} />
+                </IconButton>
+            </Button>
             <SwipeableDrawer anchor="left" open={open} onClose={() => setOpen(false)} onOpen={() => { }}>
                 <div className={classes.list}>
                     <Box textAlign="center" p={3}>
-                        MainPage
+                        learnerPage
                     </Box>
                     <List>
-                        <LoginButton /><RegisterButton />
+                        <LogoutButton />
                         <Divider />
                         {mainListItems}
                     </List>
                 </div></SwipeableDrawer>
-        </div>
+        </Grid>
     )
 }
 
-export default LandingMenu;
+export default LearnerMenu;

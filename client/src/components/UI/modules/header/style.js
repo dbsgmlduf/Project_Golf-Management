@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
     },
     
     appbar: {
-        position:'flex',
         background: 'none',
     },
     title: {
