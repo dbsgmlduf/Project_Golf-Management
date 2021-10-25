@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../_actions/user_actions'
 import Header from '../UI/modules/header/Header';
 import { Grid, Paper, Avatar, TextField, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import Swal from 'sweetalert2';
 import useStyles from './style';
 import MenuBookIcon from '@material-ui/icons/MenuBook'
+
+
 const RegisterPage = (props) => {
 
     const dispatch = useDispatch();
@@ -68,10 +71,18 @@ const RegisterPage = (props) => {
         dispatch(register(data)).then(res => {
             if(res.payload.registerSuccess){
                 console.log(res);
-                alert("가입이 정상적으로 완료되었습니다");
+                Swal.fire({
+                    icon:'success',
+                    title:'성공!!',
+                    text : '회원가입에 성공하셧습니다.'
+                });
                 props.history.push("/login");
             }else{
-                alert('Error!!')
+                Swal.fire({
+                    icon:'error',
+                    title:'Oops...',
+                    text : '회원가입에 실패하셧습니다.'
+                })
             }
             
         })

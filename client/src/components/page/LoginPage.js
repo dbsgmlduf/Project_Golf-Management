@@ -6,6 +6,7 @@ import Header from '../UI/modules/header/Header';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import useStyles from './style';
 import LockIcon from '@material-ui/icons/Lock'
+import Swal from 'sweetalert2';
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
@@ -42,6 +43,11 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
+                Swal.fire({
+                    icon:'success',
+                    title:'성공!!',
+                    text : '로그인에 성공하셧습니다.'
+                });
                 const userTypeRes = response.payload.userType['usertype'];
                 if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
@@ -50,7 +56,11 @@ const LoginPage = (props) => {
                 }
             }
             else {
-                alert('실패')
+                Swal.fire({
+                    icon:'fail',
+                    title:'실패!!',
+                    text : '로그인에 성공하셧습니다.'
+                });
             }
         })
     }
