@@ -34,7 +34,7 @@ const LoginPage = (props) => {
         axios.interceptors.request.use((co) => {
             co.headers = {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            };
+            };         
             co.timeout = 2000;
             return co;
         })
