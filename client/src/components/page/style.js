@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: 30,
-        width:280,
+        width:300,
+        height:300,
         margin:"90px auto",
     },
     registerPaper: {
