@@ -1,10 +1,13 @@
+import BasicTable from "../../atoms/lecturer_table";
+import { Card, Grid, Paper } from "@material-ui/core";
+import useStyles from "./style";
 
 const Main = () => {
-    
-    return(
-        <div className="page-main">
-            <h1 className="testText1">❗THIS IS lecturer PAGE❗</h1>
-        </div>
+    const classes = useStyles();
+    return (
+        <Card className={classes.lecturerCard}>
+            <BasicTable />
+        </Card>
     );
 }
 
