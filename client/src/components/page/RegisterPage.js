@@ -14,6 +14,7 @@ const RegisterPage = (props) => {
     const [usertype, setUserTypeReg] = useState("");
     const [email, setUserEmailReg] = useState("");
     const [name, setUserNameReg] = useState("");
+    const [id, setUserIdReg] = useState("");
     const [password, setUserPwReg] = useState("");
     const [confirmPassword, setUserConfirmPWReg] = useState("");
 
@@ -29,6 +30,10 @@ const RegisterPage = (props) => {
     const nameHandler = (e) => {
         console.log(e.currentTarget.value);
         setUserNameReg(e.currentTarget.value);
+    }
+    const idHandler = (e) => {
+        console.log(e.currentTarget.value);
+        setUserIdReg(e.currentTarget.value);
     }
     const passwordHandler = (e) => {
         console.log(e.currentTarget.value);
@@ -97,6 +102,7 @@ const RegisterPage = (props) => {
                     </FormControl>
                     <TextField label="Email" placeholder="Enter Email" fullWidth required onChange={emailHandler} />
                     <TextField label="Name" placeholder="Enter User Name" fullWidth required onChange={nameHandler} />
+                    <TextField label="Id" placeholder="Enter Id" fullWidth required onChange={idHandler} />
                     <TextField label="Password(5글자 이상 필수)" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} error={hasError('password')}  />
                     <TextField label="ConfirmPassword" type="password" placeholder="Enter ConfirmPassword" fullWidth required onChange={confirmPWHandler} error={hasNotSameError('confirmPassword')} helperText={
                             hasNotSameError('confirmPassword') ? "입력한 비밀번호와 일치하지 않습니다." : null
