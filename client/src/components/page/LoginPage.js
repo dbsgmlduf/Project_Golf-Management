@@ -43,7 +43,6 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
-                localStorage.setItem('userType',response.payload.userType);
                 Swal.fire({
                     icon:'success',
                     title:'성공!!',
