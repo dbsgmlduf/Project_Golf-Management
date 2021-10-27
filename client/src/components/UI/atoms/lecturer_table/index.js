@@ -1,46 +1,55 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
+import Customers from '../customer';
+import useStyles from './style';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
+const customers = [
+    {
+        'id': 1,
+        'name': '홍길동',
+        'lastDate': '21-9-01',
+        'nextDate': '21-10-14'
+    }
+    ,
+    {
+        'id': 2,
+        'name': '나영희',
+        'lastDate': '21-9-02',
+        'nextDate': '21-10-13'
+    }
+    ,
+    {
+        'id': 3,
+        'name': '김철수',
+        'lastDate': '21-9-03',
+        'nextDate': '21-10-12'
+    }
+    ,
+    {
+        'id': 4,
+        'name': '신짱구',
+        'lastDate': '21-9-04',
+        'nextDate': '21-10-11'
+    }
+    ,
+]
 export default function BasicTable() {
+    const classes = useStyles();
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell align="center">번호</TableCell>
+                        <TableCell align="center">이름</TableCell>
+                        <TableCell align="center">최근 강의 날짜</TableCell>
+                        <TableCell align="center">다음 강의 예정일</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
-                        </TableRow>
-                    ))}
+                    {customers.map(c=>{
+                        return<Customers key={c.id} id={c.id} name={c.name} lastDate={c.lastDate} nextDate={c.nextDate}/>
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>
