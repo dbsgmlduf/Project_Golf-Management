@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from "@material-ui/core";
 import React from "react";
+import Delete from '../delete_button';
 
 const Customers =  (props) => {
 
@@ -9,6 +10,7 @@ const Customers =  (props) => {
             <TableCell align="center">{props.name}</TableCell>
             <TableCell align="center">{props.lastDate}</TableCell>
             <TableCell align="center">{props.nextDate}</TableCell>
+            <Delete/>
         </TableRow>
     )
 };
