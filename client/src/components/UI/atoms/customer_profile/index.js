@@ -6,7 +6,7 @@ import useStyles from "./style";
 const UserProfile = () => {
     const classes = useStyles();
     return (
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
                 <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                     회원 정보
