@@ -6,7 +6,7 @@ const AddButton = () => {
     const classes = useStyles();
     return (
         <Button variant="contained" startIcon={<AddIcon />} className={classes.addButton}>
-            회원 등록
+        등록
         </Button>
     )
 };

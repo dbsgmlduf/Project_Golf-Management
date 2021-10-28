@@ -1,10 +1,12 @@
-
+import { Card } from "@material-ui/core";
+import UserProfile from "../../atoms/customer_profile";
+import useStyles from "./style";
 const Main = () => {
-    
-    return(
-        <div className="page-main">
-            <h1 className="testText1">❗THIS IS learner PAGE❗</h1>
-        </div>
+    const classes = useStyles();
+    return (
+        <Card className={classes.lecturerCard}>
+            <UserProfile/>
+        </Card>
     );
 }
 
