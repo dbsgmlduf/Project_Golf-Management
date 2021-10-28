@@ -45,8 +45,8 @@ const LoginPage = (props) => {
                 localStorage.setItem('accessToken', response.payload.accessToken);
                 Swal.fire({
                     icon:'success',
-                    title:'성공!!',
-                    text : '로그인에 성공하셧습니다.'
+                    title:'SUCCESS!',
+                    text : '로그인에 성공하셨습니다.'
                 });
                 const userTypeRes = response.payload.userType['usertype'];
                 if (userTypeRes === 'lecturer') {
@@ -58,8 +58,8 @@ const LoginPage = (props) => {
             else {
                 Swal.fire({
                     icon:'fail',
-                    title:'실패!!',
-                    text : '로그인에 성공하셧습니다.'
+                    title:'FAIL!',
+                    text : '로그인에 실패하셨습니다. 다시 로그인해주세요!'
                 });
             }
         })
