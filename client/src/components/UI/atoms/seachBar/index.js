@@ -2,7 +2,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
-import AddButton from '../button_add';
+import AddCustomer from '../add_customer';
 
 export default function SearchBar() {
 
@@ -14,11 +14,11 @@ export default function SearchBar() {
                 <Typography className={classes.searchTitle} variant="h6" color="inherit" noWrap>
                     고객 관리 시스템
                 </Typography>
-                <AddButton/>
+                <AddCustomer/>
                 <Search>
-                    <SearchIconWrapper>
+                    {/* <SearchIconWrapper>
                         <SearchIcon/>
-                    </SearchIconWrapper>
+                    </SearchIconWrapper> */}
                     <StyledInputBase
                         placeholder="고객 검색"
                         inputProps={{ 'aria-label': 'search' }}
