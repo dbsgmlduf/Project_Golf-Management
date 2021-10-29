@@ -2,7 +2,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
-import AddCustomer from '../add_customer';
+import AddCustomer from '../../modules/add_customer/index';
 
 export default function SearchBar() {
 
