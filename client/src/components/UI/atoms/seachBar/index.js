@@ -2,7 +2,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
-import AddButton from '../add_button';
+import AddButton from '../button_add';
 
 export default function SearchBar() {
 

@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import AddButton from "../add_button";
-import Delete from "../delete_button";
+import AddButton from "../button_add";
 import useStyles from "./style";
 
 const UserProfile = () => {

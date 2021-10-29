@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from "@material-ui/core";
 import React from "react";
-import Delete from '../delete_button';
+import Delete from '../button_delete';
 
 const Customers =  (props) => {
 
