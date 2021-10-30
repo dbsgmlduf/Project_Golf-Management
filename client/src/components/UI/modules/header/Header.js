@@ -22,7 +22,7 @@ const Header = () => {
                     <Toolbar>
                         <LearnerMenu />
                         <Typography className={classes.title}>
-                            
+                        <Link to="/"><Title /></Link>
                         </Typography>
                         <LogoutButton />
                     </Toolbar>

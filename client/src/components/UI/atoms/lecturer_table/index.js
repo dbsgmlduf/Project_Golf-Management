@@ -36,7 +36,7 @@ const customers = [
 export default function BasicTable() {
     const classes = useStyles();
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.paper}>
             <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
                 <TableHead>
                     <TableRow>
