@@ -1,5 +1,6 @@
 import { InputBase, alpha, styled } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/';
 
 const useStyles = makeStyles((theme) => ({
     searchTitle: {
@@ -15,20 +16,20 @@ const useStyles = makeStyles((theme) => ({
 export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
+    marginLeft: theme.spacing.unit,
+    width: 'auto',
+    },   
 }));
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
+    width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',

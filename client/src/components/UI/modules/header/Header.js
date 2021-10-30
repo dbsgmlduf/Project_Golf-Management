@@ -6,8 +6,8 @@ import isLogin from '../../../../lib/isLogin';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';
 import { Link } from 'react-router-dom';
-import LandingMenu from '../../atoms/landing_menu/index';
-import LearnerMenu from '../../atoms/learner_menu/index';
+import LandingMenu from '../../atoms/menu_landing/index';
+import LearnerMenu from '../../atoms/menu_learner/index';
 import Title from '../../atoms/title_logo/';
 
 
