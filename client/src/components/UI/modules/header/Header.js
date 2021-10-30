@@ -22,7 +22,7 @@ const Header = () => {
                     <Toolbar>
                         <LearnerMenu />
                         <Typography className={classes.title}>
-                            <Link to="/"><h1>GOLFTAK</h1></Link>
+                            
                         </Typography>
                         <LogoutButton />
                     </Toolbar>
@@ -43,7 +43,7 @@ const Header = () => {
                         <LoginButton /><RegisterButton />
                     </Toolbar>
                 </AppBar>
-                <LandingMenu />
+                
             </div>
 
         );
