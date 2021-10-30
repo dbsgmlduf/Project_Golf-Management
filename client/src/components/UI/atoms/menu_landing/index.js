@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, SwipeableDrawer, List, Divider, IconButton, Grid, Button, Container,Stack } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu"
-import { mainListItems } from "../list_items";
+import { mainListItems } from "../menu_list";
 import useStyles from "./style";
 import LoginButton from "../title_signin";
 import RegisterButton from "../title_signup";
