@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
     },
+    appbar : {
+        margin : 10,
+        width : 'auto',
+    },
 }));
 
 
