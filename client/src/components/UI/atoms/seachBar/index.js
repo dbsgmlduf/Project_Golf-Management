@@ -9,7 +9,7 @@ export default function SearchBar() {
     const classes = useStyles();
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
                 <Typography className={classes.searchTitle} variant="h6" color="inherit" noWrap>
                     고객 관리 시스템

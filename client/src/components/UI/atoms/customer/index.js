@@ -1,7 +1,7 @@
 import { TableCell, TableRow } from "@material-ui/core";
 import React from "react";
 import DeleteCustomer from "../delete_customer";
-
+import CheckCustomer from "../check_customer";
 const Customers =  (props) => {
 
     return(
@@ -11,6 +11,7 @@ const Customers =  (props) => {
             <TableCell align="center">{props.lastDate}</TableCell>
             <TableCell align="center">{props.nextDate}</TableCell>
             <DeleteCustomer/>
+            <CheckCustomer/>
         </TableRow>
     )
 };
