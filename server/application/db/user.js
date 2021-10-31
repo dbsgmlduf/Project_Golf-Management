@@ -20,8 +20,7 @@ exports.createUser = async({usertype, username, email, id, password}) => {
 };
 
 exports.selectUser = async (id) => {
-    const usertype = await selectUserType(id);
-    console.log("사용자유형==",usertype['usertype']);
+    const usertype = await selectUserTypeFromPassport(id);
     if(usertype['usertype'] === 'lecturer'){
         const results = await Lecturer.findOne({
             attributes: ['lecturer_no','username','password'],
@@ -39,7 +38,7 @@ exports.selectUser = async (id) => {
 };
 
 //lecturer에서 id 탐색 실패시 false반환
-const selectUserType = async (id) => {
+const selectUserTypeFromPassport = async (id) => {
     const results = await Lecturer.findOne({
         attributes: ['usertype'],
         where: {id},
@@ -50,3 +49,13 @@ const selectUserType = async (id) => {
     return results;
 }
 
+exports.checkUserType = async (id) => {
+    const results = await Lecturer.findOne({
+        attributes: ['usertype'],
+        where: {id},
+    });
+    if(results === null){
+        return false;
+    }
+    return results;
+}

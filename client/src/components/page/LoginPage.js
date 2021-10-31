@@ -52,7 +52,7 @@ const LoginPage = (props) => {
                 const userTypeRes = response.payload.userType['usertype'];
                 if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
-                } else if (userTypeRes === 'learner') {
+                } else if (userTypeRes === false) {
                     props.history.push('/learner')
                 }
             }

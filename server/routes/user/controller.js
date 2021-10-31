@@ -1,4 +1,5 @@
 const userApp = require('../../application/user');
+const {checkUserType} = require('../../application/db/user');
 const {createJwtAccessToken} = require('../../utils/jwt');
 
 /* Sign Up API */
@@ -21,13 +22,14 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try{
         const user = req.body;
+        console.log(user);
         const accessToken = createJwtAccessToken(user.id);
-        //const userType = await userApp.selectUserType(user.id);
+        const userType = await checkUserType(user.id);
         res.json({
             loginSuccess: true,
             message: 'LOGIN SUCCESS!!',
             accessToken,
-            //userType: userType
+            userType: userType
         });
     } catch(error){
         res.status(400).json({
