@@ -1,9 +1,7 @@
-const { User } = require('../models');
+const db = require('./db/user');
 
-exports.selectUserType = async (id) => {
-    const results = await User.findOne({
-        attributes: ['usertype'],
-        where: {id},
-    });
-    return results;
-}
+exports.registerUser = async (data) => {
+    const userInfo = await db.createUser(data);
+    return userInfo;
+};
+

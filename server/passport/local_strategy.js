@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
-const db = require('../models').User;
+const db = require('../application/db/user');
 
 const localConfig = { usernameField: 'id', passwordField: 'password' };
 
 const localVerify = async(id, password, done) => {
     try{
-        const user = await db.findOne({
-            where: {id: id},
-        });
+        
+        const user = await db.selectUser(id);
+        console.log("결과=",user);
         if(!user){
             return done(null, false, {message: "NO FUCKING USER!"});
         }

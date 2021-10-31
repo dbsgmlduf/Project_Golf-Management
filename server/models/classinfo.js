@@ -2,22 +2,22 @@ module.exports = function(sequelize, DataTypes) {
     return sequelize.define(
         'classinfo',
         {
-            no: {
+            class_no: {
                 autoIncrement: true,
                 type: DataTypes.BIGINT,
                 allowNull: false,
                 primaryKey: true,
             },
-            // lecturer_id: {
-            //     type: DataTypes.BIGINT,
-            //     allowNull: false,
-            // },
-            // learner_id: {
-            //     type: DataTypes.BIGINT,
-            //     allowNull: false,
-            // },
             session_no: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT,
+                allowNull: false,
+            },
+            lecturer_no: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+            },
+            learner_no: {
+                type: DataTypes.BIGINT,
                 allowNull: false,
             },
             lec_theme: {
