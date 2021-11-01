@@ -1,35 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Paper } from "@material-ui/core";
 import Customers from '../customer';
 import useStyles from './style';
+import { customers } from '../../../../Data'
 
-const customers = [
-    {
-        'id': 1,
-        'name': '홍길동',
-        'lastDate': '21-9-01',
-        'nextDate': '21-10-14'
-    }
-    ,
-    {
-        'id': 2,
-        'name': '나영희',
-        'lastDate': '21-9-02',
-        'nextDate': '21-10-13'
-    }
-    ,
-    {
-        'id': 3,
-        'name': '김철수',
-        'lastDate': '21-9-03',
-        'nextDate': '21-10-12'
-    }
-    ,
-]
-export default function BasicTable() {
+export default function CustomersList() {
     const classes = useStyles();
+
+    const [dataList, setDataList] = useState([]);
+    useEffect(() => {
+        setDataList(customers);
+    }, []);
+
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
+
 
     const handleChangePage = (e, newPage) => {
         setPage(newPage)
@@ -52,10 +38,10 @@ export default function BasicTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {customers.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                    {dataList ? dataList.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
-                            return <Customers key={c.id} id={c.id} name={c.name} lastDate={c.lastDate} nextDate={c.nextDate} />
-                        })}
+                            return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} />
+                        }):""}
                 </TableBody>
                 <TableFooter>
                     <TableRow>

@@ -1,19 +1,20 @@
+import React, { useState, useEffect } from "react";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination } from "@material-ui/core";
-import React, { useState } from "react";
 import Info from "../info";
 import useStyles from "./style";
-const info = [
-    {
-        'num': 1,
-        'studyDate': '21-09-02',
-        'topic': '실생활에서 사용할 수 있는 기술'
-    },
+import { getPostByNo } from '../../../../Data'
 
-
-]
-
-const StudyInfo = () => {
+const StudyInfo = ({ history, location, match }) => {
     const classes = useStyles();
+    //상세페이지정보
+    const [data, setData] = useState({});
+
+    const id = match.params;
+
+    useEffect(() => {
+        setData(getPostByNo(id));
+    }, []);
+    //Table
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -38,16 +39,16 @@ const StudyInfo = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {info.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                    {data.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
-                            return <Info key={c.no} num={c.num} studyDate={c.studyDate} topic={c.topic} />
+                            return <Info key={c.num} num={c.num} studyDate={c.studyDate} topic={c.topic} />
                         })}
                 </TableBody>
                 <TableFooter>
                     <TableRow>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25]}
-                            count={info.length}
+                            count={data.length}
                             page={page}
                             rowsPerPage={rowsPerPage}
                             onChangePage={handleChangePage}
