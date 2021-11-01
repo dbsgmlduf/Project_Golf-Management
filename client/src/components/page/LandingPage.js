@@ -5,7 +5,7 @@ import BackVideo from '../UI/atoms/background_video';
 
 const LandingPage = (props) => {
 
-
+    
     return(
         <div className="page-container">
             <BackVideo/>
