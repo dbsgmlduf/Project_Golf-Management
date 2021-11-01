@@ -6,8 +6,7 @@ const Main = () => {
     const classes = useStyles();
     return (
         <Card className={classes.lecturerCard} elevation={10}>
-            <UserProfile />
-            <StudyInfo />
+           hello
         </Card>
     );
 }

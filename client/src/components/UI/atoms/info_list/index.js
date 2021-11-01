@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination } from "@material-ui/core";
 import Info from "../info";
 import useStyles from "./style";
-import { getPostByNo } from '../../../../Data'
+import { getPostById } from '../../../../Data'
 
-const StudyInfo = ({ history, location, match }) => {
+const StudyInfo = () => {
     const classes = useStyles();
     //상세페이지정보
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
 
-    const id = match.params;
+    const { id } = useParams();
 
     useEffect(() => {
-        setData(getPostByNo(id));
+        setData(getPostById(id));
     }, []);
     //Table
     const [page, setPage] = useState(0);
@@ -39,10 +40,10 @@ const StudyInfo = ({ history, location, match }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                    {data ? data.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
                             return <Info key={c.num} num={c.num} studyDate={c.studyDate} topic={c.topic} />
-                        })}
+                        }):'해당 게시글을 찾을 수 없습니다.'}
                 </TableBody>
                 <TableFooter>
                     <TableRow>
