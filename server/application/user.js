@@ -5,5 +5,9 @@ exports.registerUser = async (data) => {
     return userInfo;
 };
 
+exports.getLecturerList = async () => {
+    const list = await db.selectAllLecturer();
+    return list;
+}
 
 
