@@ -2,21 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Paper } from "@material-ui/core";
 import Customers from '../customer';
 import useStyles from './style';
+import SearchBar from '../customer_seach';
 import { customers } from '../../../../Data'
 
-export default function CustomersList() {
-    const classes = useStyles();
 
+const CustomersList = () => {
+    const classes = useStyles();
+    
+    //search
+    const [serchKeyword , setSearchKeyWord] = useState();
+    //search event handler
+    const handleSeachKey = (e)=>{
+        setSearchKeyWord(e.currentTarget.value);
+        console.log(e.currentTarget.value);
+    };
+
+    //data
     const [dataList, setDataList] = useState([]);
     useEffect(() => {
         setDataList(customers);
     }, []);
-
+    //data search
+    const filteredData = (data)=>{
+        data = data.filter((c)=>{
+            return c.name.indexOf(serchKeyword)>-1;
+        });
+        return data.map((c)=>{
+            return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} /> 
+        })
+    }
+    //page
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
-
-
+    //page event handler
     const handleChangePage = (e, newPage) => {
         setPage(newPage)
     }
@@ -27,6 +46,8 @@ export default function CustomersList() {
     }
 
     return (
+        <div>
+        <SearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
         <TableContainer component={Paper} className={classes.paper}>
             <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
                 <TableHead>
@@ -38,10 +59,10 @@ export default function CustomersList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {dataList ? dataList.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                    {serchKeyword ?filteredData(dataList):dataList.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
                             return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} />
-                        }):""}
+                        })}
                 </TableBody>
                 <TableFooter>
                     <TableRow>
@@ -57,5 +78,8 @@ export default function CustomersList() {
                 </TableFooter>
             </Table>
         </TableContainer>
+        </div>
     );
 }
+
+export default CustomersList;
