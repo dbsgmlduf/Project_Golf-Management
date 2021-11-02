@@ -27,20 +27,33 @@ const LoginPage = (props) => {
         e.preventDefault();
         console.log('id', id);
         console.log('Password', password);
-        
         let data = {
             id: id,
             password: password,
         }
-        
-        // axios.interceptors.request.use((co) => {
-        //     co.headers = {
-        //         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        //     };         
-        //     co.timeout = 2000;
-        //     return co;
-        // })
-        
+        /*axios.post('/api/users/login', data).then(response => {
+            localStorage.setItem('accessToken', response.data.accessToken)
+            console.log(localStorage.getItem('accessToken'))
+            const userTypeRes = response.data.userType['usertype'];
+            if (userTypeRes === 'lecturer') {
+                props.history.push('/lecturer')
+            } else if (userTypeRes === false) {
+                props.history.push('/learner')
+            }
+
+        })
+            .catch(err => {
+                console.log(err);
+            })*/
+
+        axios.interceptors.request.use((co) => {
+            co.headers = {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            };         
+            co.timeout = 2000;
+            return co;
+        })
+
         dispatch(loginUser(data)).then(response => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
@@ -65,11 +78,11 @@ const LoginPage = (props) => {
             }
         })
     }
-    
+
     return (
-        
+
         <Grid>
-            <BackVideo/>
+            <BackVideo />
             <Header />
             <form onSubmit={onSubmitHandler}>
                 <Paper elevation={10} className={classes.paper}>
