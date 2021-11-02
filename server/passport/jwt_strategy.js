@@ -1,5 +1,5 @@
 const { ExtractJwt } = require('passport-jwt');
-const db = require('../models/user');
+const db = require('../application/db/user');
 
 const JWTConfig = {
     jwtFromRequest: ExtractJwt.fromHeader(),

@@ -2,14 +2,14 @@ module.exports = function(sequelize, DataTypes) {
     return sequelize.define(
         'learner',
         {
-            no: {
+            learner_no: {
                 autoIncrement: true,
                 type: DataTypes.BIGINT,
                 allowNull: false,
                 primaryKey: true,
             },
             usertype: {
-                type: DataTypes.STRING(10),
+                type:DataTypes.STRING(10),
                 allowNull: false,
             },
             username: {

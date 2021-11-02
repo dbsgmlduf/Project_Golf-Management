@@ -52,7 +52,7 @@ const LoginPage = (props) => {
                 const userTypeRes = response.payload.userType['usertype'];
                 if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
-                } else if (userTypeRes === 'learner') {
+                } else if (userTypeRes === false) {
                     props.history.push('/learner')
                 }
             }
@@ -79,7 +79,7 @@ const LoginPage = (props) => {
                     </Grid>
                     <TextField label="Username" placeholder="Enter Username" fullWidth required onChange={onIdHandler} />
                     <TextField label="Password" type="password" placeholder="Enter Password" fullWidth required className={classes.password} onChange={onPasswordHandler} />
-                    <Button type="submit" color='primary' variant="contained" fullWidth className={classes.signinButton}>SIGN IN</Button>
+                    <Button type="submit" color='primary' variant="contained" fullWidth className={classes.button}>SIGN IN</Button>
                 </Paper>
             </form>
         </Grid>

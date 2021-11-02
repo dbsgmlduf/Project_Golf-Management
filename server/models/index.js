@@ -7,20 +7,21 @@ const db = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 //define model
-db.User = require('./user')(sequelize, Sequelize);
-db.Instructor = require('./instructor')(sequelize, Sequelize);
+db.Lecturer = require('./lecturer')(sequelize, Sequelize);
 db.Learner = require('./learner')(sequelize, Sequelize);
+db.Enrollment = require('./enrollment')(sequelize, Sequelize);
 db.ClassInfo = require('./classinfo')(sequelize, Sequelize);
 db.DateInfo = require('./dateinfo')(sequelize, Sequelize);
-db.Enrollment = require('./enrollment')(sequelize, Sequelize);
 
 //define association
-db.User.belongsToMany(db.User, {as: 'attendee', through: db.Enrollment, foreignKey:'lecturer_No'})
-db.User.belongsToMany(db.User, {as: 'lecturer', through: db.Enrollment, foreignKey:'attendee_No'})
+db.Learner.hasMany(db.DateInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
+db.DateInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 
-//define association
-db.User.belongsToMany
+db.Lecturer.belongsToMany(db.Learner, {as: 'attendee', through: db.Enrollment, foreignKey: 'lecturer_no'});
+db.Learner.belongsToMany(db.Lecturer, {as: 'instructor', through: db.Enrollment, foreignKey: 'learner_no'});
 
+db.Lecturer.belongsToMany(db.Learner, {as: 'learner', through: db.ClassInfo, foreignKey: 'lecturer_no'});
+db.Learner.belongsToMany(db.Lecturer, {as: 'lecturer', through: db.ClassInfo, foreignKey: 'learner_no'});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

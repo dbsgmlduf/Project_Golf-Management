@@ -1,15 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define(
-        'instructor',
+        'lecturer',
         {
-            no: {
+            lecturer_no: {
                 autoIncrement: true,
                 type: DataTypes.BIGINT,
                 allowNull: false,
                 primaryKey: true,
             },
             usertype: {
-                type: DataTypes.STRING(10),
+                type:DataTypes.STRING(10),
                 allowNull: false,
             },
             username: {
@@ -29,13 +29,9 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.STRING(100),
                 allowNull: false,
             },
-            // confirm_auth: {
-            //     type: DataTypes.INTEGER,
-            //     allowNull: true,
-            // },
         },
         {
-            tableName: 'instructor',
+            tableName: 'lecturer',
             timestamps: true,
             paranoid: true,
             underscored: true,

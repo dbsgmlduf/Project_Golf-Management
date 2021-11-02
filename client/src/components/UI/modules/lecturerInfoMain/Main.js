@@ -1,11 +1,13 @@
 import { Card } from "@material-ui/core";
+import UserProfile from "../../atoms/info_profile";
+import StudyInfo from "../../atoms/info_list";
 import useStyles from "./style";
-import LecturerList from "../../atoms/lecturer_list";
 const Main = () => {
     const classes = useStyles();
     return (
         <Card className={classes.lecturerCard} elevation={10}>
-           <LecturerList/>
+            <UserProfile />
+            <StudyInfo />
         </Card>
     );
 }

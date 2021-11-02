@@ -1,11 +1,11 @@
+import React from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
 import AddCustomer from '../../modules/add_customer/index';
 
-export default function SearchBar() {
-
+const SearchBar = ({ value, handleSeachKey }) => {
     const classes = useStyles();
 
     return (
@@ -14,7 +14,7 @@ export default function SearchBar() {
                 <Typography className={classes.searchTitle} variant="h6" color="inherit" noWrap>
                     고객 관리 시스템
                 </Typography>
-                <AddCustomer/>
+                <AddCustomer />
                 <Search>
                     {/* <SearchIconWrapper>
                         <SearchIcon/>
@@ -22,10 +22,12 @@ export default function SearchBar() {
                     <StyledInputBase
                         placeholder="고객 검색"
                         inputProps={{ 'aria-label': 'search' }}
-
+                        value={value}
+                        onChange={handleSeachKey}
                     />
                 </Search>
             </Toolbar>
         </AppBar>
     )
 };
+export default SearchBar;

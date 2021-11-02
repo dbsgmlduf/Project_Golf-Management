@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Paper } from "@material-ui/core";
 import Customers from '../customer';
 import useStyles from './style';
+import SearchBar from '../customer_seach';
+import { customers } from '../../../../Data'
 
-const customers = [
-    {
-        'id': 1,
-        'name': '홍길동',
-        'lastDate': '21-9-01',
-        'nextDate': '21-10-14'
-    }
-    ,
-    {
-        'id': 2,
-        'name': '나영희',
-        'lastDate': '21-9-02',
-        'nextDate': '21-10-13'
-    }
-    ,
-    {
-        'id': 3,
-        'name': '김철수',
-        'lastDate': '21-9-03',
-        'nextDate': '21-10-12'
-    }
-    ,
-]
-export default function BasicTable() {
+
+const CustomersList = () => {
     const classes = useStyles();
+    
+    //search
+    const [serchKeyword , setSearchKeyWord] = useState();
+    //search event handler
+    const handleSeachKey = (e)=>{
+        setSearchKeyWord(e.currentTarget.value);
+        console.log(e.currentTarget.value);
+    };
+
+    //data
+    const [dataList, setDataList] = useState([]);
+    useEffect(() => {
+        setDataList(customers);
+    }, []);
+    //data search
+    const filteredData = (data)=>{
+        data = data.filter((c)=>{
+            return c.name.indexOf(serchKeyword)>-1;
+        });
+        return data.map((c)=>{
+            return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} /> 
+        })
+    }
+    //page
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
+    //page event handler
     const handleChangePage = (e, newPage) => {
         setPage(newPage)
     }
@@ -41,6 +46,8 @@ export default function BasicTable() {
     }
 
     return (
+        <div>
+        <SearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
         <TableContainer component={Paper} className={classes.paper}>
             <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
                 <TableHead>
@@ -52,9 +59,9 @@ export default function BasicTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {customers.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                    {serchKeyword ?filteredData(dataList):dataList.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
-                            return <Customers key={c.id} id={c.id} name={c.name} lastDate={c.lastDate} nextDate={c.nextDate} />
+                            return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} />
                         })}
                 </TableBody>
                 <TableFooter>
@@ -71,5 +78,8 @@ export default function BasicTable() {
                 </TableFooter>
             </Table>
         </TableContainer>
+        </div>
     );
 }
+
+export default CustomersList;
