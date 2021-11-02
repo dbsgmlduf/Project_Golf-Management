@@ -37,3 +37,17 @@ exports.login = async (req, res, next) => {
         });
     }
 }
+
+exports.list = async (req, res, next) => {
+    try{
+        const lecturerList = await userApp.getLecturerList();
+        res.json({
+            list: lecturerList,
+            //accessToken,
+        });
+    } catch(error){
+        res.status(400).json({
+            message: "TRY AGAIN!"
+        });
+    }
+}

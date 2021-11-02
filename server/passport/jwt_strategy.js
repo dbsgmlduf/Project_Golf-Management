@@ -8,7 +8,7 @@ const JWTConfig = {
 
 const JWTVerify = async(jwtPayload, done) => {
     try{
-        const user = await db.findOne({where: {id:jwtPayload.id}});
+        const user = await db.selectUser(jwtPayload.id);
         if(user){
             done(null, user);
         }

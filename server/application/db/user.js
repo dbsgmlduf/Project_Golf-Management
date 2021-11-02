@@ -59,3 +59,10 @@ exports.checkUserType = async (id) => {
     }
     return results;
 }
+
+exports.selectAllLecturer = async () => {
+    const results = await Lecturer.findAll({
+        attributes: ['username'],
+    });
+    return results;
+}
