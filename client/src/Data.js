@@ -24,14 +24,28 @@ export const customers = [
     }
     ,
 ];
-
+export const lecturers = [{
+    'id': 1,
+    'name': '홍길동',
+    'type': '실내',
+},
+{
+    'id': 2,
+    'name': '신짱',
+    'type': '필드',
+},
+{
+    'id': 3,
+    'name': '오오옹',
+    'type': '이론',
+},]
 
 export const getPostById = id => {
     const array = customers.filter(x => x.id == id);
     if (array.length == 1) {
-      return array[0];
+        return array[0];
     }
     return null;
-  }
+}
 
 
