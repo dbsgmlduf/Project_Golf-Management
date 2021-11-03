@@ -57,15 +57,14 @@ const LoginPage = (props) => {
         dispatch(loginUser(data)).then(response => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
-                // var getvalue = localStorage.getItem('accessToken');
-                // console.log('토큰 = ', getvalue);
+                const userTypeRes = response.payload.userType['usertype'];
+                localStorage.setItem('userType',userTypeRes);
                 console.log('testtest',window.localStorage);
                 Swal.fire({
                     icon:'success',
                     title:'SUCCESS!',
                     text : '로그인에 성공하셨습니다.'
                 });
-                const userTypeRes = response.payload.userType['usertype'];
                 if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
                 } else if (userTypeRes === false) {
