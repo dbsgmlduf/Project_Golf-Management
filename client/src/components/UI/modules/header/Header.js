@@ -6,21 +6,23 @@ import isLogin from '../../../../lib/isLogin';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';
 import { Link } from 'react-router-dom';
-import LandingMenu from '../../atoms/menu_landing/index';
-import LearnerMenu from '../../atoms/menu_learner/index';
+import LandingMenu from '../../atoms/menu_landing';
+import LearnerMenu from '../../atoms/menu_learner';
+import LecturerMenu from '../../atoms/menu_lecturer'
 import Title from '../../atoms/title_logo/';
 
 
 const Header = () => {
     const classes = useStyles();
-
+    const userType = localStorage.getItem('uerType')
+    
     if (isLogin()) {
         return (
 
             <div>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
-                        <LearnerMenu />
+                        {userType==="learner"?<LearnerMenu />:<LecturerMenu/>}
                         <Typography className={classes.title}>
                         <Link to="/"><Title /></Link>
                         </Typography>
