@@ -59,6 +59,7 @@ const LoginPage = (props) => {
                 localStorage.setItem('accessToken', response.payload.accessToken);
                 const userTypeRes = response.payload.userType['usertype'];
                 localStorage.setItem('userType',userTypeRes);
+                console.log('testtest',window.localStorage);
                 Swal.fire({
                     icon:'success',
                     title:'SUCCESS!',
