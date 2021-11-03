@@ -13,7 +13,7 @@ exports.createUser = async({usertype, username, email, id, password}) => {
         const results = await Lecturer.create(userInfo);
         return results;
     }
-    else if(usertype === 'learner'){
+    if(usertype === 'learner'){
         const results = await Learner.create(userInfo);
         return results;
     }
