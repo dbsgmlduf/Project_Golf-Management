@@ -33,17 +33,21 @@ const LoginPage = (props) => {
             password: password,
         }
         
-        // axios.interceptors.request.use((co) => {
-        //     co.headers = {
-        //         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        //     };         
-        //     co.timeout = 2000;
-        //     return co;
-        // })
+        axios.interceptors.request.use((config) => {
+            config.headers = {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            };         
+            config.timeout = 2000;
+            console.log(config);
+            return config;
+        })
         
         dispatch(loginUser(data)).then(response => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
+                // var getvalue = localStorage.getItem('accessToken');
+                // console.log('토큰 = ', getvalue);
+                console.log('testtest',window.localStorage);
                 Swal.fire({
                     icon:'success',
                     title:'SUCCESS!',

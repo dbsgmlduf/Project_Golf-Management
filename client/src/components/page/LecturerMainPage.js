@@ -5,7 +5,8 @@ import { Grid } from '@material-ui/core';
 
 const LecturerMainPage = (props) => {
 
-
+    var getvalue = localStorage.getItem('accessToken');
+    console.log('토큰 = ', getvalue);
     return (
         <Grid>
             <Header />

@@ -7,9 +7,9 @@ import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import Reducer from "./_reducers/user_reducer";
+import axios from 'axios';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware,ReduxThunk)(createStore)
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider
