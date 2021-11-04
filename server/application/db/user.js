@@ -55,7 +55,11 @@ exports.checkUserType = async (id) => {
         where: {id},
     });
     if(results === null){
-        return false;
+        const type = await Learner.findOne({
+            attributes: ['usertype'],
+            where: {id},
+        });
+        return type;
     }
     return results;
 }

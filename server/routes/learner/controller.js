@@ -2,11 +2,11 @@ const userApp = require('../../application/learner');
 
 exports.enrollLecturer = async (req, res, next) => {
     try{
-        const lecturer = req.body;
-        const x = req.body.id;
-        console.log(x);
-        const isEnrolled = await userApp.isEnrolled(x,lecturer);
+        const {username} = req.body;
+        const attendee = "changhyun";
+        const isEnrolled = await userApp.isEnrolled({attendee,username});
         res.json({
+            isEnrolled,
             message: '등록 요청을 보냈습니다.'
         });
     } catch (error){

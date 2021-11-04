@@ -2,7 +2,7 @@ const { ExtractJwt } = require('passport-jwt');
 const db = require('../application/db/user');
 
 const JWTConfig = {
-    jwtFromRequest: ExtractJwt.fromHeader(),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_ACCESS_TOKEN_SECRET,
 }
 
