@@ -14,17 +14,18 @@ import Title from '../../atoms/title_logo/';
 
 const Header = () => {
     const classes = useStyles();
-    const userType = localStorage.getItem('uerType')
-    
+    const userType = localStorage.getItem('userType')
+
     if (isLogin()) {
         return (
 
             <div>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
-                        {userType==="learner"?<LearnerMenu />:<LecturerMenu/>}
+                        {userType === "learner" ? <LearnerMenu /> : <LecturerMenu />}
                         <Typography className={classes.title}>
-                        <Link to="/"><Title /></Link>
+                            {userType === "learner" ? (<Link to="/learner"><Title /></Link>)
+                                : (<Link to="/lecturer"><Title /></Link>)}
                         </Typography>
                         <LogoutButton />
                     </Toolbar>
@@ -45,7 +46,7 @@ const Header = () => {
                         <LoginButton /><RegisterButton />
                     </Toolbar>
                 </AppBar>
-                
+
             </div>
 
         );
