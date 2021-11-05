@@ -4,6 +4,6 @@ const controller = require('./controller');
 
 router.post('/register', controller.register);
 router.post('/login', middlewares.localAuth, controller.login);
-router.get('/list', controller.list);
+router.get('/list', middlewares.localAuth, controller.list);
 
 module.exports = router;
