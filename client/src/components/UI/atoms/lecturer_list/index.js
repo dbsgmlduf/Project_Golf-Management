@@ -80,7 +80,7 @@ const LecturerList = () => {
                     <TableBody>
                         {serchKeyword ? filteredData(users) : users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                             .map(c => {
-                                return <Lecturers key={c.username} username={c.username} />
+                                return <Lecturers key={c.username} username={c.username} data={c.username} />
                             })}
                     </TableBody>
                     <TableFooter>

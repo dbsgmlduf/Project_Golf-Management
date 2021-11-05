@@ -8,6 +8,7 @@ import useStyles from './style';
 import LockIcon from '@material-ui/icons/Lock'
 import Swal from 'sweetalert2';
 import BackVideo from '../UI/atoms/background_video';
+import SuccessAlert from '../UI/atoms/success_alert';
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const LoginPage = (props) => {
         axios.interceptors.request.use((co) => {
             co.headers = {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            };         
+            };
             co.timeout = 2000;
             return co;
         })
@@ -59,12 +60,7 @@ const LoginPage = (props) => {
                 localStorage.setItem('accessToken', response.payload.accessToken);
                 const userTypeRes = response.payload.userType['usertype'];
                 localStorage.setItem('userType', userTypeRes);
-                Swal.fire({
-                    icon:'success',
-                    title:'SUCCESS!',
-                    text : '로그인에 성공하셨습니다.'
-                });
-
+                <SuccessAlert />
                 if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
                 } else if (userTypeRes === 'learner') {
@@ -73,9 +69,9 @@ const LoginPage = (props) => {
             }
             else {
                 Swal.fire({
-                    icon:'fail',
-                    title:'FAIL!',
-                    text : '로그인에 실패하셨습니다. 다시 로그인해주세요!'
+                    icon: 'fail',
+                    title: 'FAIL!',
+                    text: '로그인에 실패하셨습니다. 다시 로그인해주세요!'
                 });
             }
         })

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import useStyles from './style';
 import MenuBookIcon from '@material-ui/icons/MenuBook'
 import BackVideo from '../UI/atoms/background_video';
-
+import SuccessAlert from '../UI/atoms/success_alert';
 
 const RegisterPage = (props) => {
 
@@ -63,17 +63,13 @@ const RegisterPage = (props) => {
             usertype: usertype,
             username: name,
             email: email,
-            id:id,
+            id: id,
             password: password,
         }
         dispatch(register(data)).then(res => {
             if (res.payload.registerSuccess) {
                 console.log(res);
-                Swal.fire({
-                    icon: 'success',
-                    title: '성공!!',
-                    text: '회원가입에 성공하셧습니다.'
-                });
+                <SuccessAlert />;
                 props.history.push("/login");
             } else {
                 Swal.fire({
