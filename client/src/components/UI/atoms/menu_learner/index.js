@@ -17,13 +17,13 @@ const LearnerMenu = () => {
                     <MenuIcon className={classes.menuIcon} />
                 </IconButton>
             </Button>
-            <SwipeableDrawer anchor="left" open={open} onClose={() => setOpen(false)} onOpen={() => { }}>
+            <SwipeableDrawer anchor="right" open={open} onClose={() => setOpen(false)} onOpen={() => { }}>
                 <div className={classes.list}>
                     <Box textAlign="center" p={3}>
                         learnerPage
                     </Box>
                     <List>
-                        <LogoutButton />
+                        <LogoutButton/>
                         <Divider />
                         {mainListItems}
                     </List>

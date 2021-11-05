@@ -1,10 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination } from "@material-ui/core";
+import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination } from "@material-ui/core";
 import useStyles from "./style";
 import Lecturers from "../lecturer";
+import LecturerSearchBar from "../lecturer_search";
 import axios from 'axios';
 const LecturerList = () => {
     const classes = useStyles();
+    //search
+    const [serchKeyword, setSearchKeyWord] = useState();
+    //search event handler
+    const handleSeachKey = (e) => {
+        setSearchKeyWord(e.currentTarget.value);
+        console.log(e.currentTarget.value);
+    };
+    //data search
+    const filteredData = (data) => {
+        data = data.filter((c) => {
+            return c.username.indexOf(serchKeyword) > -1;
+        });
+        return data.map((c) => {
+            return <Lecturers key={c.username} username={c.username} />
+        })
+    }
+
+
     //강사정보
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -19,12 +38,10 @@ const LecturerList = () => {
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
                 const response = await axios.get(
-                    'http://localhost:7000/api/users/list'
+                    '/api/users/list'
                 );
                 console.log(response);
                 setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
-
-                console.log("fsafs" + response.list);
             } catch (e) {
                 setError(e);
             }
@@ -51,33 +68,36 @@ const LecturerList = () => {
     if (!users) return null;
 
     return (
-        <TableContainer component={Paper} className={classes.paper}>
-            <Table aria-label="lecturer list" className={classes.table} sx={{ minWidth: 650 }} >
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="center">강사 이름</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {users ? users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
-                        .map(c => {
-                            return <Lecturers key={c.username} username={c.username} />
-                        }) : '해당 게시글을 찾을 수 없습니다.'}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25]}
-                            count={users.length}
-                            page={page}
-                            rowsPerPage={rowsPerPage}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
+        <Grid>
+            <LecturerSearchBar value={serchKeyword} handleSeachKey={handleSeachKey} />
+            <TableContainer component={Paper} className={classes.paper}>
+                <Table aria-label="lecturer list" className={classes.table} sx={{ minWidth: 650 }} >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">강사 이름</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {serchKeyword ? filteredData(users) : users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                            .map(c => {
+                                return <Lecturers key={c.username} username={c.username} />
+                            })}
+                    </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25]}
+                                count={users.length}
+                                page={page}
+                                rowsPerPage={rowsPerPage}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                            />
+                        </TableRow>
+                    </TableFooter>
+                </Table>
+            </TableContainer>
+        </Grid>
     );
 };
 
