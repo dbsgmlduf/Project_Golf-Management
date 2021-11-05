@@ -13,7 +13,7 @@ exports.createUser = async({usertype, username, email, id, password}) => {
         const results = await Lecturer.create(userInfo);
         return results;
     }
-    else if(usertype === 'learner'){
+    if(usertype === 'learner'){
         const results = await Learner.create(userInfo);
         return results;
     }
@@ -55,7 +55,11 @@ exports.checkUserType = async (id) => {
         where: {id},
     });
     if(results === null){
-        return false;
+        const type = await Learner.findOne({
+            attributes: ['usertype'],
+            where: {id},
+        });
+        return type;
     }
     return results;
 }

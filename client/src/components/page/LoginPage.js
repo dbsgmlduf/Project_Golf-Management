@@ -58,16 +58,15 @@ const LoginPage = (props) => {
             if (response.payload.loginSuccess) {
                 localStorage.setItem('accessToken', response.payload.accessToken);
                 const userTypeRes = response.payload.userType['usertype'];
-                localStorage.setItem('userType',userTypeRes);
-                console.log('testtest',window.localStorage);
                 Swal.fire({
                     icon:'success',
                     title:'SUCCESS!',
                     text : '로그인에 성공하셨습니다.'
                 });
+
                 if (userTypeRes === 'lecturer') {
                     props.history.push('/lecturer')
-                } else if (userTypeRes === false) {
+                } else if (userTypeRes === 'learner') {
                     props.history.push('/learner')
                 }
             }

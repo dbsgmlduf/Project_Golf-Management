@@ -6,6 +6,7 @@ const {createJwtAccessToken} = require('../../utils/jwt');
 exports.register = async (req, res, next) => {
     try{
         const { usertype, username, email, id, password } = req.body;
+        console.log(usertype);
         await userApp.registerUser({usertype, username, email, id, password});
         res.json({
             registerSuccess: true,
@@ -22,9 +23,10 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try{
         const user = req.body;
-        console.log(user);
         const accessToken = createJwtAccessToken(user.id);
         const userType = await checkUserType(user.id);
+        console.log("사용자유형", typeof userType);
+        console.log("사용자유형", userType);
         res.json({
             loginSuccess: true,
             message: 'LOGIN SUCCESS!!',

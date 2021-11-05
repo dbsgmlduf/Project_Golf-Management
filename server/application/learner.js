@@ -1,6 +1,7 @@
 const db = require('./db/learner');
 
-exports.isEnrolled = async (attendeeId, lecturer) => {
-    const enroll = await db.createRelations(attendeeId, lecturer);
+exports.isEnrolled = async ({attendee, username}) => {
+    const enroll = await db.createRelations({attendee, username});
+    console.log(enroll);
     return enroll;
 };
