@@ -5,9 +5,7 @@ const Lecturers =  (props) => {
 
     return(
         <TableRow>
-            <TableCell align="center">{props.id}</TableCell>
-            <TableCell align="center">{props.name}</TableCell>
-            <TableCell align="center">{props.lecturerType}</TableCell>
+            <TableCell align="center">{props.username}</TableCell>
             <SelectLecturer/>
         </TableRow>
     )

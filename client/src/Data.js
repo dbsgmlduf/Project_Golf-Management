@@ -1,3 +1,4 @@
+
 export const customers = [
     {
         'id': 1,
@@ -39,6 +40,7 @@ export const lecturers = [{
     'name': '오오옹',
     'type': '이론',
 },]
+
 
 export const getPostById = id => {
     const array = customers.filter(x => x.id == id);
