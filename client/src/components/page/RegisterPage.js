@@ -101,14 +101,14 @@ const RegisterPage = (props) => {
                 );
             case 1:
                 return (
-                    <div>
+                    <Grid>
                         <TextField label="Name" placeholder="Enter User Name" fullWidth required onChange={nameHandler} />
                         <TextField label="Email" placeholder="Enter Email" fullWidth required onChange={emailHandler} />
                         <TextField label="Id" placeholder="Enter Id" fullWidth required onChange={idHandler} />
                         <TextField label="Password(5글자 이상 필수)" type="password" placeholder="Enter Password" fullWidth required onChange={passwordHandler} error={hasError('password')} />
                         <TextField label="ConfirmPassword" type="password" placeholder="Enter ConfirmPassword" fullWidth required onChange={confirmPWHandler} error={hasNotSameError('confirmPassword')} helperText={
                             hasNotSameError('confirmPassword') ? "입력한 비밀번호와 일치하지 않습니다." : null} />
-                    </div>
+                    </Grid>
                 );
             default:
                 return '알수없는 스텝입니다.';
@@ -129,57 +129,59 @@ const RegisterPage = (props) => {
         <Grid>
             <BackVideo />
             <Header />
-            <Paper elevation={10} className={classes.registerPaper}>
-                <Grid align="center">
-                    <Avatar className={classes.avatar}><MenuBookIcon className={classes.icon} /></Avatar>
-                    <h2>SIGN UP</h2>
-                </Grid>
-                <form onSubmit={submitHandler} noValidate>
-                    <Stepper activeStep={activeStep}>
-                        {steps.map(label => (
-                            <Step key={label}>
-                                <StepLabel>
-                                    {label}
-                                </StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                    <div>
-                        {activeStep === steps.length ? (
-                            <div>
-                                <div >모든 스텝을 완료하였습니다.</div>
-                                <div >
-                                    <Button type="back" color='primary' style={{ marginRight: '10px' }} variant="contained" className={classes.button} onClick={handleReset}>처음으로</Button>
-                                    <Button type="submit" color='primary' variant="contained" className={classes.button}>Sign</Button>
+            <Grid>
+                <Paper elevation={10} className={classes.registerPaper}>
+                    <Grid align="center">
+                        <Avatar className={classes.avatar}><MenuBookIcon className={classes.icon} /></Avatar>
+                        <h2>SIGN UP</h2>
+                    </Grid>
+                    <form onSubmit={submitHandler} noValidate>
+                        <Stepper activeStep={activeStep}>
+                            {steps.map(label => (
+                                <Step key={label}>
+                                    <StepLabel>
+                                        {label}
+                                    </StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                        <div>
+                            {activeStep === steps.length ? (
+                                <div>
+                                    <div >모든 스텝을 완료하였습니다.</div>
+                                    <div >
+                                        <Button type="back" color='primary' style={{ marginRight: '10px' }} variant="contained" className={classes.button} onClick={handleReset}>처음으로</Button>
+                                        <Button type="submit" color='primary' variant="contained" className={classes.button}>Sign</Button>
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div>
-                                <Grid className={classes.contents}>
-                                    {getStepContent(activeStep)}
-                                </Grid>
-                                <div className={classes.button}>
-                                    <Button
-                                        style={{ marginRight: '10px' }}
-                                        variant="contained"
-                                        color="primary"
-                                        disabled={activeStep === 0}
-                                        onClick={handleBack}>
-                                        이전
-                                    </Button>
-                                    <Button variant="contained" color="primary" onClick={handleNext}>
-                                        {activeStep === steps.length - 1 ? (
-                                            '완료'
-                                        ) : (
-                                            '다음'
-                                        )}
-                                    </Button>
+                            ) : (
+                                <div>
+                                    <Grid className={classes.contents}>
+                                        {getStepContent(activeStep)}
+                                    </Grid>
+                                    <div className={classes.button}>
+                                        <Button
+                                            style={{ marginRight: '10px' }}
+                                            variant="contained"
+                                            color="primary"
+                                            disabled={activeStep === 0}
+                                            onClick={handleBack}>
+                                            이전
+                                        </Button>
+                                        <Button variant="contained" color="primary" onClick={handleNext}>
+                                            {activeStep === steps.length - 1 ? (
+                                                '완료'
+                                            ) : (
+                                                '다음'
+                                            )}
+                                        </Button>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
-                </form>
-            </Paper>
+                            )}
+                        </div>
+                    </form>
+                </Paper>
+            </Grid>
         </Grid >
     )
 };

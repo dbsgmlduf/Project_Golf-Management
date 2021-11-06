@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
     registerPaper: {
         padding: 30,
-        width: 500,
+        width: 350,
         margin: "90px auto",
     },
     icon: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     contents: {
         padding: '30px',
-        width: '400px',
+        width:'auto'
     },
     button: {
         top: '3vh',
