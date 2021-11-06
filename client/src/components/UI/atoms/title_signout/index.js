@@ -1,14 +1,15 @@
 import React from 'react';
-import {Button,Link} from '@mui/material';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 const LogoutButton = () => {
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         localStorage.clear('accessToken')
     };
-    return(
+    return (
         //<Button variant = "signIn" href="/login" >SIGN IN</Button>
-        <Button variant = "signOut" onClick={handleLogout}><Link href="/login" underline="none" color="inherit">LOGOUT</Link></Button>
+        <Button variant="signOut" onClick={handleLogout}><Link to="/login" style={{ textDecoration: 'none' }} color="inherit">LOGOUT</Link></Button>
     );
 };
 
