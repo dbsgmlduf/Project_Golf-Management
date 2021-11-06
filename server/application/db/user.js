@@ -23,14 +23,14 @@ exports.selectUser = async (id) => {
     const usertype = await selectUserTypeFromPassport(id);
     if(usertype['usertype'] === 'lecturer'){
         const results = await Lecturer.findOne({
-            attributes: ['lecturer_no','username','password'],
+            attributes: ['lecturer_no','username','id','password'],
             where: {id},
         });
         return results;
     }
     else if(!usertype['usertype']){
         const results = await Learner.findOne({
-            attributes: ['learner_no','username','password'],
+            attributes: ['learner_no','username','id','password'],
             where: {id},
         });
         return results;

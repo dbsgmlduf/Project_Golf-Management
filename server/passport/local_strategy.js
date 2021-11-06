@@ -5,9 +5,7 @@ const localConfig = { usernameField: 'id', passwordField: 'password' };
 
 const localVerify = async(id, password, done) => {
     try{
-        
         const user = await db.selectUser(id);
-        console.log("결과=",user);
         if(!user){
             return done(null, false, {message: "NO FUCKING USER!"});
         }

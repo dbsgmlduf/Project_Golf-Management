@@ -1,26 +1,18 @@
 
-const {Lecturer, Learner, sequelize} = require('../../models');
+const {Lecturer, Learner, sequelize, ClassInfo} = require('../../models');
 const {Enrollment} = require('../../models')
 
 exports.createRelations = async({attendee, username}) => {
-    console.log({attendee, username});
-    console.log('강사이름:', username);
-    console.log('수강자아이디:', attendee);
-    const enrollment = await Lecturer.findAll({
-        include: [
-            {
-                model: Learner,
-            }
-        ]
-        // attributes: ['lecturer_no'],
-        // where: {username: username},
-        
+    const enrollment = await Lecturer.findOne({
+        attributes: ['lecturer_no'],
+        include: [{
+            model: Learner,
+            required: true,
+            where: {attendee}
+        }],
+        where: {username}
     });
-    console.log(enrollment);
-    
-    //const result = await Enrollment.create(enrollment);
-    
-    console.log(result);
+    console.log("조인결과 = ",enrollment);
     
     return result;
 };
