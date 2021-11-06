@@ -2,9 +2,8 @@ import React from 'react';
 import LoginButton from '../../atoms/title_signin/';
 import RegisterButton from '../../atoms/title_signup/';
 import isLogin from '../../../../lib/isLogin';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography,Link } from '@material-ui/core';
 import useStyles from './style';
-import { Link } from 'react-router-dom';
 import LearnerMenu from '../../atoms/menu_learner';
 import LecturerMenu from '../../atoms/menu_lecturer'
 import Title from '../../atoms/title_logo/';
@@ -21,8 +20,8 @@ const Header = () => {
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
                         <Typography className={classes.title}>
-                            {userType === "learner" ? (<Link to="/learner"><Title /></Link>)
-                                : (<Link to="/lecturer"><Title /></Link>)}
+                            {userType === "learner" ? (<Link href="/learner" underline="none"><Title /></Link>)
+                                : (<Link href="/lecturer" underline="none"><Title /></Link>)}
                         </Typography>
                         {userType === "learner" ? <LearnerMenu /> : <LecturerMenu />}
                     </Toolbar>
@@ -37,7 +36,7 @@ const Header = () => {
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
                         <Typography className={classes.title}>
-                            <Link to="/"><Title /></Link>
+                            <Link href="/" underline="none"><Title /></Link>
                         </Typography>
                         <LoginButton /><RegisterButton />
                     </Toolbar>

@@ -1,11 +1,10 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import {Button,Link} from '@mui/material';
 
 const RegisterButton = () => {
     return(
         //<Button variant = "signIn" href="/login" >SIGN IN</Button>
-        <Button variant = "register"><Link to="/register">SIGN UP</Link></Button>
+        <Button variant = "register"><Link href="/register" underline="none" color="red">SIGN UP</Link></Button>
     );
 };
 

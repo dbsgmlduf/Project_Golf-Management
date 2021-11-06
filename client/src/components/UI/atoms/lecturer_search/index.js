@@ -1,5 +1,6 @@
 import React from 'react';
-import { Search, StyledInputBase } from './style';
+import { Search, StyledInputBase, SearchIconWrapper } from './style';
+import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
 
@@ -13,6 +14,9 @@ const LecturerSearchBar = ({ value, handleSeachKey }) => {
                     강사 등록
                 </Typography>
                 <Search>
+                    <SearchIconWrapper>
+                        <SearchIcon />
+                    </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="강사 검색"
                         inputProps={{ 'aria-label': 'search' }}

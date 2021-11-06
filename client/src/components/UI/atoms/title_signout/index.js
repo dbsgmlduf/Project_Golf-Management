@@ -1,6 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import {Button,Link} from '@mui/material';
 
 const LogoutButton = () => {
 
@@ -9,7 +8,7 @@ const LogoutButton = () => {
     };
     return(
         //<Button variant = "signIn" href="/login" >SIGN IN</Button>
-        <Button variant = "signOut" onClick={handleLogout}><Link to="/login">LOGOUT</Link></Button>
+        <Button variant = "signOut" onClick={handleLogout}><Link href="/login" underline="none" color="inherit">LOGOUT</Link></Button>
     );
 };
 
