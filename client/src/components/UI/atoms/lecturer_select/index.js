@@ -24,7 +24,7 @@ const SelectLecturer = (props) => {
             if (result.isConfirmed) {
                 axios.post('api/learners/enrollment', data).then(response => {
                     const isSuccess = response.data.inEnrolled;
-                    if (isSuccess) {
+                    if (!isSuccess) {
                         console.log(response.data.mes);
                         //성공
                         <SuccessAlert />
