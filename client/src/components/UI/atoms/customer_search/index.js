@@ -15,7 +15,7 @@ const CustomerSearchBar = ({ value, handleSeachKey }) => {
                     고객 관리 시스템
                 </Typography>
                 <AddCustomer />
-                <Search>
+                <Search className={classes.search}>
                     <SearchIconWrapper>
                         <SearchIcon/>
                     </SearchIconWrapper>
