@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     },
     
     appbar: {
-        background: 'none',
+        background: 'inherit',
     },
     title: {
         flexGrow: '1',

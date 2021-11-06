@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
 import AddCustomer from '../../modules/add_customer/index';
 
-const SearchBar = ({ value, handleSeachKey }) => {
+const CustomerSearchBar = ({ value, handleSeachKey }) => {
     const classes = useStyles();
 
     return (
@@ -30,4 +30,4 @@ const SearchBar = ({ value, handleSeachKey }) => {
         </AppBar>
     )
 };
-export default SearchBar;
+export default CustomerSearchBar;
