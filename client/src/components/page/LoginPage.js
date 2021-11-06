@@ -8,7 +8,7 @@ import useStyles from './style';
 import LockIcon from '@material-ui/icons/Lock'
 import Swal from 'sweetalert2';
 import BackVideo from '../UI/atoms/background_video';
-import SuccessAlert from '../UI/atoms/success_alert';
+import SuccessAlert from '../UI/atoms/alert_success';
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();

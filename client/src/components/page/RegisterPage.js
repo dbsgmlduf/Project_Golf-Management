@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import useStyles from './style';
 import MenuBookIcon from '@material-ui/icons/MenuBook'
 import BackVideo from '../UI/atoms/background_video';
-import SuccessAlert from '../UI/atoms/success_alert';
+import SuccessAlert from '../UI/atoms/alert_success';
 
 const RegisterPage = (props) => {
 
