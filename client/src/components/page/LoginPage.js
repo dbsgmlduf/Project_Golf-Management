@@ -79,7 +79,7 @@ const LoginPage = (props) => {
 
     return (
 
-        <Grid>
+        <Grid spacing={1}>
             <BackVideo />
             <Header />
             <form onSubmit={onSubmitHandler}>

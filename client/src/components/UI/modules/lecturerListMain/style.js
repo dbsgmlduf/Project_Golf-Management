@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 30,
         width:800,
         height:'auto',
-        margin:"auto",
+        margin:"90px auto",
     },
 }));
 

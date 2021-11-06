@@ -8,6 +8,7 @@ import LoginPage from './components/page/LoginPage';
 import LecturerMainPage from './components/page/LecturerMainPage';
 import LecturerInfoPage from './components/page/LecturerInfoPage';
 import LearnerPage from './components/page/LearnerPage';
+import ProfilePage from './components/page/ProfilePage';
 
 
 const Routes = () => {
@@ -19,7 +20,9 @@ const Routes = () => {
             <PublicRoute restricted={false} component={LoginPage} exact path="/login"/>
             <PrivateRoute component={LecturerMainPage} exact path="/lecturer"/>
             <PrivateRoute component={LecturerInfoPage} exact path="/lecturer/info/:id"/>
+            <PrivateRoute component={ProfilePage} excact path ="/lecturer/myprofile"/>
             <PrivateRoute component={LearnerPage} exact path="/learner"/>
+            <PrivateRoute component={ProfilePage} excact path ="/learner/myprofile"/>
         </Switch>
     );
 }

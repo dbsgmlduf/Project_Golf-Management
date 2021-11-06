@@ -16,9 +16,9 @@ const CustomerSearchBar = ({ value, handleSeachKey }) => {
                 </Typography>
                 <AddCustomer />
                 <Search>
-                    {/* <SearchIconWrapper>
+                    <SearchIconWrapper>
                         <SearchIcon/>
-                    </SearchIconWrapper> */}
+                    </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="고객 검색"
                         inputProps={{ 'aria-label': 'search' }}
