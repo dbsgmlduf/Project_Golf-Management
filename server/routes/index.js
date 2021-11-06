@@ -4,8 +4,8 @@ const instructorRouter = require('./instructor');
 const learnerRouter = require('./learner');
 
 router.use('/users', userRouter);
+router.use('/learners', learnerRouter);
 //router.use('/instructors', instructorRouter);
 
-router.use('/learners', learnerRouter);
 //router.use('/instructors', instructorRouter);
 module.exports = router;

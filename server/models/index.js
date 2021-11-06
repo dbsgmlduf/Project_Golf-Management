@@ -14,6 +14,7 @@ db.ClassInfo = require('./classinfo')(sequelize, Sequelize);
 db.DateInfo = require('./dateinfo')(sequelize, Sequelize);
 
 //define association
+
 db.Learner.hasMany(db.DateInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.DateInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 

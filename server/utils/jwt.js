@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { JWT_ACCESS_TOKEN_SECRET, JWT_ACCESS_TOKEN_EXPIRE } = process.env;
+const { JWT_ACCESS_TOKEN_SECRET } = process.env;
 
 exports.createJwtAccessToken = (data) => {
     const token = jwt.sign(

@@ -24,8 +24,6 @@ exports.login = async (req, res, next) => {
         const user = req.body;
         const accessToken = createJwtAccessToken(user.id);
         const userType = await checkUserType(user.id);
-        console.log("사용자유형", typeof userType);
-        console.log("사용자유형", userType);
         res.json({
             loginSuccess: true,
             message: 'LOGIN SUCCESS!!',
@@ -42,13 +40,15 @@ exports.login = async (req, res, next) => {
 exports.list = async (req, res, next) => {
     try{
         const lecturerList = await userApp.getLecturerList();
+        console.log(lecturerList);
         res.json({
             list: lecturerList,
-            //accessToken,
+            message: "success"
         });
     } catch(error){
-        res.status(400).json({
+        res.status(401).json({
             message: "TRY AGAIN!"
         });
     }
 }
+
