@@ -7,9 +7,6 @@ import {Route, Switch,BrowserRouter as Router} from 'react-router-dom';
 /*import routes*/
 import Routes from './routes';
 
-/*import css*/
-import './App.css';
-
 //test fork
 const App = () => {
   return (
