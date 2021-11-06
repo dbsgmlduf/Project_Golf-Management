@@ -6,6 +6,7 @@ const api = {
     base: "https://api.penweathermap.org/data/2.5/"
 }
 const RealImage = FallImage;
+const Realsenc = ColdImage;
 const useStyles = makeStyles((theme) => ({
     grid:{
         minHeight:'100vh',
