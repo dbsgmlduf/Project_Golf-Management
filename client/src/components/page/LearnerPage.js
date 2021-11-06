@@ -9,7 +9,7 @@ const LearnerPage = (props) => {
     const classes = useStyles();
 
     return (
-        <Grid className={classes.grid}>
+        <Grid>
             <CssBaseline/>
             <Header />
             <Main/>
