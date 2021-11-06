@@ -14,9 +14,8 @@ const CustomersList = () => {
     //search event handler
     const handleSeachKey = (e)=>{
         setSearchKeyWord(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     };
-
+    
     //data
     const [dataList, setDataList] = useState([]);
     useEffect(() => {

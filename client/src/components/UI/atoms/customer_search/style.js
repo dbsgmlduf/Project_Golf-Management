@@ -1,6 +1,6 @@
 import { InputBase, alpha, styled } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/';
+import { fade  } from '@material-ui/core/';
 
 const useStyles = makeStyles((theme) => ({
     searchTitle: {
@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
         margin : 10,
         width : 'auto',
     },
+    search:{
+        left:'2vh',
+    }
 }));
 
 
