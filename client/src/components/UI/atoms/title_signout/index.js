@@ -9,7 +9,7 @@ const LogoutButton = () => {
     };
     return (
         //<Button variant = "signIn" href="/login" >SIGN IN</Button>
-        <Button variant="signOut" onClick={handleLogout}><Link to="/login" style={{ textDecoration: 'none' }} color="inherit">LOGOUT</Link></Button>
+        <Button variant="signOut" onClick={handleLogout}><Link to="/login" style={{ textDecoration: 'none', color:"inherit" }}>LOGOUT</Link></Button>
     );
 };
 
