@@ -1,13 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    list:{
-        width :"200px"
+    title : {
+        color:"red"
     },
-    menuIcon : {
-        color: 'red',
-        fontSize: '2rem',
-    }
 }));
 
 export default useStyles;

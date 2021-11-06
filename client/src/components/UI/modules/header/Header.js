@@ -20,7 +20,6 @@ const Header = () => {
             <div>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar>
-
                         <Typography className={classes.title}>
                             {userType === "learner" ? (<Link to="/learner"><Title /></Link>)
                                 : (<Link to="/lecturer"><Title /></Link>)}
