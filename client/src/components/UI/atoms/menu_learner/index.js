@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, SwipeableDrawer, List, Divider, IconButton, Button, Grid } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu"
-import { mainListItems } from "../menu_list";
+import { learnerListItems } from "../menu_list";
 import useStyles from "./style";
 import LogoutButton from "../title_signout";
 
@@ -25,7 +25,7 @@ const LearnerMenu = () => {
                     <List>
                         <LogoutButton/>
                         <Divider />
-                        {mainListItems}
+                        {learnerListItems}
                     </List>
                 </div></SwipeableDrawer>
         </Grid>
