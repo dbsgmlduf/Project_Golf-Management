@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Paper } from "@material-ui/core";
 import Customers from '../customer';
 import useStyles from './style';
-import SearchBar from '../customer_seach';
+import CustomerSearchBar from '../customer_search';
 import { customers } from '../../../../Data'
 
 
@@ -47,7 +47,7 @@ const CustomersList = () => {
 
     return (
         <div>
-        <SearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
+        <CustomerSearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
         <TableContainer component={Paper} className={classes.paper}>
             <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
                 <TableHead>

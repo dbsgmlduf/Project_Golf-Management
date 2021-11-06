@@ -6,7 +6,6 @@ const {createJwtAccessToken} = require('../../utils/jwt');
 exports.register = async (req, res, next) => {
     try{
         const { usertype, username, email, id, password } = req.body;
-        console.log(usertype);
         await userApp.registerUser({usertype, username, email, id, password});
         res.json({
             registerSuccess: true,

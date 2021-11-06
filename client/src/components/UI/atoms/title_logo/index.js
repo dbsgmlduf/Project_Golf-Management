@@ -1,7 +1,9 @@
 import React from 'react';
+import useStyles from './style';
 
 const Title = () => {
-    return (<h1>GOLFTAK</h1>);
+    const classes = useStyles();
+    return (<h1 className={classes.title}>GOLFTAK</h1>);
 
 };
 export default Title;
