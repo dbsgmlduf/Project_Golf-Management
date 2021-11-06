@@ -3,7 +3,7 @@ const userApp = require('../../application/learner');
 exports.enrollLecturer = async (req, res, next) => {
     try{
         const {username} = req.body;
-        const attendee = "changhyun";
+        const attendee = req.user.learner_no
         const isEnrolled = await userApp.isEnrolled({attendee,username});
         res.json({
             isEnrolled,

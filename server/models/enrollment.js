@@ -16,6 +16,11 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.BIGINT,
                 allowNull: false,
             },
+            isenrolled: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: 0,
+                allowNull: false,
+            }
         },
         {
             tableName: 'enrollment',

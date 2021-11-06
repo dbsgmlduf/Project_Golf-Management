@@ -1,18 +1,18 @@
 
-const {Lecturer, Learner, sequelize, ClassInfo} = require('../../models');
-const {Enrollment} = require('../../models')
+const {Lecturer, Learner, Enrollment, sequelize, ClassInfo, Sequelize} = require('../../models');
+const Op = Sequelize.Op;
 
 exports.createRelations = async({attendee, username}) => {
-    const enrollment = await Lecturer.findOne({
+    const lecturer = await Lecturer.findAll({
         attributes: ['lecturer_no'],
-        include: [{
-            model: Learner,
-            required: true,
-            where: {attendee}
-        }],
         where: {username}
-    });
-    console.log("조인결과 = ",enrollment);
-    
+    })
+    const tmp = JSON.parse(JSON.stringify(lecturer));
+    const no = tmp[0].lecturer_no;
+    const value = {
+        lecturer_no: no,
+        learner_no: attendee
+    }
+    const result = await Enrollment.create(value);
     return result;
 };
