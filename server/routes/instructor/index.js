@@ -4,6 +4,8 @@ const controller = require('./controller');
 
 router.get('/requestenroll', middlewares.jwtAuth, controller.getRequest);
 router.patch('/agreement', middlewares.jwtAuth, controller.setAgreement);
-router.get('/classinfo', controller.inputInfo);
+router.get('/mylearnerlist', middlewares.jwtAuth, controller.getMylist);
+router.get('/mylist', middlewares.jwtAuth, controller.getList);
+router.post('/classinfo', controller.inputInfo);
 
 module.exports = router;

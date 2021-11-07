@@ -23,7 +23,56 @@ exports.selectRequest = async({instructor}) => {
 }
 
 exports.setAgreement = async({agreement,username,instructor}) => {
-    console.log("*****수락*****", typeof agreement);
-    console.log("*****학습자이름*****",typeof username);
-    console.log("*****강사번호*****",typeof instructor);
+    const x = Number(agreement);
+    const learnerNo = await getLearnerNo({username});
+    const result = await Enrollment.update(
+        {isenrolled: x},
+        {where: {
+            [Op.and]:[
+                {lecturer_no: instructor},
+                {learner_no: learnerNo}
+            ]            
+        }}
+        );
+        return result;
+};
+
+exports.getMyList = async ({instructor}) => {
+    const result = await Learner.findAll({
+        attributes: ['username'],
+        include: [{
+            model: Enrollment,
+            attributes:[],
+            where: {
+                [Op.and]:[
+                    {lecturer_no: instructor},
+                    {isEnrolled: 1}
+                ]
+            }
+        }]
+    })
+    console.log("결과", JSON.stringify(result));
+    return result;
 }
+
+exports.getList = async ({instructor}) => {
+    const result = await Learner.findAll({
+        attributes: ['username'],
+        include: [{
+            model: Enrollment,
+            attributes:[],
+            where: {isEnrolled: 1}
+        }]
+    })
+    console.log("결과", JSON.stringify(result));
+    return result;
+}
+const getLearnerNo = async({username}) => {
+    const no = await Learner.findAll({
+        attributes: ['learner_no'],
+        where:{username}
+    });
+    const tmp = JSON.parse(JSON.stringify(no));
+    const result = tmp[0].learner_no;
+    return result;
+};

@@ -9,3 +9,13 @@ exports.setEnrollment = async({agreement,username,instructor}) => {
     const result = await db.setAgreement({agreement,username,instructor});
     return result;
 }
+
+exports.getMyList = async({instructor}) => {
+    const result = await db.getMyList({instructor});
+    return result;
+}
+
+exports.getList = async({instructor}) => {
+    const result = await db.getList({instructor});
+    return result;
+}
