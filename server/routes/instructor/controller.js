@@ -85,7 +85,7 @@ exports.inputInfo = async (req, res, next) => {
 exports.getInfo = async (req, res, next) => {
     try{
         const instructor = req.user.lecturer_no;
-        const {username} = req.body;
+        const {username} = req.params;
         const info = await userApp.selectInfo({instructor, username});
         res.json({
             info,
