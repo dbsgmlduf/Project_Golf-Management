@@ -6,7 +6,6 @@ import AddSearchBar from "./add_searchbar";
 
 const AddLearner = () => {
 
-
     //search
     const [serchKeyword, setSearchKeyWord] = useState();
     //search event handler
