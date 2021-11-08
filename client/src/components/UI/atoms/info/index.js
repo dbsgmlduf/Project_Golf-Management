@@ -6,9 +6,8 @@ const Info =  (props) => {
 
     return(
         <TableRow>
-            <TableCell align="center">{props.num}</TableCell>
-            <TableCell align="center">{props.studyDate}</TableCell>
             <TableCell align="center">{props.topic}</TableCell>
+            <TableCell align="center">{props.studyDate}</TableCell>
             <DeleteStudy/>
             <ModifyButton/>
         </TableRow>

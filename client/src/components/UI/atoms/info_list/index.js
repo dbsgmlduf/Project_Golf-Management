@@ -4,7 +4,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Info from "../info";
 import useStyles from "./style";
 
-const StudyInfo = () => {
+const StudyInfo = (props) => {
     const classes = useStyles();
     //상세페이지정보
     const [users, setUsers] = useState(null);
@@ -19,11 +19,9 @@ const StudyInfo = () => {
                 setUsers(null);
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
-                const response = await axios.get(
-                    '/api/instructors/classinfo'
-                );
+                const response = await axios.get(`/api/instructors/getinfo/${props.username}`);
                 console.log(response);
-                setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
+                setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
                 setError(e);
             }
@@ -54,15 +52,14 @@ const StudyInfo = () => {
             <Table aria-label="customer week study info" className={classes.table} sx={{ minWidth: 650 }} >
                 <TableHead>
                     <TableRow>
-                        <TableCell align="center">Num</TableCell>
-                        <TableCell align="center">강의진행날짜</TableCell>
                         <TableCell align="center" className={classes.topic}>강의주제</TableCell>
+                        <TableCell align="center">강의진행날짜</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {users ? users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
-                            return <Info key={c.num} num={c.num} studyDate={c.studyDate} topic={c.topic} />
+                            return <Info key={c.theme} topic={c.topic} studyDate={c.studyDate} />
                         }) : '해당 게시글을 찾을 수 없습니다.'}
                 </TableBody>
                 <TableFooter>
