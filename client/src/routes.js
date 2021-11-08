@@ -20,7 +20,7 @@ const Routes = () => {
             <PublicRoute restricted={false} component={RegisterPage} exact path="/register"/>
             <PublicRoute restricted={false} component={LoginPage} exact path="/login"/>
             <PrivateRoute component={LecturerMainPage} exact path="/lecturer"/>
-            <PrivateRoute component={LecturerInfoPage} exact path="/lecturer/info/:id"/>
+            <PrivateRoute component={LecturerInfoPage} exact path="/lecturer/info/:username"/>
             <PrivateRoute component={LecturerAddPage} excact path ="/lecturer/addlearner"/>
             <PrivateRoute component={ProfilePage} excact path ="/lecturer/myprofile"/>
             <PrivateRoute component={LearnerPage} exact path="/learner"/>
