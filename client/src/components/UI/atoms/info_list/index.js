@@ -59,7 +59,7 @@ const StudyInfo = (props) => {
                 <TableBody>
                     {users ? users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
-                            return <Info key={c.theme} topic={c.topic} studyDate={c.studyDate} />
+                            return <Info key={c.lec_theme} topic={c.lec_theme} studyDate={c.class_date} username={props.username} />
                         }) : '해당 게시글을 찾을 수 없습니다.'}
                 </TableBody>
                 <TableFooter>

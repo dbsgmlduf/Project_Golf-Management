@@ -109,10 +109,12 @@ exports.getInfo = async({instructor, username}) => {
     return result;
 };
 const getLearnerNo = async({username}) => {
+    console.log("qqqq", username);
     const no = await Learner.findAll({
         attributes: ['learner_no'],
         where:{username}
     });
+    console.log('asdasdfasdfasdfasdf', no);
     const tmp = JSON.parse(JSON.stringify(no));
     const result = tmp[0].learner_no;
     return result;
