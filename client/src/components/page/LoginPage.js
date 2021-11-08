@@ -63,12 +63,14 @@ const LoginPage = (props) => {
                     icon: 'success',
                     title: 'SUCCESS!',
                     text: '성공하셨습니다.'
-                });
-                if (userTypeRes === 'lecturer') {
-                    props.history.push('/lecturer')
-                } else if (userTypeRes === 'learner') {
-                    props.history.push('/learner')
-                }
+                }).then(()=>{
+                    if (userTypeRes === 'lecturer') {
+                        props.history.push('/lecturer')
+                    } else if (userTypeRes === 'learner') {
+                        props.history.push('/learner')
+                    }
+                })
+                
             }
             else {
                 Swal.fire({
