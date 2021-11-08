@@ -86,6 +86,7 @@ exports.getInfo = async (req, res, next) => {
     try{
         const instructor = req.user.lecturer_no;
         const {username} = req.params;
+        console.log("사용자", username);
         const info = await userApp.selectInfo({instructor, username});
         res.json({
             info,
