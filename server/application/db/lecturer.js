@@ -73,20 +73,9 @@ exports.getList = async ({instructor}) => {
     return result;
 }
 
-const getLearnerNo = async({username}) => {
-    const no = await Learner.findAll({
-        attributes: ['learner_no'],
-        where:{username}
-    });
-    const tmp = JSON.parse(JSON.stringify(no));
-    const result = tmp[0].learner_no;
-    return result;
-};
 
 exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
-    console.log("+++강의자번호+++",instructor);
     const attendee = await getLearnerNo({username});
-    console.log("+++학습자번호+++",attendee);
     const classInfo = {
         session_no: session_no,
         lecturer_no: instructor,
@@ -99,5 +88,32 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
     }
     const result = await ClassInfo.create(classInfo);
     console.log("결과",result);
+    return result;
+};
+
+exports.getInfo = async({instructor, username}) => {
+    console.log("ttt",instructor);
+    console.log("ttt",username);
+    const attendee = await getLearnerNo({username});
+    console.log("aaaaa",attendee);
+    const result = await ClassInfo.findAll({
+        attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
+        where: {
+            [Op.and]: [
+                {lecturer_no: instructor},
+                {learner_no: attendee}
+            ]
+        }
+    });
+    console.log("+++결과+++", result);
+    return result;
+};
+const getLearnerNo = async({username}) => {
+    const no = await Learner.findAll({
+        attributes: ['learner_no'],
+        where:{username}
+    });
+    const tmp = JSON.parse(JSON.stringify(no));
+    const result = tmp[0].learner_no;
     return result;
 };

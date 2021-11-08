@@ -62,7 +62,7 @@ exports.getList = async (req, res, next) => {
     } catch(error){
         
     }
-}
+};
 
 //강사 --> 회원 강의정보 입력 API
 exports.inputInfo = async (req, res, next) => {
@@ -73,6 +73,23 @@ exports.inputInfo = async (req, res, next) => {
         res.json({
             inputSuccess: true,
             message: 'Input SUCCESS'
+        });
+    } catch (error){
+        res.status(400).json({
+            message: "YOU FAILED!"
+        });
+    }
+};
+
+//강사 --> 강의 정보 조회 API
+exports.getInfo = async (req, res, next) => {
+    try{
+        const instructor = req.user.lecturer_no;
+        const {username} = req.body;
+        const info = await userApp.selectInfo({instructor, username});
+        res.json({
+            info,
+            message: 'SUCCESS getinfo'
         });
     } catch (error){
         res.status(400).json({
