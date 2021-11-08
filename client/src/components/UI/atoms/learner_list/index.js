@@ -3,31 +3,51 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Table
 import Learners from '../learner';
 import useStyles from './style';
 import LearnerSearchBar from '../learner_search';
-import { customers } from '../../../../Data'
-
+import axios from 'axios';
 
 const LearnerList = () => {
     const classes = useStyles();
-    
+
     //search
-    const [serchKeyword , setSearchKeyWord] = useState();
+    const [serchKeyword, setSearchKeyWord] = useState();
     //search event handler
-    const handleSeachKey = (e)=>{
+    const handleSeachKey = (e) => {
         setSearchKeyWord(e.currentTarget.value);
     };
-    
-    //data
-    const [dataList, setDataList] = useState([]);
+
+    //강사정보
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
-        setDataList(customers);
-    }, []);
+        const fetchUsers = async () => {
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setUsers(null);
+                // loading 상태를 true 로 바꿉니다.
+                setLoading(true);
+                const response = await axios.get(
+                    '/api/instructors/mylearnerlist'
+                );
+                console.log(response);
+                setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+        };
+
+        fetchUsers();
+    }, [])
     //data search
-    const filteredData = (data)=>{
-        data = data.filter((c)=>{
-            return c.name.indexOf(serchKeyword)>-1;
+    const filteredData = (data) => {
+        data = data.filter((c) => {
+            return c.name.indexOf(serchKeyword) > -1;
         });
-        return data.map((c)=>{
-            return <Learners key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} /> 
+        return data.map((c) => {
+            return <Learners key={c.username} name={c.username} />
         })
     }
     //page
@@ -44,39 +64,40 @@ const LearnerList = () => {
         setPage(0)
     }
 
+    if (loading) return <div>로딩중..</div>;
+    if (error) return <div>에러가 발생했습니다</div>;
+    if (!users) return null;
+
     return (
         <div>
-        <LearnerSearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
-        <TableContainer component={Paper} className={classes.paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="center">번호</TableCell>
-                        <TableCell align="center">이름</TableCell>
-                        <TableCell align="center">최근 강의 날짜</TableCell>
-                        <TableCell align="center">다음 강의 예정일</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {serchKeyword ?filteredData(dataList):dataList.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
-                        .map(c => {
-                            return <Learners key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} />
-                        })}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25]}
-                            count={customers.length}
-                            page={page}
-                            rowsPerPage={rowsPerPage}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
+            <LearnerSearchBar value={serchKeyword} handleSeachKey={handleSeachKey} />
+            <TableContainer component={Paper} className={classes.paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">이름</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {serchKeyword ? filteredData(users) : users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                            .map(c => {
+                                return <Learners key={c.username} name={c.username} />
+                            })}
+                    </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25]}
+                                count={users.length}
+                                page={page}
+                                rowsPerPage={rowsPerPage}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                            />
+                        </TableRow>
+                    </TableFooter>
+                </Table>
+            </TableContainer>
         </div>
     );
 }

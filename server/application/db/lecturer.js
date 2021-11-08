@@ -17,7 +17,12 @@ exports.selectRequest = async({instructor}) => {
                 }
             }
         }],
-        where: {lecturer_no: instructor}
+        where: {
+            [Op.and]:[
+                {lecturer_no: instructor},
+                {isEnrolled:0}
+            ]
+        }
     });
     return result;
 }
