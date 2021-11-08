@@ -23,7 +23,7 @@ exports.setAgreement = async (req, res, next) => {
         const {agreement, username} = req.body;
         const instructor = req.user.lecturer_no;
         const result = await userApp.setEnrollment({agreement,username,instructor});
-        res.json({
+        res.json({  
             result,
             //data: true,
             message: '등록 수락'
