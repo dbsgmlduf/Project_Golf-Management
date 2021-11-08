@@ -24,3 +24,8 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
     const result = await db.createInfo({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date });
     return result;
 }
+
+exports.selectInfo = async({instructor, username}) => {
+    const result = await db.getInfo({instructor, username});
+    return result;
+}

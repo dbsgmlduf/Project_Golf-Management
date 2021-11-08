@@ -7,7 +7,7 @@ const Main = (props) => {
     return (
         <Card className={classes.lecturerCard} elevation={10}>
             <UserProfile username={props.username}/>
-            <StudyInfo />
+            <StudyInfo username={props.username}/>
         </Card>
     );
 }
