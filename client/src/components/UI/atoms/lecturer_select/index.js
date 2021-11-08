@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@material-ui/core';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import SuccessAlert from '../alert_success';
-import FailAlert from '../alert_fail';
+
 const SelectLecturer = (props) => {
     //const [open,setOpen] = useState(false);
     const openHandler = (e) => {
         e.preventDefault();
-        console.log("row data : "+props.data);
+        console.log("row data : " + props.data);
         let data = {
             username: props.data,
         }
@@ -27,12 +26,21 @@ const SelectLecturer = (props) => {
                     if (!isSuccess) {
                         console.log(response.data.mes);
                         //성공
-                        <SuccessAlert />
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'SUCCESS!',
+                            text: '성공하셨습니다.'
+                        });
+
                     }
                 }).catch(err => { console.log(err) })
             }
             else {
-                <FailAlert />
+                Swal.fire({
+                    icon: 'fail',
+                    title: 'FAIL!',
+                    text: '로그인에 실패하셨습니다. 다시 로그인해주세요!'
+                });
             }
         })
     };

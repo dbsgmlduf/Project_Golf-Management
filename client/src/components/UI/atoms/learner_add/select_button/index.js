@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
-import SuccessAlert from '../../alert_success';
+import Swal from 'sweetalert2'
 
 const SelectLecturer = (props) => {
     const openHandler = (e) => {
@@ -15,7 +15,11 @@ const SelectLecturer = (props) => {
             if (isSuccess) {
                 console.log(response.data.message);
                 //성공
-                <SuccessAlert />
+                Swal.fire({
+                    icon: 'fail',
+                    title: 'FAIL!',
+                    text: '로그인에 실패하셨습니다. 다시 로그인해주세요!'
+                });
             }
         }).catch(err => { console.log(err) })
     };
