@@ -40,7 +40,6 @@ exports.login = async (req, res, next) => {
 exports.list = async (req, res, next) => {
     try{
         const lecturerList = await userApp.getLecturerList();
-        console.log(lecturerList);
         res.json({
             list: lecturerList,
             message: "success"

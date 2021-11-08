@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Paper } from "@material-ui/core";
-import Customers from '../customer';
+import Learners from '../learner';
 import useStyles from './style';
-import CustomerSearchBar from '../customer_search';
+import LearnerSearchBar from '../learner_search';
 import { customers } from '../../../../Data'
 
 
-const CustomersList = () => {
+const LearnerList = () => {
     const classes = useStyles();
     
     //search
@@ -27,7 +27,7 @@ const CustomersList = () => {
             return c.name.indexOf(serchKeyword)>-1;
         });
         return data.map((c)=>{
-            return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} /> 
+            return <Learners key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} /> 
         })
     }
     //page
@@ -46,7 +46,7 @@ const CustomersList = () => {
 
     return (
         <div>
-        <CustomerSearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
+        <LearnerSearchBar value={serchKeyword} handleSeachKey={handleSeachKey}/>
         <TableContainer component={Paper} className={classes.paper}>
             <Table sx={{ minWidth: 650 }} aria-label="lecturer main table" className={classes.table}>
                 <TableHead>
@@ -60,7 +60,7 @@ const CustomersList = () => {
                 <TableBody>
                     {serchKeyword ?filteredData(dataList):dataList.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                         .map(c => {
-                            return <Customers key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} />
+                            return <Learners key={c.id} id={c.id} name={c.name} studyDate={c.studyDate} nextDate={c.nextDate} />
                         })}
                 </TableBody>
                 <TableFooter>
@@ -81,4 +81,4 @@ const CustomersList = () => {
     );
 }
 
-export default CustomersList;
+export default LearnerList;
