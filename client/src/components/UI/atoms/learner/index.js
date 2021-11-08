@@ -1,8 +1,8 @@
 import { TableCell, TableRow } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import React from "react";
-import DeleteCustomer from "../customer_delete";
-const Customers = (props) => {
+import DeleteLearner from "../learner_delete";
+const Learners = (props) => {
 
     return (
         <TableRow>
@@ -10,9 +10,9 @@ const Customers = (props) => {
             <TableCell align="center"><Link to={`/lecturer/info/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.name}</Link></TableCell>
             <TableCell align="center">{props.studyDate}</TableCell>
             <TableCell align="center">{props.nextDate}</TableCell>
-            <DeleteCustomer />
+            <DeleteLearner />
         </TableRow>
     )
 };
 
-export default Customers;
+export default Learners;

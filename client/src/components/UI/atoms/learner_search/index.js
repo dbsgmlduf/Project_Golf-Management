@@ -3,9 +3,9 @@ import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
-import AddCustomer from '../../modules/add_customer/index';
+import AddButton from '../button_add';
 
-const CustomerSearchBar = ({ value, handleSeachKey }) => {
+const LearnerSearchBar = ({ value, handleSeachKey }) => {
     const classes = useStyles();
 
     return (
@@ -14,8 +14,8 @@ const CustomerSearchBar = ({ value, handleSeachKey }) => {
                 <Typography className={classes.searchTitle} variant="h6" color="inherit" noWrap>
                     고객 관리 시스템
                 </Typography>
-                <AddCustomer />
-                <Search>
+                <AddButton />
+                <Search className={classes.search}>
                     <SearchIconWrapper>
                         <SearchIcon/>
                     </SearchIconWrapper>
@@ -30,4 +30,4 @@ const CustomerSearchBar = ({ value, handleSeachKey }) => {
         </AppBar>
     )
 };
-export default CustomerSearchBar;
+export default LearnerSearchBar;
