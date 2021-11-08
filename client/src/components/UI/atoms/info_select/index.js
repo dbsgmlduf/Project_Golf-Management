@@ -6,13 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Grid from "@mui/material"
-import useStyles from './style';
+import {Grid} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import Infotable from './info_table';
 
-const AddStudy = (props) => {
-    const classes = useStyles();
+const SelectInfo = (props) => {
     const [open, setOpen] = useState(false);
     
     /*EVENT HANDLER*/
@@ -26,7 +24,7 @@ const AddStudy = (props) => {
   
     return (
         <Grid>
-            <Button variant="contained" startIcon={<AddIcon />} className={classes.addButton} onClick={handleClickOpen}>
+            <Button variant="contained" startIcon={<AddIcon />} onClick={handleClickOpen}>
                 조회
             </Button>
             <Dialog
@@ -55,4 +53,4 @@ const AddStudy = (props) => {
     );
 };
 
-export default AddStudy;
+export default SelectInfo;
