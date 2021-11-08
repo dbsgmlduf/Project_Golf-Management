@@ -73,16 +73,17 @@ const AddStudy = () => {
                 </AppBar>
                 <TextField label="theme" placeholder="내용을 적어주세요...."  required onChange={addTheme} />
                 <TextField label="contents" placeholder="내용을 적어주세요...." rows={4} fullWidth required multiline onChange={addContents} />
+                <TextField label="contents" placeholder="내용을 적어주세요...." rows={4} fullWidth required multiline onChange={addContents} />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Stack spacing={3}>
                             <DesktopDatePicker
-                                label="Start Time"
+                                label="강의진행날짜"
                                 value={classDate}
                                 onChange={addClassDate}
                                 renderInput={(params) => <TextField {...params} />}
                             />
                             <DesktopDatePicker
-                                label="End Time"
+                                label="다음강의날짜"
                                 value={nextDate}
                                 onChange={addNextDate}
                                 renderInput={(params) => <TextField {...params} />}
