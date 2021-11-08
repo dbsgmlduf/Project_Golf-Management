@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 
@@ -19,7 +20,9 @@ const SelectLecturer = (props) => {
                     icon: 'success',
                     title: '성공!',
                     text: '당신의 신규회원이 등록되었습니다!'
-                });
+                }).then(()=>{
+                    window.location.replace("/lecturer/addlearner")
+                })
             }
         }).catch(err => { console.log(err) })
     };
@@ -31,4 +34,4 @@ const SelectLecturer = (props) => {
 
 };
 
-export default SelectLecturer;
+export default withRouter(SelectLecturer);

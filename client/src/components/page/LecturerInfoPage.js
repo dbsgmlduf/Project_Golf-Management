@@ -5,11 +5,10 @@ import { Grid } from '@material-ui/core';
 
 const LecturerInfoPage = (props) => {
 
-
     return (
         <Grid>
             <Header />
-            <Main />
+            <Main username={props.match.params.username} />
             <Footer />
         </Grid>
     );
