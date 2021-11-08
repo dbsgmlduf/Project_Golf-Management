@@ -3,7 +3,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import SearchIcon from "@material-ui/icons/Search"
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from "./style";
-import AddLearner from '../learner_add';
+import AddButton from '../button_add';
 
 const LearnerSearchBar = ({ value, handleSeachKey }) => {
     const classes = useStyles();
@@ -14,7 +14,7 @@ const LearnerSearchBar = ({ value, handleSeachKey }) => {
                 <Typography className={classes.searchTitle} variant="h6" color="inherit" noWrap>
                     고객 관리 시스템
                 </Typography>
-                <AddLearner />
+                <AddButton />
                 <Search className={classes.search}>
                     <SearchIconWrapper>
                         <SearchIcon/>

@@ -7,12 +7,13 @@ const SelectLecturer = (props) => {
     const openHandler = (e) => {
         e.preventDefault();
         let data = {
-            inEnrolled : 1,
+            agreement: 1,
+            username: props.data,
         }
         axios.patch('api/instructors/agreement', data).then(response => {
-            const isSuccess = response.data.inEnrolled;
-            if (!isSuccess) {
-                console.log(response.data.mes);
+            const isSuccess = response.data.result;
+            if (isSuccess) {
+                console.log(response.data.message);
                 //성공
                 <SuccessAlert />
             }

@@ -52,7 +52,8 @@ const AddLearner = () => {
                 const response = await axios.get(
                     '/api/instructors/requestenroll'
                 );
-                setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
+                setUsers(response.data.request); // 데이터는 response.data 안에 들어있습니다.
+                console.log(response);
             } catch (e) {
                 setError(e);
             }
@@ -61,7 +62,7 @@ const AddLearner = () => {
 
         fetchUsers();
     }, [])
-    console.log(users);
+    console.log("heheheh"+users);
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!users) return null;
@@ -75,7 +76,7 @@ const AddLearner = () => {
                     <TableBody>
                         {serchKeyword ? filteredData(users) : users.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                             .map(c => {
-                                return <AddTable key={c.username} username={c.username} data={c.username} />
+                                return <AddTable key={c.learner.username} username={c.learner.username} data={c.learner.username} />
                             })}
                     </TableBody>
                     <TableFooter>
