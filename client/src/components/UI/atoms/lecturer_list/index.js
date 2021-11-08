@@ -19,7 +19,7 @@ const LecturerList = () => {
             return c.username.indexOf(serchKeyword) > -1;
         });
         return data.map((c) => {
-            return <Lecturers key={c.username} username={c.username} />
+            return <Lecturers key={c.username} username={c.username} data={c.username} />
         })
     }
 

@@ -16,9 +16,9 @@ const SelectLecturer = (props) => {
                 console.log(response.data.message);
                 //성공
                 Swal.fire({
-                    icon: 'fail',
-                    title: 'FAIL!',
-                    text: '로그인에 실패하셨습니다. 다시 로그인해주세요!'
+                    icon: 'success',
+                    title: '성공!',
+                    text: '당신의 신규회원이 등록되었습니다!'
                 });
             }
         }).catch(err => { console.log(err) })
