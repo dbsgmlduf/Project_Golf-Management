@@ -17,17 +17,17 @@ db.DateInfo = require('./dateinfo')(sequelize, Sequelize);
 db.Learner.hasMany(db.DateInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.DateInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 
-//db.Lecturer.belongsToMany(db.Learner, { through: db.Enrollment, foreignKey: 'lecturer_no'});
-//db.Learner.belongsToMany(db.Lecturer, { through: db.Enrollment, foreignKey: 'learner_no'});
-
 db.Learner.hasMany(db.Enrollment, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.Enrollment.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 
 db.Lecturer.hasMany(db.Enrollment, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
 db.Enrollment.belongsTo(db.Lecturer, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
 
-db.Lecturer.belongsToMany(db.Learner, {as: 'learner', through: db.ClassInfo, foreignKey: 'lecturer_no'});
-db.Learner.belongsToMany(db.Lecturer, {as: 'lecturer', through: db.ClassInfo, foreignKey: 'learner_no'});
+db.Learner.hasMany(db.ClassInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
+db.ClassInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
+
+db.Lecturer.hasMany(db.ClassInfo, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
+db.ClassInfo.belongsTo(db.Lecturer, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
