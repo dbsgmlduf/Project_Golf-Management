@@ -1,9 +1,9 @@
 import Header from '../UI/modules/header/Header';
-import Main from '../UI/modules/learnerMain/Main';
 import Footer from '../UI/modules/footer/Footer';
 import { CssBaseline, Grid } from '@material-ui/core';
+import Main from '../UI/modules/lecturerAddMain';
 
-const LearnerPage = (props) => {
+const LecturerAddPage = (props) => {
     
     return (
         <Grid>
@@ -15,4 +15,4 @@ const LearnerPage = (props) => {
     );
 }
 
-export default LearnerPage;
+export default LecturerAddPage;

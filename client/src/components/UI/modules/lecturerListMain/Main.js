@@ -1,14 +1,14 @@
 import { Card } from "@material-ui/core";
 import React,{useState} from "react";
 import useStyles from "./style";
-import CustomersList from "../../atoms/customer_list";
+import LearnerList from "../../atoms/learner_list";
 
 const Main = () => {
     const classes = useStyles();
     
     return (
         <Card className={classes.lecturerCard}>
-            <CustomersList />
+            <LearnerList />
         </Card>
     );
 }

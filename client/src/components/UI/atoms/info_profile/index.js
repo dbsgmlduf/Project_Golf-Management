@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import AddStudy from "../../modules/add_study";
+import AddStudy from "../add_study";
 import useStyles from "./style";
 
 const UserProfile = () => {

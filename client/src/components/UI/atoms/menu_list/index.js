@@ -32,7 +32,7 @@ export const lecturerListItems = (
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
-        <ListItem button component={Link} href="/lecturer" color='black'>
+        <ListItem button component={Link} href="/lecturer/addlearner" color='black'>
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
