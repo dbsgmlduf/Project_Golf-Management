@@ -19,3 +19,8 @@ exports.getList = async({instructor}) => {
     const result = await db.getList({instructor});
     return result;
 }
+
+exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
+    const result = await db.createInfo({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date });
+    return result;
+}

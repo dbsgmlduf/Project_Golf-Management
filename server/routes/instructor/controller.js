@@ -53,7 +53,7 @@ exports.getMylist = async (req, res, next) => {
 //강사 --> 전체 회원정보 출력 API
 exports.getList = async (req, res, next) => {
     try{
-        const instructor = req.user.lecturer_no
+        const instructor = req.user.lecturer_no;
         const list = await userApp.getList({instructor});
         res.json({
             list: list,
@@ -67,11 +67,12 @@ exports.getList = async (req, res, next) => {
 //강사 --> 회원 강의정보 입력 API
 exports.inputInfo = async (req, res, next) => {
     try{
-        const { usertype, username, email, id, password } = req.body;
-        
+        const instructor = req.user.lecturer_no;
+        const { username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date } = req.body;
+        await userApp.createInfo({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date });
         res.json({
-            registerSuccess: true,
-            message: 'Register SUCCESS!!'
+            inputSuccess: true,
+            message: 'Input SUCCESS'
         });
     } catch (error){
         res.status(400).json({
