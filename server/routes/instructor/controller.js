@@ -25,7 +25,7 @@ exports.setAgreement = async (req, res, next) => {
         const result = await userApp.setEnrollment({agreement,username,instructor});
         res.json({
             result,
-            data: true,
+            //data: true,
             message: '등록 수락'
         })
 
