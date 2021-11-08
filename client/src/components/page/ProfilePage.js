@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import React from "react";
 import Footer from "../UI/modules/footer/Footer";
 import Header from "../UI/modules/header/Header";
@@ -8,8 +8,8 @@ const ProfilePage = () => {
     return (
         <Grid>
             <Header />
-            <Main/>
-            <Footer/>
+            <Main />
+            <Footer />
         </Grid>
     );
 };
