@@ -72,6 +72,7 @@ exports.getList = async ({instructor}) => {
     console.log("결과", JSON.stringify(result));
     return result;
 }
+
 const getLearnerNo = async({username}) => {
     const no = await Learner.findAll({
         attributes: ['learner_no'],
@@ -79,5 +80,24 @@ const getLearnerNo = async({username}) => {
     });
     const tmp = JSON.parse(JSON.stringify(no));
     const result = tmp[0].learner_no;
+    return result;
+};
+
+exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
+    console.log("+++강의자번호+++",instructor);
+    const attendee = await getLearnerNo({username});
+    console.log("+++학습자번호+++",attendee);
+    const classInfo = {
+        session_no: session_no,
+        lecturer_no: instructor,
+        learner_no: attendee,
+        lec_theme: lec_theme,
+        lec_contents: lec_contents,
+        supplement_item: supplement_items,
+        class_date: class_date,
+        next_class_date: next_class_date
+    }
+    const result = await ClassInfo.create(classInfo);
+    console.log("결과",result);
     return result;
 };

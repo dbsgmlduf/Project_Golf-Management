@@ -6,6 +6,6 @@ router.get('/requestenroll', middlewares.jwtAuth, controller.getRequest);
 router.patch('/agreement', middlewares.jwtAuth, controller.setAgreement);
 router.get('/mylearnerlist', middlewares.jwtAuth, controller.getMylist);
 router.get('/mylist', middlewares.jwtAuth, controller.getList);
-router.post('/classinfo', controller.inputInfo);
+router.post('/classinfo', middlewares.jwtAuth, controller.inputInfo);
 
 module.exports = router;
