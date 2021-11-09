@@ -47,7 +47,7 @@ const SelectInfo = (props) => {
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <Infotable username={props.username}/>
+                <Infotable username={props.username} count={props.count}/>
             </Dialog>
         </Grid>
     );

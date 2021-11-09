@@ -18,7 +18,6 @@ import axios from 'axios';
 const AddStudy = (props) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [time, setTime] = useState();
     const [theme, setTheme] = useState();
     const [contents, setContents] = useState();
     const [supplement, setSupplement] = useState();
@@ -35,7 +34,7 @@ const AddStudy = (props) => {
     const handleSave = () => {
         let data = {
             username: props.username,
-            session_no : time,
+            session_no: props.count+1,
             lec_theme: theme,
             lec_contents: contents,
             supplement_items: supplement,
@@ -43,17 +42,15 @@ const AddStudy = (props) => {
             next_class_date: nextDate,
         }
         console.log(data);
-        axios.post('/api/instructors/classinfo', data).then(response=>{
+        axios.post('/api/instructors/classinfo', data).then(response => {
             const isSuccess = response.data.inputSuccess;
-            if(isSuccess){
+            if (isSuccess) {
                 console.log(response.data.message);
                 setOpen(false);
             }
         }).catch(err => { console.log(err) })
     };
-    const handleSetTime = (e) => {
-        setTime(e.currentTarget.value);
-    };
+
     const addTheme = (e) => {
         setTheme(e.currentTarget.value);
         console.log(e.currentTarget.value);
@@ -101,7 +98,6 @@ const AddStudy = (props) => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <TextField label="시간" placeholder="내용을 적어주세요...." required onChange={handleSetTime} />
                 <TextField label="강의주제" placeholder="내용을 적어주세요...." required onChange={addTheme} />
                 <TextField label="강의내용" placeholder="내용을 적어주세요...." rows={4} fullWidth required multiline onChange={addContents} />
                 <TextField label="보충내용" placeholder="내용을 적어주세요...." rows={2} fullWidth required multiline onChange={addSupplement} />

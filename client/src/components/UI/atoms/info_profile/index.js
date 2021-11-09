@@ -10,7 +10,7 @@ const UserProfile = (props) => {
                 <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                     {props.username}회원 정보
                 </Typography>
-                <AddStudy username={props.username} />
+                <AddStudy username={props.username} count={props.count} />
             </Toolbar>
         </AppBar>
     )
