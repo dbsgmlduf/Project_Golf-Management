@@ -45,7 +45,7 @@ const Infotable = (props) => {
                 <Typography variant="h2" component="div" gutterBottom>강의내용</Typography>
                 <Typography variant="h4" component="div" gutterBottom>{users[0].lec_contents}</Typography>
                 <Typography variant="h2" component="div" gutterBottom>보충내용</Typography>
-                <Typography variant="h4" component="div" gutterBottom>{users[0].supplement_items}</Typography>
+                <Typography variant="h4" component="div" gutterBottom>{users[0].supplement_item}</Typography>
                 <Typography variant="h3" component="div" gutterBottom>강의진행날짜</Typography>
                 <Typography variant="h5" component="div" gutterBottom>{users[0].class_date}</Typography>
                 <Typography variant="h3" component="div" gutterBottom>다음강의진행날짜</Typography>
