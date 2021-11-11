@@ -57,7 +57,6 @@ exports.selectMyList = async ({ instructor }) => {
             }
         }]
     })
-    console.log("결과", JSON.stringify(result));
     return result;
 };
 
@@ -70,7 +69,6 @@ exports.selectList = async ({ instructor }) => {
             where: { isEnrolled: 1}
         }]
     })
-    console.log("결과", JSON.stringify(result));
     return result;
 }
 
@@ -88,7 +86,6 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
         next_class_date: next_class_date
     }
     const result = await ClassInfo.create(classInfo);
-    console.log("결과",result);
     return result;
 };
 
