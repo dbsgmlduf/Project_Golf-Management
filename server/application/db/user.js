@@ -47,7 +47,7 @@ const selectUserTypeFromPassport = async (id) => {
         return false;
     }
     return results;
-}
+};
 
 exports.checkUserType = async (id) => {
     const results = await Lecturer.findOne({
@@ -62,11 +62,4 @@ exports.checkUserType = async (id) => {
         return type;
     }
     return results;
-}
-
-exports.selectAllLecturer = async () => {
-    const results = await Lecturer.findAll({
-        attributes: ['username'],
-    });
-    return results;
-}
+};

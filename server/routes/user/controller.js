@@ -2,23 +2,23 @@ const userApp = require('../../application/user');
 const {checkUserType} = require('../../application/db/user');
 const {createJwtAccessToken} = require('../../utils/jwt');
 
-/* Sign Up API */
+//사용자 --> 회원가입 API
 exports.register = async (req, res, next) => {
     try{
         const { usertype, username, email, id, password } = req.body;
         await userApp.registerUser({usertype, username, email, id, password});
         res.json({
             registerSuccess: true,
-            message: 'Register SUCCESS!!'
+            message: '회원가입 성공!'
         });
     } catch (error){
         res.status(400).json({
-            message: "YOU FAILED!"
+            message: "회원가입 실패!"
         });
     }
-}
+};
 
-/* Sign In API */
+//사용자 --> 로그인 API
 exports.login = async (req, res, next) => {
     try{
         const user = req.body;
@@ -26,28 +26,15 @@ exports.login = async (req, res, next) => {
         const userType = await checkUserType(user.id);
         res.json({
             loginSuccess: true,
-            message: 'LOGIN SUCCESS!!',
+            message: '로그인 성공!',
             accessToken,
             userType: userType
         });
     } catch(error){
         res.status(400).json({
-            message: "TRY AGAIN!"
+            message: "로그인 실패!"
         });
     }
-}
+};
 
-exports.list = async (req, res, next) => {
-    try{
-        const lecturerList = await userApp.getLecturerList();
-        res.json({
-            list: lecturerList,
-            message: "success"
-        });
-    } catch(error){
-        res.status(401).json({
-            message: "TRY AGAIN!"
-        });
-    }
-}
 

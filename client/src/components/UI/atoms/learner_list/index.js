@@ -29,7 +29,7 @@ const LearnerList = () => {
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
                 const response = await axios.get(
-                    '/api/instructors/mylearnerlist'
+                    '/api/instructors/mylearner'
                 );
                 console.log(response);
                 setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
