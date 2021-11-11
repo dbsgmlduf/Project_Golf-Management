@@ -1,19 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    container:{
-        display : 'flex'
+    container: {
+        display: 'flex'
     },
-    
+
     appbar: {
         background: 'inherit',
     },
     title: {
         flexGrow: '1',
-        color: '#000000',
-        fontSize: '1rem',
-    },
-    icon: {
         color: '#000000',
         fontSize: '2rem',
     },

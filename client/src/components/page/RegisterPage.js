@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from '../../_actions/user_actions'
+import axios from 'axios';
 import Header from '../UI/modules/header/Header';
 import { Grid, Paper, Avatar, TextField, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Step, Stepper, StepLabel } from '@material-ui/core';
 import Swal from 'sweetalert2';
@@ -10,7 +9,6 @@ import BackVideo from '../UI/atoms/background_video';
 
 const RegisterPage = (props) => {
 
-    const dispatch = useDispatch();
     const classes = useStyles();
 
     const [usertype, setUserTypeReg] = useState("");
@@ -22,27 +20,21 @@ const RegisterPage = (props) => {
 
     /*Event Handler*/
     const usertypeHandler = (e) => {
-        console.log('ff' + e.currentTarget.value);
         setUserTypeReg(e.currentTarget.value);
     }
     const nameHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserNameReg(e.currentTarget.value);
     }
     const emailHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserEmailReg(e.currentTarget.value);
     }
     const idHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserIdReg(e.currentTarget.value);
     }
     const passwordHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserPwReg(e.currentTarget.value);
     }
     const confirmPWHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserConfirmPWReg(e.currentTarget.value);
     }
 
@@ -50,7 +42,7 @@ const RegisterPage = (props) => {
         password.length < 5 ? true : false;
 
     const hasNotSameError = passwordEntered =>
-        password != confirmPassword ? true : false;
+        password !== confirmPassword ? true : false;
 
     const submitHandler = (e) => {
 
@@ -65,24 +57,27 @@ const RegisterPage = (props) => {
             id: id,
             password: password,
         }
-        dispatch(register(data)).then(res => {
-            if (res.payload.registerSuccess) {
-                console.log(res);
+        axios.post('api/users/register', data).then(response => {
+            const isSuccess = response.data.registerSuccess;
+            if (isSuccess) {
+                //성공
                 Swal.fire({
                     icon: 'success',
                     title: 'SUCCESS!',
                     text: '성공하셨습니다.'
                 });
                 props.history.push("/login");
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: '회원가입에 실패하셧습니다.'
-                })
             }
-
+        }).catch(err => {
+            console.log(err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '회원가입에 실패하셧습니다.'
+            })
         })
+
+
 
     }
 
