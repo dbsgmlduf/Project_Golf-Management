@@ -4,13 +4,13 @@ import React from "react";
 
 export const learnerListItems = (
     <div>
-        <ListItem button component={Link} href="/learner/myprofile" color='black'>
+        <ListItem button component={Link} href="/learner/myprofile">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
-        <ListItem button component={Link} href="/learner" color='black'>
+        <ListItem button component={Link} href="/learner">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>

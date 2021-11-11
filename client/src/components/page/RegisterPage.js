@@ -20,27 +20,21 @@ const RegisterPage = (props) => {
 
     /*Event Handler*/
     const usertypeHandler = (e) => {
-        console.log('ff' + e.currentTarget.value);
         setUserTypeReg(e.currentTarget.value);
     }
     const nameHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserNameReg(e.currentTarget.value);
     }
     const emailHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserEmailReg(e.currentTarget.value);
     }
     const idHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserIdReg(e.currentTarget.value);
     }
     const passwordHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserPwReg(e.currentTarget.value);
     }
     const confirmPWHandler = (e) => {
-        console.log(e.currentTarget.value);
         setUserConfirmPWReg(e.currentTarget.value);
     }
 
