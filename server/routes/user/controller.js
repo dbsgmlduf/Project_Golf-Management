@@ -1,6 +1,5 @@
 const userApp = require('../../application/user');
-const {checkUserType} = require('../../application/db/user');
-const {createJwtAccessToken} = require('../../utils/jwt');
+const { createJwtAccessToken } = require('../../utils/jwt');
 
 //사용자 --> 회원가입 API
 exports.register = async (req, res, next) => {
@@ -22,8 +21,8 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try{
         const user = req.body;
+        const userType = req.user.usertype;
         const accessToken = createJwtAccessToken(user.id);
-        const userType = await checkUserType(user.id);
         res.json({
             loginSuccess: true,
             message: '로그인 성공!',

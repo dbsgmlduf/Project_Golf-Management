@@ -18,11 +18,12 @@ exports.getList = async (req, res, next) => {
 //회원(일반 사용자) --> 특정 강사 등록 신청 API
 exports.setEnrollment = async (req, res, next) => {
     try{
-        const attendee = req.user.learner_no
+        const attendee = req.user.learner_no;
+        const usertype = req.user.usertype;
         const { username } = req.body;
-        const isEnrolled = await userApp.setEnrollment({ attendee, username });
+        const isSelected = await userApp.setEnrollment({ attendee, username });
         res.json({
-            isEnrolled,
+            isSelected,
             message: '등록 요청 전송 성공!'
         });
     } catch (error){

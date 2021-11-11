@@ -1,5 +1,6 @@
-const {hashingPw} = require('../../utils/bcrypt');
-const {Lecturer, Learner, sequelize} = require('../../models');
+const { hashingPw } = require('../../utils/bcrypt');
+const { Lecturer, Learner, sequelize } = require('../../models');
+const { selectUserTypeFromPassport } = require('../db/check');
 
 exports.createUser = async({usertype, username, email, id, password}) => {
     const userInfo = {
@@ -23,43 +24,16 @@ exports.selectUser = async (id) => {
     const usertype = await selectUserTypeFromPassport(id);
     if(usertype['usertype'] === 'lecturer'){
         const results = await Lecturer.findOne({
-            attributes: ['lecturer_no','username','id','password'],
+            attributes: ['usertype', 'lecturer_no','username','id','password'],
             where: {id},
         });
         return results;
     }
     else if(!usertype['usertype']){
         const results = await Learner.findOne({
-            attributes: ['learner_no','username','id','password'],
+            attributes: ['usertype','learner_no','username','id','password'],
             where: {id},
         });
         return results;
     }
-};
-
-//lecturer에서 id 탐색 실패시 false반환
-const selectUserTypeFromPassport = async (id) => {
-    const results = await Lecturer.findOne({
-        attributes: ['usertype'],
-        where: {id},
-    });
-    if(results === null){
-        return false;
-    }
-    return results;
-};
-
-exports.checkUserType = async (id) => {
-    const results = await Lecturer.findOne({
-        attributes: ['usertype'],
-        where: {id},
-    });
-    if(results === null){
-        const type = await Learner.findOne({
-            attributes: ['usertype'],
-            where: {id},
-        });
-        return type;
-    }
-    return results;
 };
