@@ -1,6 +1,6 @@
 import { InputBase, styled } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/';
+import { alpha } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) => ({
     searchTitle: {
@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
 export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
     width: '100%',
