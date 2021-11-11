@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch } from 'react-router';
 import PublicRoute from './lib/PublicRoute';
-import PrivateRoute from './lib/PrivateRoute';
+import LecturerRoute from './lib/LecturerRoute';
+import LearnerRoute from './lib/LearnerRoute';
 import LandingPage from './components/page/LandingPage';
 import RegisterPage from './components/page/RegisterPage';
 import LoginPage from './components/page/LoginPage';
@@ -14,17 +15,17 @@ import ProfilePage from './components/page/ProfilePage';
 
 const Routes = () => {
 
-    return(
+    return (
         <Switch>
-            <PublicRoute restricted={false} component={LandingPage} exact path="/"/>
-            <PublicRoute restricted={false} component={RegisterPage} exact path="/register"/>
-            <PublicRoute restricted={false} component={LoginPage} exact path="/login"/>
-            <PrivateRoute component={LecturerMainPage} exact path="/lecturer"/>
-            <PrivateRoute component={LecturerInfoPage} exact path="/lecturer/info/:username"/>
-            <PrivateRoute component={LecturerAddPage} excact path ="/lecturer/addlearner"/>
-            <PrivateRoute component={ProfilePage} excact path ="/lecturer/myprofile"/>
-            <PrivateRoute component={LearnerPage} exact path="/learner"/>
-            <PrivateRoute component={ProfilePage} excact path ="/learner/myprofile"/>
+            <PublicRoute restricted={false} component={LandingPage} path="/" exact />
+            <PublicRoute restricted={true} component={RegisterPage} path="/register" exact />
+            <PublicRoute restricted={true} component={LoginPage} path="/login" exact />
+            <LecturerRoute component={LecturerMainPage} path="/lecturer" exact />
+            <LecturerRoute component={LecturerInfoPage} path="/lecturer/info/:username" exact />
+            <LecturerRoute component={LecturerAddPage} path="/lecturer/addlearner" exact />
+            <LecturerRoute component={ProfilePage} path="/lecturer/myprofile" exact />
+            <LearnerRoute component={LearnerPage} path="/learner" exact />
+            <LearnerRoute component={ProfilePage} path="/learner/myprofile" exact />
         </Switch>
     );
 }

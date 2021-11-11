@@ -11,7 +11,7 @@ const Infotable = (props) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    useEffect((props) => {
         const fetchUsers = async () => {
             try {
                 // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -32,9 +32,9 @@ const Infotable = (props) => {
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!users) return null;
-    console.log("여기섯의"+props.count)
+    console.log("여기섯의" + props.count)
     return (
-        <Grid  spacing={3}>
+        <Grid spacing={3}>
             <Paper>
                 <Typography variant="h1" component="div" gutterBottom>
                     {props.username}
@@ -45,7 +45,7 @@ const Infotable = (props) => {
                 <Typography variant="h2" component="div" gutterBottom>강의내용</Typography>
                 <Typography variant="h4" component="div" gutterBottom>{users[0].lec_contents}</Typography>
                 <Typography variant="h2" component="div" gutterBottom>보충내용</Typography>
-                <Typography variant="h4" component="div" gutterBottom>{users[0].supplement_items}</Typography>
+                <Typography variant="h4" component="div" gutterBottom>{users[0].supplement_item}</Typography>
                 <Typography variant="h3" component="div" gutterBottom>강의진행날짜</Typography>
                 <Typography variant="h5" component="div" gutterBottom>{users[0].class_date}</Typography>
                 <Typography variant="h3" component="div" gutterBottom>다음강의진행날짜</Typography>

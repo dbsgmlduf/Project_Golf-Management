@@ -1,9 +1,5 @@
 import { makeStyles } from "@material-ui/core";
 
-const api = {
-    key: "8d8631dcd9c8841e4c7cf63d36fcdd18",
-    base: "https://api.penweathermap.org/data/2.5/"
-}
 const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: "#C8E717",
@@ -25,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     contents: {
         padding: '30px',
-        width:'auto'
+        width: 'auto'
     },
     button: {
         top: '3vh',

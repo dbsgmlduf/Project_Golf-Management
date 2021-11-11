@@ -1,7 +1,5 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../../_actions/user_actions';
+import axios from 'axios';
 import Header from '../UI/modules/header/Header';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import useStyles from './style';
@@ -10,7 +8,6 @@ import Swal from 'sweetalert2';
 import BackVideo from '../UI/atoms/background_video';
 
 const LoginPage = (props) => {
-    const dispatch = useDispatch();
     const [id, setUserId] = useState("");
     const [password, setUserPw] = useState("");
 
@@ -31,60 +28,40 @@ const LoginPage = (props) => {
             id: id,
             password: password,
         }
-        /*axios.post('/api/users/login', data).then(response => {
-            localStorage.setItem('accessToken', response.data.accessToken)
-            console.log(localStorage.getItem('accessToken'))
-            const userTypeRes = response.data.userType['usertype'];
-            if (userTypeRes === 'lecturer') {
-                props.history.push('/lecturer')
-            } else if (userTypeRes === false) {
-                props.history.push('/learner')
-            }
-
-        })
-            .catch(err => {
-                console.log(err);
-            })*/
-
-        axios.interceptors.request.use((co) => {
-            co.headers = {
-                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            };
-            co.timeout = 2000;
-            return co;
-        })
-
-        dispatch(loginUser(data)).then(response => {
-            if (response.payload.loginSuccess) {
-                localStorage.setItem('accessToken', response.payload.accessToken);
-                const userTypeRes = response.payload.userType['usertype'];
+        axios.post('/api/users/login', data).then(response => {
+            const isSuccess = response.data.loginSuccess;
+            //추후에 서버측에서 오류메세지 오면 성공여부에따른 알림 출력을 위해
+            //만약 isSuccess가 false이면 그에 맞는 서버 측에서의 중복여부 오류문자 수신후 출력 예정
+            if (isSuccess) {
+                localStorage.setItem('accessToken', response.data.accessToken);
+                const userTypeRes = response.data.userType['usertype'];
                 localStorage.setItem('userType', userTypeRes);
                 Swal.fire({
                     icon: 'success',
                     title: 'SUCCESS!',
                     text: '성공하셨습니다.'
-                }).then(()=>{
+                }).then(() => {
                     if (userTypeRes === 'lecturer') {
                         props.history.push('/lecturer')
                     } else if (userTypeRes === 'learner') {
                         props.history.push('/learner')
                     }
                 })
-                
             }
-            else {
-                Swal.fire({
-                    icon: 'fail',
-                    title: 'FAIL!',
-                    text: '로그인에 실패하셨습니다. 다시 로그인해주세요!'
-                });
-            }
+        }).catch(err => {
+            console.log(err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '로그인에 실패하셧습니다.'
+            })
         })
     }
 
+
     return (
 
-        <Grid spacing={1}>
+        <Grid>
             <BackVideo />
             <Header />
             <form onSubmit={onSubmitHandler}>

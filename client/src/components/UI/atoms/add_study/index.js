@@ -41,27 +41,23 @@ const AddStudy = (props) => {
             class_date: classDate,
             next_class_date: nextDate,
         }
-        console.log(data);
         axios.post('/api/instructors/classinfo', data).then(response => {
             const isSuccess = response.data.inputSuccess;
             if (isSuccess) {
-                console.log(response.data.message);
                 setOpen(false);
+                window.location.replace(`/lecturer/info/${props.username}`)
             }
         }).catch(err => { console.log(err) })
     };
 
     const addTheme = (e) => {
         setTheme(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     };
     const addContents = (e) => {
         setContents(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     };
     const addSupplement = (e) => {
         setSupplement(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     };
     const addClassDate = (newDate) => {
         setClassDate(newDate);

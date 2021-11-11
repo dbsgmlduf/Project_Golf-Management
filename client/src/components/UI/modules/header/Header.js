@@ -7,45 +7,26 @@ import { Link } from 'react-router-dom'
 import useStyles from './style';
 import LearnerMenu from '../../atoms/menu_learner';
 import LecturerMenu from '../../atoms/menu_lecturer'
-import Title from '../../atoms/title_logo/';
 
 
 const Header = () => {
     const classes = useStyles();
     const userType = localStorage.getItem('userType')
 
-    if (isLogin()) {
-        return (
+    return (
 
-            <div>
-                <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar>
-                        <Typography className={classes.title}>
-                            {userType === "learner" ? (<Link to="/learner" style={{ textDecoration: 'none' }}><Title /></Link>)
-                                : (<Link to="/lecturer" style={{ textDecoration: 'none' }}><Title /></Link>)}
-                        </Typography>
-                        {userType === "learner" ? <LearnerMenu /> : <LecturerMenu />}
-                    </Toolbar>
-                </AppBar>
+        <div>
+            <AppBar className={classes.appbar} elevation={0}>
+                <Toolbar>
+                    <Typography component={Link} to="/" className={classes.title} style={{ textDecoration: 'none' }}>
+                        GOLFTAK
+                    </Typography>
+                    {!isLogin() ? <div><LoginButton /><RegisterButton /></div> : (userType === "learner" ? <LearnerMenu /> : <LecturerMenu />)}
+                </Toolbar>
+            </AppBar>
 
-            </div>
-        )
-    }
-    else {
-        return (
-            <div className={classes.container}>
-                <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar>
-                        <Typography className={classes.title}>
-                            <Link to="/" style={{ textDecoration: 'none' }}><Title /></Link>
-                        </Typography>
-                        <LoginButton /><RegisterButton />
-                    </Toolbar>
-                </AppBar>
+        </div>
+    )
 
-            </div>
-
-        );
-    }
 };
 export default Header;

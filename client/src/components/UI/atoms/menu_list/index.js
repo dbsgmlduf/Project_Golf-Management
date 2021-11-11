@@ -4,13 +4,13 @@ import React from "react";
 
 export const learnerListItems = (
     <div>
-        <ListItem button component={Link} href="/learner/myprofile" color='black'>
+        <ListItem button component={Link} href="/learner/myprofile">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
-        <ListItem button component={Link} href="/learner" color='black'>
+        <ListItem button component={Link} href="/learner">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
@@ -32,17 +32,17 @@ export const lecturerListItems = (
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
+        <ListItem button component={Link} href="/lecturer" color='black'>
+            <ListItemIcon>
+                <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="회원목록" />
+        </ListItem>
         <ListItem button component={Link} href="/lecturer/addlearner" color='black'>
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="회원추가" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
         </ListItem>
     </div>
 );
