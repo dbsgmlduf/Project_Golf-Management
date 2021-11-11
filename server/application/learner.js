@@ -6,6 +6,6 @@ exports.getLecturerList = async () => {
 };
 
 exports.setEnrollment = async ({ attendee, username }) => {
-    const enroll = await db.createEnrollment({attendee, username});
+    const enroll = await db.createEnrollment({ attendee, username });
     return enroll;
 };

@@ -2,9 +2,10 @@ const {Lecturer, Learner, Enrollment, sequelize, ClassInfo, Sequelize} = require
 const enrollment = require('../../models/enrollment');
 const learner = require('../../models/learner');
 const lecturer = require('../../models/lecturer');
+const { selectLearnerNo } = require('../db/check');
 const Op = Sequelize.Op;
 
-exports.selectRequest = async({instructor}) => {
+exports.selectRequest = async({ instructor }) => {
     const result = await Enrollment.findAll({
         attributes: ['isEnrolled'],
         include: [{
@@ -19,8 +20,8 @@ exports.selectRequest = async({instructor}) => {
         }],
         where: {
             [Op.and]:[
-                {lecturer_no: instructor},
-                {isEnrolled:0}
+                { lecturer_no: instructor },
+                { isEnrolled: 0}
             ]
         }
     });
@@ -29,20 +30,20 @@ exports.selectRequest = async({instructor}) => {
 
 exports.updateEnrollment = async({ instructor, username, agreement }) => {
     const x = Number(agreement);
-    const learnerNo = await getLearnerNo({username});
+    const learnerNo = await selectLearnerNo({ username });
     const result = await Enrollment.update(
-        {isenrolled: x},
+        { isenrolled: x },
         {where: {
             [Op.and]:[
-                {lecturer_no: instructor},
-                {learner_no: learnerNo}
+                { lecturer_no: instructor },
+                { learner_no: learnerNo }
             ]            
         }}
         );
         return result;
 };
 
-exports.selectMyList = async ({instructor}) => {
+exports.selectMyList = async ({ instructor }) => {
     const result = await Learner.findAll({
         attributes: ['username'],
         include: [{
@@ -50,8 +51,8 @@ exports.selectMyList = async ({instructor}) => {
             attributes:[],
             where: {
                 [Op.and]:[
-                    {lecturer_no: instructor},
-                    {isEnrolled: 1}
+                    { lecturer_no: instructor },
+                    { isEnrolled: 1 }
                 ]
             }
         }]
@@ -60,13 +61,13 @@ exports.selectMyList = async ({instructor}) => {
     return result;
 };
 
-exports.selectList = async ({instructor}) => {
+exports.selectList = async ({ instructor }) => {
     const result = await Learner.findAll({
         attributes: ['username'],
         include: [{
             model: Enrollment,
             attributes:[],
-            where: {isEnrolled: 1}
+            where: { isEnrolled: 1}
         }]
     })
     console.log("결과", JSON.stringify(result));
@@ -75,7 +76,7 @@ exports.selectList = async ({instructor}) => {
 
 
 exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
-    const attendee = await getLearnerNo({username});
+    const attendee = await selectLearnerNo({ username });
     const classInfo = {
         session_no: session_no,
         lecturer_no: instructor,
@@ -91,32 +92,16 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
     return result;
 };
 
-exports.selectInfo = async({instructor, username}) => {
-    console.log("ttt",instructor);
-    console.log("ttt",username);
-    const attendee = await getLearnerNo({username});
-    console.log("aaaaa",attendee);
+exports.selectInfo = async({ instructor, username }) => {
+    const attendee = await selectLearnerNo({ username });
     const result = await ClassInfo.findAll({
         attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
         where: {
             [Op.and]: [
-                {lecturer_no: instructor},
-                {learner_no: attendee}
+                { lecturer_no: instructor },
+                { learner_no: attendee }
             ]
         }
     });
-    console.log("+++결과+++", result);
-    return result;
-};
-
-const getLearnerNo = async({username}) => {
-    console.log("qqqq", username);
-    const no = await Learner.findAll({
-        attributes: ['learner_no'],
-        where:{username}
-    });
-    console.log('asdasdfasdfasdfasdf', no);
-    const tmp = JSON.parse(JSON.stringify(no));
-    const result = tmp[0].learner_no;
     return result;
 };

@@ -34,7 +34,7 @@ const LoginPage = (props) => {
             //만약 isSuccess가 false이면 그에 맞는 서버 측에서의 중복여부 오류문자 수신후 출력 예정
             if (isSuccess) {
                 localStorage.setItem('accessToken', response.data.accessToken);
-                const userTypeRes = response.data.userType['usertype'];
+                const userTypeRes = response.data.userType;
                 localStorage.setItem('userType', userTypeRes);
                 Swal.fire({
                     icon: 'success',
