@@ -1,8 +1,20 @@
-
 const {Lecturer, Learner, Enrollment, sequelize, ClassInfo, Sequelize} = require('../../models');
 const Op = Sequelize.Op;
 
-exports.createRelations = async({attendee, username}) => {
+exports.selectAllLecturer = async () => {
+    const results = await Lecturer.findAll({
+        attributes: ['username'],
+    });
+    return results;
+};
+
+exports.createEnrollment = async({ attendee, username }) => {
+    const values = await selectLecturerNo({username});
+    const result = await Enrollment.create(values);
+    return result;
+};
+
+const selectLecturerNo = async( {username} ) => {
     const lecturer = await Lecturer.findAll({
         attributes: ['lecturer_no'],
         where: {username}
@@ -13,6 +25,5 @@ exports.createRelations = async({attendee, username}) => {
         lecturer_no: no,
         learner_no: attendee
     }
-    const result = await Enrollment.create(value);
-    return result;
+    return value;
 };

@@ -25,9 +25,9 @@ exports.selectRequest = async({instructor}) => {
         }
     });
     return result;
-}
+};
 
-exports.setAgreement = async({agreement,username,instructor}) => {
+exports.updateEnrollment = async({ instructor, username, agreement }) => {
     const x = Number(agreement);
     const learnerNo = await getLearnerNo({username});
     const result = await Enrollment.update(
@@ -42,7 +42,7 @@ exports.setAgreement = async({agreement,username,instructor}) => {
         return result;
 };
 
-exports.getMyList = async ({instructor}) => {
+exports.selectMyList = async ({instructor}) => {
     const result = await Learner.findAll({
         attributes: ['username'],
         include: [{
@@ -58,9 +58,9 @@ exports.getMyList = async ({instructor}) => {
     })
     console.log("결과", JSON.stringify(result));
     return result;
-}
+};
 
-exports.getList = async ({instructor}) => {
+exports.selectList = async ({instructor}) => {
     const result = await Learner.findAll({
         attributes: ['username'],
         include: [{
@@ -91,7 +91,7 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
     return result;
 };
 
-exports.getInfo = async({instructor, username}) => {
+exports.selectInfo = async({instructor, username}) => {
     console.log("ttt",instructor);
     console.log("ttt",username);
     const attendee = await getLearnerNo({username});
@@ -108,6 +108,7 @@ exports.getInfo = async({instructor, username}) => {
     console.log("+++결과+++", result);
     return result;
 };
+
 const getLearnerNo = async({username}) => {
     console.log("qqqq", username);
     const no = await Learner.findAll({
