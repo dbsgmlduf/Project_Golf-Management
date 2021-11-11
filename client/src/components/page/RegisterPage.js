@@ -48,7 +48,7 @@ const RegisterPage = (props) => {
         password.length < 5 ? true : false;
 
     const hasNotSameError = passwordEntered =>
-        password != confirmPassword ? true : false;
+        password !== confirmPassword ? true : false;
 
     const submitHandler = (e) => {
 
