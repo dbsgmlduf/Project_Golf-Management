@@ -26,19 +26,19 @@ export const learnerListItems = (
 );
 export const lecturerListItems = (
     <div>
-        <ListItem button component={Link} href="/lecturer/myprofile" color='black'>
+        <ListItem button component={Link} href="/lecturer/myprofile">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
-        <ListItem button component={Link} href="/lecturer" color='black'>
+        <ListItem button component={Link} href="/lecturer">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="회원목록" />
         </ListItem>
-        <ListItem button component={Link} href="/lecturer/addlearner" color='black'>
+        <ListItem button component={Link} href="/lecturer/addlearner">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>

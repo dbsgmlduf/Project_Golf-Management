@@ -11,7 +11,7 @@ const SelectLecturer = (props) => {
             agreement: 1,
             username: props.data,
         }
-        axios.patch('api/instructors/agreement', data).then(response => {
+        axios.patch('api/instructors/accept', data).then(response => {
             const isSuccess = response.data.result;
             if (isSuccess) {
                 console.log(response.data.message);

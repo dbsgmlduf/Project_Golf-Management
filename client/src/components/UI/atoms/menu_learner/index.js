@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, SwipeableDrawer, List, Divider, IconButton, Button, Grid } from "@material-ui/core";
+import { Box, SwipeableDrawer, List, Divider, IconButton, Grid } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu"
 import { learnerListItems } from "../menu_list";
 import useStyles from "./style";
@@ -12,18 +12,16 @@ const LearnerMenu = () => {
 
     return (
         <Grid>
-            <Button>
-                <IconButton edge="start" aria-label="open drawer" onClick={() => setOpen(true)}>
-                    <MenuIcon className={classes.menuIcon} />
-                </IconButton>
-            </Button>
+            <IconButton edge="start" aria-label="open drawer" onClick={() => setOpen(true)}>
+                <MenuIcon className={classes.menuIcon} />
+            </IconButton>
             <SwipeableDrawer anchor="right" open={open} onClose={() => setOpen(false)} onOpen={() => { }}>
                 <div className={classes.list}>
                     <Box textAlign="center" p={3}>
                         learnerPage
                     </Box>
                     <List>
-                        <LogoutButton/>
+                        <LogoutButton />
                         <Divider />
                         {learnerListItems}
                     </List>
