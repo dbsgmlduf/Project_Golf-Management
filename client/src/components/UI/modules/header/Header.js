@@ -14,38 +14,20 @@ const Header = () => {
     const classes = useStyles();
     const userType = localStorage.getItem('userType')
 
-    if (isLogin()) {
-        return (
+    return (
 
-            <div>
-                <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar>
-                        <Typography className={classes.title}>
-                            {userType === "learner" ? (<Link to="/learner" style={{ textDecoration: 'none' }}><Title /></Link>)
-                                : (<Link to="/lecturer" style={{ textDecoration: 'none' }}><Title /></Link>)}
-                        </Typography>
-                        {userType === "learner" ? <LearnerMenu /> : <LecturerMenu />}
-                    </Toolbar>
-                </AppBar>
+        <div>
+            <AppBar className={classes.appbar} elevation={0}>
+                <Toolbar>
+                    <Typography className={classes.title}>
+                        <Link to="/" style={{ textDecoration: 'none' }}><Title /></Link>
+                    </Typography>
+                    {!isLogin() ? <div><LoginButton /><RegisterButton /></div> : (userType === "learner" ? <LearnerMenu /> : <LecturerMenu />)}
+                </Toolbar>
+            </AppBar>
 
-            </div>
-        )
-    }
-    else {
-        return (
-            <div className={classes.container}>
-                <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar>
-                        <Typography className={classes.title}>
-                            <Link to="/" style={{ textDecoration: 'none' }}><Title /></Link>
-                        </Typography>
-                        <LoginButton /><RegisterButton />
-                    </Toolbar>
-                </AppBar>
+        </div>
+    )
 
-            </div>
-
-        );
-    }
 };
 export default Header;
