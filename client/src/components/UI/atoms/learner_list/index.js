@@ -44,7 +44,7 @@ const LearnerList = () => {
     //data search
     const filteredData = (data) => {
         data = data.filter((c) => {
-            return c.name.indexOf(serchKeyword) > -1;
+            return c.username.indexOf(serchKeyword) > -1;
         });
         return data.map((c) => {
             return <Learners key={c.username} name={c.username} />
