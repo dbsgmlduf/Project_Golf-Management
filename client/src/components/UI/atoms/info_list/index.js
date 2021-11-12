@@ -54,6 +54,7 @@ const StudyInfo = (props) => {
                         <TableRow>
                             <TableCell align="center" className={classes.topic}>강의주제</TableCell>
                             <TableCell align="center">강의진행날짜</TableCell>
+                            <TableCell align="center">수정/삭제</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
