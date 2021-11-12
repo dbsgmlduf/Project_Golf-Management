@@ -75,6 +75,7 @@ const LearnerList = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">이름</TableCell>
+                            <TableCell align="center">삭제</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -90,8 +91,8 @@ const LearnerList = () => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>
