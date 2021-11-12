@@ -7,11 +7,9 @@ const SelectLecturer = (props) => {
     //const [open,setOpen] = useState(false);
     const openHandler = (e) => {
         e.preventDefault();
-        console.log("row data : " + props.data);
         let data = {
             username: props.data,
         }
-        console.log("전송예정 :" + data);
         Swal.fire({
             title: '강사를 선택하시겠습니까???',
             showCancelButton: true,
@@ -24,7 +22,6 @@ const SelectLecturer = (props) => {
                 axios.post('api/learners/enrollment', data).then(response => {
                     const isSuccess = response.data.inEnrolled;
                     if (!isSuccess) {
-                        console.log(response.data.mes);
                         //성공
                         Swal.fire({
                             icon: 'success',

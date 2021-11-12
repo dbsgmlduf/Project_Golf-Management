@@ -21,8 +21,6 @@ const LoginPage = (props) => {
     }
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log('id', id);
-        console.log('Password', password);
         let data = {
             id: id,
             password: password,

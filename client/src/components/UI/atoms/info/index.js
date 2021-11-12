@@ -4,7 +4,6 @@ import DeleteStudy from "../info_delete";
 import ModifyButton from "../button_modify"
 import SelectInfo from "../info_select";
 const Info =  (props) => {
-    console.log("dddd"+props.count)
     return(
         <TableRow>
             <TableCell align="center">{props.topic}</TableCell>

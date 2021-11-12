@@ -31,7 +31,6 @@ const LearnerList = () => {
                 const response = await axios.get(
                     '/api/instructors/mylearner'
                 );
-                console.log(response);
                 setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
                 setError(e);
