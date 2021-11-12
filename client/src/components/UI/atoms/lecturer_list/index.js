@@ -73,6 +73,7 @@ const LecturerList = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">강사 이름</TableCell>
+                            <TableCell align="center">강사 추가</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -88,8 +89,8 @@ const LecturerList = () => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>
