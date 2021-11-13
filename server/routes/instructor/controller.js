@@ -40,6 +40,8 @@ exports.getMylist = async (req, res, next) => {
     try{
         const instructor = req.user.lecturer_no
         const myList = await userApp.getMyList({instructor});
+        console.log("print:", myList);
+        
         res.status(OK).json({
             list: myList,
             message: '나의 회원 정보 조회 성공!'
