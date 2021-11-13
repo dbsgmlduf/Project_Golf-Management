@@ -9,6 +9,8 @@ const passport = require('passport');
 const models = require('./models');
 const passportConfig = require('./passport');
 const apiRouter = require('./routes');
+const handleErrors = require('./middlewares/handleErrors');
+const { NotFound } = require('./utils/error');
 
 const app = express();
 
@@ -30,5 +32,11 @@ app.use(passport.initialize());
 passportConfig();
 
 app.use('/api',apiRouter);
+
+app.use((req, res, next) => {
+    throw new NotFound('invalid API URL');
+});
+
+app.use(handleErrors);
 
 module.exports = app;

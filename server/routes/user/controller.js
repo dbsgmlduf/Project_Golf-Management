@@ -1,3 +1,4 @@
+const { CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
 const userApp = require('../../application/user');
 const { createJwtAccessToken } = require('../../utils/jwt');
 
@@ -6,12 +7,12 @@ exports.register = async (req, res, next) => {
     try{
         const { usertype, username, email, id, password } = req.body;
         await userApp.registerUser({usertype, username, email, id, password});
-        res.json({
+        res.status(CREATED).json({
             registerSuccess: true,
             message: '회원가입 성공!'
         });
     } catch (error){
-        res.status(400).json({
+        res.status(BAD_REQUEST).json({
             message: "회원가입 실패!"
         });
     }
@@ -23,14 +24,14 @@ exports.login = async (req, res, next) => {
         const user = req.body;
         const userType = req.user.usertype;
         const accessToken = createJwtAccessToken(user.id);
-        res.json({
+        res.status(CREATED).json({
             loginSuccess: true,
             message: '로그인 성공!',
             accessToken,
             userType: userType
         });
     } catch(error){
-        res.status(400).json({
+        res.status(BAD_REQUEST).json({
             message: "로그인 실패!"
         });
     }
