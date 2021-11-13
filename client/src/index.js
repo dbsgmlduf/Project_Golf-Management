@@ -5,21 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 import { ThemeProvider } from "@material-ui/core/styles";
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 import THEME from './theme';
 
 axios.defaults.baseURL = 'http://localhost:7000';
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('accessToken');
-const theme = unstable_createMuiStrictModeTheme();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <MuiThemeProvider theme={THEME}>
-        <CssBaseline />
-        <App />
-      </MuiThemeProvider>
+    <ThemeProvider theme={THEME}>
+      <CssBaseline />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

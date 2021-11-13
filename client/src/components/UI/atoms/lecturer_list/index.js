@@ -11,7 +11,6 @@ const LecturerList = () => {
     //search event handler
     const handleSeachKey = (e) => {
         setSearchKeyWord(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     };
     //data search
     const filteredData = (data) => {
@@ -40,7 +39,6 @@ const LecturerList = () => {
                 const response = await axios.get(
                     '/api/learners/list'
                 );
-                console.log(response);
                 setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
                 setError(e);
@@ -75,6 +73,7 @@ const LecturerList = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">강사 이름</TableCell>
+                            <TableCell align="center">강사 추가</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -90,8 +89,8 @@ const LecturerList = () => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>

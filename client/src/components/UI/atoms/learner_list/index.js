@@ -31,7 +31,6 @@ const LearnerList = () => {
                 const response = await axios.get(
                     '/api/instructors/mylearner'
                 );
-                console.log(response);
                 setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
                 setError(e);
@@ -44,7 +43,7 @@ const LearnerList = () => {
     //data search
     const filteredData = (data) => {
         data = data.filter((c) => {
-            return c.name.indexOf(serchKeyword) > -1;
+            return c.username.indexOf(serchKeyword) > -1;
         });
         return data.map((c) => {
             return <Learners key={c.username} name={c.username} />
@@ -76,6 +75,7 @@ const LearnerList = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">이름</TableCell>
+                            <TableCell align="center">삭제</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -91,8 +91,8 @@ const LearnerList = () => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>

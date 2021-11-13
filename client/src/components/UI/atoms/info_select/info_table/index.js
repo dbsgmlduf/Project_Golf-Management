@@ -20,7 +20,6 @@ const Infotable = (props) => {
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
                 const response = await axios.get(`/api/instructors/getinfo/${props.username}`);
-                console.log(response);
                 setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.  
             } catch (e) {
                 setError(e);
@@ -32,7 +31,6 @@ const Infotable = (props) => {
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!users) return null;
-    console.log("여기섯의" + props.count)
     return (
         <Grid spacing={3}>
             <Paper>

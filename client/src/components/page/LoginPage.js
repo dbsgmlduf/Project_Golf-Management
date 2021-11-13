@@ -5,7 +5,6 @@ import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import useStyles from './style';
 import LockIcon from '@material-ui/icons/Lock'
 import Swal from 'sweetalert2';
-import BackVideo from '../UI/atoms/background_video';
 
 const LoginPage = (props) => {
     const [id, setUserId] = useState("");
@@ -22,8 +21,6 @@ const LoginPage = (props) => {
     }
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log('id', id);
-        console.log('Password', password);
         let data = {
             id: id,
             password: password,
@@ -62,7 +59,6 @@ const LoginPage = (props) => {
     return (
 
         <Grid>
-            <BackVideo />
             <Header />
             <form onSubmit={onSubmitHandler}>
                 <Paper elevation={10} className={classes.paper}>
