@@ -11,7 +11,6 @@ const AddLearner = () => {
     //search event handler
     const handleSeachKey = (e) => {
         setSearchKeyWord(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     };
     //data search
     const filteredData = (data) => {
@@ -52,7 +51,6 @@ const AddLearner = () => {
                     '/api/instructors/requestenroll'
                 );
                 setUsers(response.data.request); // 데이터는 response.data 안에 들어있습니다.
-                console.log(response);
             } catch (e) {
                 setError(e);
             }
@@ -61,7 +59,6 @@ const AddLearner = () => {
 
         fetchUsers();
     }, [])
-    console.log("heheheh"+users);
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!users) return null;

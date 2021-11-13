@@ -6,7 +6,7 @@ const Lecturers =  (props) => {
     return(
         <TableRow>
             <TableCell align="center">{props.username}</TableCell>
-            <SelectLecturer data={props.data}/>
+            <TableCell align="center"><SelectLecturer data={props.data}/></TableCell>
         </TableRow>
     )
 };

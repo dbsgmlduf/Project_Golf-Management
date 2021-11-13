@@ -14,7 +14,6 @@ const SelectLecturer = (props) => {
         axios.patch('api/instructors/accept', data).then(response => {
             const isSuccess = response.data.result;
             if (isSuccess) {
-                console.log(response.data.message);
                 //성공
                 Swal.fire({
                     icon: 'success',

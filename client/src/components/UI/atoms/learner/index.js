@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import React from "react";
 import DeleteLearner from "../learner_delete";
 const Learners = (props) => {
-    console.log(props)
     return (
         <TableRow>
             <TableCell align="center"><Link to={`/lecturer/info/${props.name}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.name}</Link></TableCell>
-            )
-            <DeleteLearner />
+            <TableCell align="center"><DeleteLearner /></TableCell>
         </TableRow>
     )
 };

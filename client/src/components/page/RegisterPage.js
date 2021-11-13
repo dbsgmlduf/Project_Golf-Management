@@ -5,7 +5,6 @@ import { Grid, Paper, Avatar, TextField, Button, FormControl, FormLabel, RadioGr
 import Swal from 'sweetalert2';
 import useStyles from './style';
 import MenuBookIcon from '@material-ui/icons/MenuBook'
-import BackVideo from '../UI/atoms/background_video';
 
 const RegisterPage = (props) => {
 
@@ -125,7 +124,6 @@ const RegisterPage = (props) => {
     return (
 
         <Grid>
-            <BackVideo />
             <Header />
             <Grid>
                 <Paper elevation={10} className={classes.registerPaper}>
