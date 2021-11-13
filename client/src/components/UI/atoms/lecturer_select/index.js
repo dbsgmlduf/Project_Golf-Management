@@ -10,6 +10,7 @@ const SelectLecturer = (props) => {
         let data = {
             username: props.data,
         }
+        console.log(data);
         Swal.fire({
             title: '강사를 선택하시겠습니까???',
             showCancelButton: true,
@@ -20,7 +21,7 @@ const SelectLecturer = (props) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.post('api/learners/enrollment', data).then(response => {
-                    const isSuccess = response.data.inEnrolled;
+                    const isSuccess = response.data.isSelected.isenrolled;
                     if (!isSuccess) {
                         //성공
                         Swal.fire({
@@ -28,15 +29,21 @@ const SelectLecturer = (props) => {
                             title: 'SUCCESS!',
                             text: '성공하셨습니다.'
                         });
-
                     }
-                }).catch(err => { console.log(err) })
+                }).catch(err => {
+                    console.log(err);
+                    Swal.fire({
+                        icon: 'fail',
+                        title: 'FAIL!',
+                        text: '등록요청에 실패하셨습니다!'
+                    });
+                })
             }
             else {
                 Swal.fire({
                     icon: 'fail',
                     title: 'FAIL!',
-                    text: '로그인에 실패하셨습니다. 다시 로그인해주세요!'
+                    text: '등록을 취소하셨습니다!'
                 });
             }
         })
