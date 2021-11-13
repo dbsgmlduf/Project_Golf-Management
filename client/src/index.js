@@ -9,7 +9,13 @@ import { CssBaseline } from '@material-ui/core';
 import THEME from './theme';
 
 axios.defaults.baseURL = 'http://localhost:7000';
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('accessToken');
+axios.interceptors.request.use((config) => {
+  config.headers = {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+  };
+  config.timeout = 2000;
+  return config;
+})
 
 ReactDOM.render(
   <React.StrictMode>
