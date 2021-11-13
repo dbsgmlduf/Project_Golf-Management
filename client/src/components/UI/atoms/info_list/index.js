@@ -11,7 +11,7 @@ const StudyInfo = (props) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect((props) => {
+    useEffect(() => {
         const fetchUsers = async () => {
             try {
                 // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -70,8 +70,8 @@ const StudyInfo = (props) => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>
