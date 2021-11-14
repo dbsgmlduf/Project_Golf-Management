@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Grid } from '@mui/material'
 
 import axios from 'axios';
@@ -11,43 +11,44 @@ const Infotable = (props) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect((props) => {
-        const fetchUsers = async () => {
-            try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-                setError(null);
-                setUsers(null);
-                // loading 상태를 true 로 바꿉니다.
-                setLoading(true);
-                const response = await axios.get(`/api/instructors/getinfo/${props.username}`);
-                setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.  
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-        };
+    const fetchUsers = useCallback(async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setUsers(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            const response = await axios.get(`/api/instructors/getinfo/${props.username}`);
+            setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.  
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
+    }, [props.username]);
+
+    useEffect(() => {
         fetchUsers();
-    }, [])
+    }, [fetchUsers])
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!users) return null;
     return (
-        <Grid spacing={3}>
+        <Grid>
             <Paper>
-                <Typography variant="h1" component="div" gutterBottom>
+                <Typography variant="h4" component="div" gutterBottom align="center">
                     {props.username}
                 </Typography>
-                <Typography variant="h1" component="div" gutterBottom>{users[0].session_no}주차</Typography>
-                <Typography variant="h2" component="div" gutterBottom>주제</Typography>
-                <Typography variant="h4" component="div" gutterBottom>{users[0].lec_theme}</Typography>
-                <Typography variant="h2" component="div" gutterBottom>강의내용</Typography>
-                <Typography variant="h4" component="div" gutterBottom>{users[0].lec_contents}</Typography>
-                <Typography variant="h2" component="div" gutterBottom>보충내용</Typography>
-                <Typography variant="h4" component="div" gutterBottom>{users[0].supplement_item}</Typography>
-                <Typography variant="h3" component="div" gutterBottom>강의진행날짜</Typography>
-                <Typography variant="h5" component="div" gutterBottom>{users[0].class_date}</Typography>
-                <Typography variant="h3" component="div" gutterBottom>다음강의진행날짜</Typography>
-                <Typography variant="h5" component="div" gutterBottom>{users[0].next_class_date}</Typography>
+                <Typography variant="h4" component="div" gutterBottom align="center">{users[0].session_no}주차</Typography>
+                <Typography variant="h4" component="div" gutterBottom align="center">주제</Typography>
+                <Typography variant="h6" component="div" gutterBottom align="center">{users[0].lec_theme}</Typography>
+                <Typography variant="h4" component="div" gutterBottom align="center">강의내용</Typography>
+                <Typography variant="h6" component="div" gutterBottom align="center">{users[0].lec_contents}</Typography>
+                <Typography variant="h4" component="div" gutterBottom align="center">보충내용</Typography>
+                <Typography variant="h6" component="div" gutterBottom align="center">{users[0].supplement_item}</Typography>
+                <Typography variant="h4" component="div" gutterBottom align="center">강의진행날짜</Typography>
+                <Typography variant="h6" component="div" gutterBottom align="center">{users[0].class_date}</Typography>
+                <Typography variant="h4" component="div" gutterBottom align="center">다음강의진행날짜</Typography>
+                <Typography variant="h6" component="div" gutterBottom align="center">{users[0].next_class_date}</Typography>
             </Paper>
         </Grid>
     );
