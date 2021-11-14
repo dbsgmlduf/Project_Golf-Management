@@ -4,7 +4,7 @@ import LecturerList from "../../atoms/lecturer_list";
 const Main = () => {
     const classes = useStyles();
     return (
-        <Card className={classes.lecturerCard} elevation={10}>
+        <Card className={classes.learnerCard} elevation={10}>
            <LecturerList/>
         </Card>
     );

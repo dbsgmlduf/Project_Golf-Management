@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from 'axios';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Grid } from "@material-ui/core";
 import Info from "../info";
@@ -11,24 +11,23 @@ const StudyInfo = (props) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect((props) => {
-        const fetchUsers = async () => {
-            try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-                setError(null);
-                setUsers(null);
-                // loading 상태를 true 로 바꿉니다.
-                setLoading(true);
-                const response = await axios.get(`/api/instructors/getinfo/${props.username}`);
-                setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-        };
-
+    const fetchUsers = useCallback(async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setUsers(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            const response = await axios.get(`/api/instructors/getinfo/${props.username}`);
+            setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
+    }, [props.username]);
+    useEffect(() => {
         fetchUsers();
-    }, [])
+    }, [fetchUsers])
     //Table
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -55,6 +54,7 @@ const StudyInfo = (props) => {
                             <TableCell align="center" className={classes.topic}>강의주제</TableCell>
                             <TableCell align="center">강의진행날짜</TableCell>
                             <TableCell align="center">수정/삭제</TableCell>
+                            <TableCell align="center">세부조회</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -70,8 +70,8 @@ const StudyInfo = (props) => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>
