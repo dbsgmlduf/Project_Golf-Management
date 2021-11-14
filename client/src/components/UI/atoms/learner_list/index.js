@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, TablePagination, Paper } from "@material-ui/core";
 import Learners from '../learner';
 import useStyles from './style';
@@ -20,26 +20,26 @@ const LearnerList = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-                setError(null);
-                setUsers(null);
-                // loading 상태를 true 로 바꿉니다.
-                setLoading(true);
-                const response = await axios.get(
-                    '/api/instructors/mylearner'
-                );
-                setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-        };
+    const fetchUsers = useCallback(async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setUsers(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            const response = await axios.get(
+                '/api/instructors/mylearner'
+            );
+            setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
+    }, []);
 
+    useEffect(() => {
         fetchUsers();
-    }, [])
+    }, [fetchUsers])
     //data search
     const filteredData = (data) => {
         data = data.filter((c) => {
