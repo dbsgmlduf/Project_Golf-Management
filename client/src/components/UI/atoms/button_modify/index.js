@@ -3,9 +3,9 @@ import CreateIcon from '@material-ui/icons/Create';
 import { Button } from '@material-ui/core';
 
 const ModifyButton = () => {
-    return(
+    return (
         <Button aria-label="modify">
-            <CreateIcon/>
+            <CreateIcon />
         </Button>
     );
 };

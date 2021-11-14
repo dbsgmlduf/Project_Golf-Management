@@ -10,13 +10,15 @@ const ModifyButton = (props) => {
     const openHandler = (e) => {
         e.preventDefault();
         setOpen(true);
-        const response = axios.get(axios.get(`/api/instructors/getinfo/${props.username}`));
-        setUsers(response.data);//data가 없을 경우 예외처리 필요!!
-    }
+        const response = axios.get(
+            `/api/instructors/getinfo/${props.username}`
+        );
+        setUsers(response.data); //data가 없을 경우 예외처리 필요!!
+    };
 
     const closeHandler = () => {
         setOpen(false);
-    }
+    };
     //해당 학생의 해당 주차 세부 강의내용 data
     const [users, setUsers] = useState([]);
 

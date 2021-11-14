@@ -7,7 +7,13 @@ const LearnerRoute = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={(props) => (isLogin() && !(isLecturer()) ? <Component {...props} /> : <Redirect to='/' />)}
+            render={(props) =>
+                isLogin() && !isLecturer() ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect to="/" />
+                )
+            }
         />
     );
 };

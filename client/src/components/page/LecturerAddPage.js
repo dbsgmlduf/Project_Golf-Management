@@ -4,15 +4,14 @@ import { CssBaseline, Grid } from '@material-ui/core';
 import Main from '../UI/modules/lecturerAddMain';
 
 const LecturerAddPage = (props) => {
-    
     return (
         <Grid>
-            <CssBaseline/>
+            <CssBaseline />
             <Header />
-            <Main/>
+            <Main />
             <Footer />
         </Grid>
     );
-}
+};
 
 export default LecturerAddPage;

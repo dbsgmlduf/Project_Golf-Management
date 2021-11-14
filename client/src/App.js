@@ -9,13 +9,13 @@ import Routes from './routes';
 
 //test fork
 const App = () => {
-  return (
-    <Router>
-      <Switch>
-        <Routes />
-      </Switch>
-    </Router>
-  );
-}
+    return (
+        <Router>
+            <Switch>
+                <Routes />
+            </Switch>
+        </Router>
+    );
+};
 
 export default App;

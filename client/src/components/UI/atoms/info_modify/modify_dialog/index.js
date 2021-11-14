@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
@@ -11,10 +11,10 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { TextField } from '@mui/material';
-import axios from "axios";
+import axios from 'axios';
 
 const ModifyDialog = (props) => {
-    const handleSave = (e) => { 
+    const handleSave = (e) => {
         e.preventDefault();
         props.handleClose();
         /*let data = {
@@ -38,14 +38,10 @@ const ModifyDialog = (props) => {
             }
         }).catch(err => { console.log(err) })
         */
-    }
+    };
 
     return (
-        <Dialog
-            fullScreen
-            open={props.open}
-            onClose={props.handleClose}
-        >
+        <Dialog fullScreen open={props.open} onClose={props.handleClose}>
             <AppBar sx={{ position: 'relative' }}>
                 <Toolbar>
                     <IconButton
@@ -57,7 +53,11 @@ const ModifyDialog = (props) => {
                         <CloseIcon />
                     </IconButton>
 
-                    <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                    <Typography
+                        sx={{ ml: 2, flex: 1 }}
+                        variant="h6"
+                        component="div"
+                    >
                         강의내용등록
                     </Typography>
                     <Button autoFocus color="inherit" onClick={handleSave}>
@@ -85,7 +85,7 @@ const ModifyDialog = (props) => {
                 </Stack>
     </LocalizationProvider>*/}
         </Dialog>
-    )
+    );
 };
 
 export default ModifyDialog;

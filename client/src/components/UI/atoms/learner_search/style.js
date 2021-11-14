@@ -1,4 +1,4 @@
-import { InputBase, styled } from "@material-ui/core";
+import { InputBase, styled } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { alpha } from '@mui/material/styles';
 
@@ -16,9 +16,8 @@ const useStyles = makeStyles((theme) => ({
     },
     search: {
         left: '2vh',
-    }
+    },
 }));
-
 
 export const Search = styled('div')(({ theme }) => ({
     position: 'relative',

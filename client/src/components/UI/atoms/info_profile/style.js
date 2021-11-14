@@ -1,17 +1,16 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-    title :{
-        
+    title: {
         flexGrow: '1',
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
     },
-    appbar : {
-        margin : 10,
-        width : 'auto',
+    appbar: {
+        margin: 10,
+        width: 'auto',
     },
 }));
 

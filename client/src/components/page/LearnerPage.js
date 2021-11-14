@@ -4,15 +4,14 @@ import Footer from '../UI/modules/footer/Footer';
 import { CssBaseline, Grid } from '@material-ui/core';
 
 const LearnerPage = (props) => {
-    
     return (
         <Grid>
-            <CssBaseline/>
+            <CssBaseline />
             <Header />
-            <Main/>
+            <Main />
             <Footer />
         </Grid>
     );
-}
+};
 
 export default LearnerPage;
