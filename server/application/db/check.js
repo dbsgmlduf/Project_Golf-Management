@@ -32,4 +32,4 @@ exports.selectLearnerNo = async({ username }) => {
     const tmp = JSON.parse(JSON.stringify(no));
     const result = tmp[0].learner_no;
     return result;
-}
+};

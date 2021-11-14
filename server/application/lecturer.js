@@ -1,4 +1,5 @@
 const db = require('./db/lecturer');
+const { selectLearnerNo } = require('./db/check');
 
 //요청서 확인
 exports.getRequest = async({ instructor }) => {
@@ -33,5 +34,12 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
 //강의정보 조회
 exports.getInfo = async({ instructor, username }) => {
     const result = await db.selectInfo({ instructor, username });
+    return result;
+};
+
+//강의정보 수정
+exports.updateInfo = async({instructor, username, lec_theme, lec_contents, supplement_items, class_date, next_class_date}) => {
+    const attendee = await selectLearnerNo({username});
+    const result = await db.updateInfo({instructor, attendee, lec_theme, lec_contents, supplement_items, class_date, next_class_date});
     return result;
 };

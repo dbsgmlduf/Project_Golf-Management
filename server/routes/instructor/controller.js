@@ -90,7 +90,7 @@ exports.inputInfo = async (req, res, next) => {
 exports.getInfo = async (req, res, next) => {
     try{
         const instructor = req.user.lecturer_no;
-        const {username} = req.params;
+        const { username } = req.params;
         console.log("사용자", username);
         const info = await userApp.getInfo({instructor, username});
         res.status(OK).json({
@@ -103,3 +103,36 @@ exports.getInfo = async (req, res, next) => {
         });
     }
 };
+
+//강사 --> 강의 정보 수정 API
+exports.updateClassInfo = async (req, res, next) => {
+    try{
+        const instructor = req.user.lecturer_no;
+        const { username } = req.params;
+        const { lec_theme, lec_contents, supplement_items, class_date, next_class_date } = req.body
+        const result = await userApp.updateInfo({instructor, username, lec_theme, lec_contents, supplement_items, class_date, next_class_date});
+        
+        if(result === 1){
+            res.status(OK).json({
+                updateSuccess: true,
+                message: '강의 정보 수정 성공!'
+            });
+        } else {
+            res.status(BAD_REQUEST).json({
+                updateSuccess: false,
+                message: '강의 정보 수정 실패!'
+            })
+        }
+    } catch(error){
+        next(error);
+    }
+};
+
+// //강사 --> 강의 정보 삭제 API
+// exports.deleteClassInfo = async (req, res, next) => {
+//     try{
+
+//     } catch (error){
+
+//     }
+// }
