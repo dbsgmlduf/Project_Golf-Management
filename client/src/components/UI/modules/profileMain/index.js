@@ -6,7 +6,7 @@ const Main = () => {
     const classes = useStyles();
     return (
         <Card className={classes.profileCard}>
-            <ProfileAppbar/>
+            <ProfileAppbar />
         </Card>
     );
 };

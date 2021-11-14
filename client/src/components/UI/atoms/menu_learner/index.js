@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import { Box, SwipeableDrawer, List, Divider, IconButton, Grid } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu"
-import { learnerListItems } from "../menu_list";
-import useStyles from "./style";
-import LogoutButton from "../title_signout";
-
+import React, { useState } from 'react';
+import {
+    Box,
+    SwipeableDrawer,
+    List,
+    Divider,
+    IconButton,
+    Grid,
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import { learnerListItems } from '../menu_list';
+import useStyles from './style';
+import LogoutButton from '../title_signout';
 
 const LearnerMenu = () => {
     const classes = useStyles();
@@ -12,10 +18,19 @@ const LearnerMenu = () => {
 
     return (
         <Grid>
-            <IconButton edge="start" aria-label="open drawer" onClick={() => setOpen(true)}>
+            <IconButton
+                edge="start"
+                aria-label="open drawer"
+                onClick={() => setOpen(true)}
+            >
                 <MenuIcon className={classes.menuIcon} />
             </IconButton>
-            <SwipeableDrawer anchor="right" open={open} onClose={() => setOpen(false)} onOpen={() => { }}>
+            <SwipeableDrawer
+                anchor="right"
+                open={open}
+                onClose={() => setOpen(false)}
+                onOpen={() => {}}
+            >
                 <div className={classes.list}>
                     <Box textAlign="center" p={3}>
                         learnerPage
@@ -25,9 +40,10 @@ const LearnerMenu = () => {
                         <Divider />
                         {learnerListItems}
                     </List>
-                </div></SwipeableDrawer>
+                </div>
+            </SwipeableDrawer>
         </Grid>
-    )
-}
+    );
+};
 
 export default LearnerMenu;

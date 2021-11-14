@@ -1,8 +1,8 @@
 import React from 'react';
 import { Search, StyledInputBase, SearchIconWrapper } from './style';
-import SearchIcon from "@material-ui/icons/Search"
+import SearchIcon from '@material-ui/icons/Search';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import useStyles from "./style";
+import useStyles from './style';
 
 const LecturerSearchBar = ({ value, handleSeachKey }) => {
     const classes = useStyles();
@@ -10,7 +10,12 @@ const LecturerSearchBar = ({ value, handleSeachKey }) => {
     return (
         <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
-                <Typography className={classes.searchTitle} variant="h6" color="inherit" noWrap>
+                <Typography
+                    className={classes.searchTitle}
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                >
                     강사 등록
                 </Typography>
                 <Search>
@@ -26,6 +31,6 @@ const LecturerSearchBar = ({ value, handleSeachKey }) => {
                 </Search>
             </Toolbar>
         </AppBar>
-    )
+    );
 };
 export default LecturerSearchBar;
