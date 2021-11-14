@@ -8,8 +8,8 @@ const Info =  (props) => {
         <TableRow>
             <TableCell align="center">{props.topic}</TableCell>
             <TableCell align="center">{props.studyDate}</TableCell>
-            <TableCell align="center"><DeleteStudy/><ModifyButton/></TableCell>
-            <SelectInfo username={props.username} count={props.count}/>
+            <TableCell align="center"><ModifyButton/><DeleteStudy/></TableCell>
+            <TableCell align="center"><SelectInfo username={props.username} count={props.count}/></TableCell>
         </TableRow>
     )
 };
