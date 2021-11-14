@@ -1,6 +1,6 @@
-import { Card } from "@material-ui/core";
-import StudyInfo from "../../atoms/info_list";
-import useStyles from "./style";
+import { Card } from '@material-ui/core';
+import StudyInfo from '../../atoms/info_list';
+import useStyles from './style';
 
 const Main = (props) => {
     const classes = useStyles();
@@ -9,6 +9,6 @@ const Main = (props) => {
             <StudyInfo username={props.username} />
         </Card>
     );
-}
+};
 
 export default Main;

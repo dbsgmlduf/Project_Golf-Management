@@ -34,20 +34,25 @@ const AddStudy = (props) => {
     const handleSave = () => {
         let data = {
             username: props.username,
-            session_no: props.count+1,
+            session_no: props.count + 1,
             lec_theme: theme,
             lec_contents: contents,
             supplement_items: supplement,
             class_date: classDate,
             next_class_date: nextDate,
-        }
-        axios.post('/api/instructors/classinfo', data).then(response => {
-            const isSuccess = response.data.inputSuccess;
-            if (isSuccess) {
-                setOpen(false);
-                window.location.replace(`/lecturer/info/${props.username}`)
-            }
-        }).catch(err => { console.log(err) })
+        };
+        axios
+            .post('/api/instructors/classinfo', data)
+            .then((response) => {
+                const isSuccess = response.data.inputSuccess;
+                if (isSuccess) {
+                    setOpen(false);
+                    window.location.replace(`/lecturer/info/${props.username}`);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     const addTheme = (e) => {
@@ -67,14 +72,15 @@ const AddStudy = (props) => {
     };
     return (
         <div>
-            <Button variant="contained" startIcon={<AddIcon />} className={classes.addButton} onClick={handleClickOpen}>
+            <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                className={classes.addButton}
+                onClick={handleClickOpen}
+            >
                 등록
             </Button>
-            <Dialog
-                fullScreen
-                open={open}
-                onClose={handleClose}
-            >
+            <Dialog fullScreen open={open} onClose={handleClose}>
                 <AppBar sx={{ position: 'relative' }}>
                     <Toolbar>
                         <IconButton
@@ -86,7 +92,11 @@ const AddStudy = (props) => {
                             <CloseIcon />
                         </IconButton>
 
-                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                        <Typography
+                            sx={{ ml: 2, flex: 1 }}
+                            variant="h6"
+                            component="div"
+                        >
                             강의내용등록
                         </Typography>
                         <Button autoFocus color="inherit" onClick={handleSave}>
@@ -94,9 +104,30 @@ const AddStudy = (props) => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <TextField label="강의주제" placeholder="내용을 적어주세요...." required onChange={addTheme} />
-                <TextField label="강의내용" placeholder="내용을 적어주세요...." rows={4} fullWidth required multiline onChange={addContents} />
-                <TextField label="보충내용" placeholder="내용을 적어주세요...." rows={2} fullWidth required multiline onChange={addSupplement} />
+                <TextField
+                    label="강의주제"
+                    placeholder="내용을 적어주세요...."
+                    required
+                    onChange={addTheme}
+                />
+                <TextField
+                    label="강의내용"
+                    placeholder="내용을 적어주세요...."
+                    rows={4}
+                    fullWidth
+                    required
+                    multiline
+                    onChange={addContents}
+                />
+                <TextField
+                    label="보충내용"
+                    placeholder="내용을 적어주세요...."
+                    rows={2}
+                    fullWidth
+                    required
+                    multiline
+                    onChange={addSupplement}
+                />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <Stack spacing={3}>
                         <DesktopDatePicker

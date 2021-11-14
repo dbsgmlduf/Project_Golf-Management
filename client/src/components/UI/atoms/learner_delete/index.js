@@ -14,15 +14,14 @@ const DeleteLearner = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: '삭제',
-            cancelButtonText: '취소'
-        })
+            cancelButtonText: '취소',
+        });
     };
     return (
         <IconButton aria-label="delete" onClick={openHandler}>
             <DeleteIcon />
         </IconButton>
-    )
-
+    );
 };
 
 export default DeleteLearner;

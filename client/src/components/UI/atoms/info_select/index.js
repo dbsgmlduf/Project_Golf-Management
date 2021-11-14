@@ -6,10 +6,10 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import { Grid, Card } from "@material-ui/core";
+import { Grid, Card } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Infotable from './info_table';
-import useStyles from "./style";
+import useStyles from './style';
 
 const SelectInfo = (props) => {
     const classes = useStyles();
@@ -24,17 +24,16 @@ const SelectInfo = (props) => {
         setOpen(false);
     };
 
-
     return (
         <Grid>
-            <Button variant="contained" startIcon={<AddIcon />} onClick={handleClickOpen}>
+            <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={handleClickOpen}
+            >
                 조회
             </Button>
-            <Dialog
-                fullScreen
-                open={open}
-                onClose={handleClose}
-            >
+            <Dialog fullScreen open={open} onClose={handleClose}>
                 <Card className={classes.lecturerCard}>
                     <AppBar sx={{ position: 'relative' }}>
                         <Toolbar>
@@ -46,7 +45,11 @@ const SelectInfo = (props) => {
                             >
                                 <CloseIcon />
                             </IconButton>
-                            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                            <Typography
+                                sx={{ ml: 2, flex: 1 }}
+                                variant="h6"
+                                component="div"
+                            >
                                 강의내용등록
                             </Typography>
                         </Toolbar>

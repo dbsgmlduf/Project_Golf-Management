@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -8,9 +8,9 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
     },
-    appbar : {
-        margin : 10,
-        width : 'auto',
+    appbar: {
+        margin: 10,
+        width: 'auto',
     },
 }));
 

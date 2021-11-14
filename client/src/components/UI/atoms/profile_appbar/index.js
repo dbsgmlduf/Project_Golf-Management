@@ -8,13 +8,18 @@ const ProfileAppbar = () => {
     return (
         <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
-                <Typography className={classes.title} variant="h4" color="inherit" noWrap>
+                <Typography
+                    className={classes.title}
+                    variant="h4"
+                    color="inherit"
+                    noWrap
+                >
                     사용자 정보
                 </Typography>
-                <ModifyButton/>
+                <ModifyButton />
             </Toolbar>
         </AppBar>
-    )
-}
+    );
+};
 
 export default ProfileAppbar;

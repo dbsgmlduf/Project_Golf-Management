@@ -3,13 +3,12 @@ import Footer from '../UI/modules/footer/Footer';
 import { Grid } from '@mui/material';
 
 const LandingPage = (props) => {
-
-    return(
+    return (
         <Grid container spacing={1}>
-            <Header/>
-            <Footer/>
+            <Header />
+            <Footer />
         </Grid>
     );
-}
+};
 
 export default LandingPage;
