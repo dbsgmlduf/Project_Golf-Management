@@ -1,16 +1,17 @@
-import { Link, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {Link} from "react-router-dom"
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import React from "react";
 
 export const learnerListItems = (
     <div>
-        <ListItem button component={Link} href="/learner/myprofile">
+        <ListItem button component={Link} to="/learner/myprofile">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
-        <ListItem button component={Link} href="/learner">
+        <ListItem button component={Link} to="/learner">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
@@ -26,19 +27,19 @@ export const learnerListItems = (
 );
 export const lecturerListItems = (
     <div>
-        <ListItem button component={Link} href="/lecturer/myprofile">
+        <ListItem button component={Link} to="/lecturer/myprofile">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="프로필수정" />
         </ListItem>
-        <ListItem button component={Link} href="/lecturer">
+        <ListItem button component={Link} to="/lecturer">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="회원목록" />
         </ListItem>
-        <ListItem button component={Link} href="/lecturer/addlearner">
+        <ListItem button component={Link} to="/lecturer/addlearner">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
