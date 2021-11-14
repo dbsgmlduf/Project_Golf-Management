@@ -24,10 +24,15 @@ const AddLearner = () => {
     //data search
     const filteredData = (data) => {
         data = data.filter((c) => {
-            return c.username.indexOf(serchKeyword) > -1;
+            return c.learner.username.indexOf(serchKeyword) > -1;
         });
         return data.map((c) => {
-            return <AddTable key={c.username} username={c.username} />;
+            return (
+                <AddTable
+                    key={c.learner.username}
+                    username={c.learner.username}
+                />
+            );
         });
     };
     //Table
@@ -81,6 +86,7 @@ const AddLearner = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">회원 이름</TableCell>
+                            <TableCell align="center">회원 추가</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -108,8 +114,8 @@ const AddLearner = () => {
                                 count={users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
-                                onChangePage={handleChangePage}
-                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
                             />
                         </TableRow>
                     </TableFooter>
