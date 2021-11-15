@@ -27,7 +27,12 @@ const ModifyButton = (props) => {
             <Button aria-label="modify" onClick={openHandler}>
                 <CreateIcon />
             </Button>
-            <ModifyDialog open={open} handleClose={closeHandler} data={users} />
+            <ModifyDialog
+                open={open}
+                handleClose={closeHandler}
+                username={props.username}
+                session_no={props.session_no}
+            />
         </>
     );
 };
