@@ -96,7 +96,22 @@ exports.selectInfo = async({ instructor, username }) => {
         where: {
             [Op.and]: [
                 { lecturer_no: instructor },
-                { learner_no: attendee }
+                { learner_no: attendee },
+            ]
+        }
+    });
+    return result;
+};
+
+exports.selectDetailInfo = async({ instructor, username, session_no }) => {
+    const attendee = await selectLearnerNo({ username });
+    const result = await ClassInfo.findAll({
+        attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
+        where: {
+            [Op.and]: [
+                { lecturer_no: instructor },
+                { learner_no: attendee },
+                { session_no: session_no }
             ]
         }
     });
