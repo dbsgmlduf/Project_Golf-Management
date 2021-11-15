@@ -6,6 +6,7 @@ import SelectInfo from '../info_select';
 const Info = (props) => {
     return (
         <TableRow>
+            <TableCell align="center">{props.session_no}</TableCell>
             <TableCell align="center">{props.topic}</TableCell>
             <TableCell align="center">{props.studyDate}</TableCell>
             <TableCell align="center">
