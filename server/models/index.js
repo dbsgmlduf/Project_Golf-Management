@@ -14,14 +14,14 @@ db.ClassInfo = require('./classinfo')(sequelize, Sequelize);
 db.DateInfo = require('./dateinfo')(sequelize, Sequelize);
 
 //define association
-db.Learner.hasMany(db.DateInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
-db.DateInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
-
 db.Learner.hasMany(db.Enrollment, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.Enrollment.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 
 db.Lecturer.hasMany(db.Enrollment, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
 db.Enrollment.belongsTo(db.Lecturer, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
+
+db.Learner.hasMany(db.DateInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
+db.DateInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 
 db.Learner.hasMany(db.ClassInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.ClassInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});

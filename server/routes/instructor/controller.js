@@ -127,12 +127,3 @@ exports.updateClassInfo = async (req, res, next) => {
         next(error);
     }
 };
-
-// //강사 --> 강의 정보 삭제 API
-// exports.deleteClassInfo = async (req, res, next) => {
-//     try{
-
-//     } catch (error){
-
-//     }
-// }

@@ -32,3 +32,19 @@ exports.setEnrollment = async (req, res, next) => {
         });
     }
 };
+
+//회원(일반 사용자) --> 강사 신청에 따른 status 조회 api
+exports.getStatus = async (req, res, next) => {
+    try{
+        const attendee = req.user.learner_no;
+        const status = await userApp.getEnrollStatus({attendee});
+        res.status(OK).json({
+            status,
+            message: '상태 전송 성공!'
+        })
+    } catch (error){
+        res.status(BAD_REQUEST).json({
+            message: '상태 조회 실패!'
+        });
+    }
+};
