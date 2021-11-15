@@ -1,6 +1,7 @@
-const router = require('express').Router();
-const middlewares = require('../../middlewares/auth');
-const controller = require('./controller');
+const router = require("express").Router();
+const middlewares = require("../../middlewares/auth");
+const controller = require("./controller");
+
 
 router.get('/request', middlewares.jwtAuth, controller.getRequest);
 router.patch('/accept', middlewares.jwtAuth, controller.setAccept);
