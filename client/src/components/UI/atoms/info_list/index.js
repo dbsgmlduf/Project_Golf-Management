@@ -32,6 +32,7 @@ const StudyInfo = (props) => {
             const response = await axios.get(
                 `/api/instructors/getinfo/${props.username}`
             );
+            console.log('ddd' + response);
             setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
             setError(e);
@@ -68,6 +69,7 @@ const StudyInfo = (props) => {
                 >
                     <TableHead>
                         <TableRow>
+                            <TableCell align="center">회차</TableCell>
                             <TableCell align="center" className={classes.topic}>
                                 강의주제
                             </TableCell>
@@ -86,7 +88,8 @@ const StudyInfo = (props) => {
                                   .map((c) => {
                                       return (
                                           <Info
-                                              key={c.lec_theme}
+                                              key={c.session_no}
+                                              session_no={c.session_no}
                                               topic={c.lec_theme}
                                               studyDate={c.class_date}
                                               username={props.username}

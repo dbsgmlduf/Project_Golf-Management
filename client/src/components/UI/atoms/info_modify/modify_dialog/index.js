@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
@@ -11,33 +11,63 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { TextField } from '@mui/material';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const ModifyDialog = (props) => {
+    //modify data
+    const [theme, setTheme] = useState();
+    const [contents, setContents] = useState();
+    const [supplement, setSupplement] = useState();
+    const [classDate, setClassDate] = useState(new Date());
+    const [nextDate, setNextDate] = useState(new Date());
+    //modify event handler
+    const addTheme = (e) => {
+        setTheme(e.currentTarget.value);
+    };
+    const addContents = (e) => {
+        setContents(e.currentTarget.value);
+    };
+    const addSupplement = (e) => {
+        setSupplement(e.currentTarget.value);
+    };
+    const addClassDate = (newDate) => {
+        setClassDate(newDate);
+    };
+    const addNextDate = (newDate) => {
+        setNextDate(newDate);
+    };
+
+    //modify save handler
     const handleSave = (e) => {
         e.preventDefault();
         props.handleClose();
-        /*let data = {
+        let data = {
             lec_theme: theme,
             lec_contents: contents,
             supplement_items: supplement,
             class_date: classDate,
             next_class_date: nextDate,
-        }
-        axios.patch('api/instructors/accept', data).then(response => {
-            const isSuccess = response.data.result;
-            if (isSuccess) {
-                //성공
-                Swal.fire({
-                    icon: 'success',
-                    title: '성공!',
-                    text: '당신의 신규회원이 등록되었습니다!'
-                }).then(()=>{
-                    window.location.replace("/lecturer/addlearner")
-                })
-            }
-        }).catch(err => { console.log(err) })
-        */
+        };
+        axios
+            .patch(`api/instructors/${props.username}`, data)
+            .then((response) => {
+                const isSuccess = response.data.result;
+                if (isSuccess) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '성공!',
+                        text: '내용이 수정되었습니다!',
+                    }).then(() => {
+                        window.location.replace(
+                            `/lecturer/info/${props.username}`
+                        );
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
@@ -65,9 +95,30 @@ const ModifyDialog = (props) => {
                     </Button>
                 </Toolbar>
             </AppBar>
-            {/*<TextField label="강의주제" placeholder="내용을 적어주세요...." required onChange={addTheme} />
-            <TextField label="강의내용" placeholder="내용을 적어주세요...." rows={4} fullWidth required multiline onChange={addContents} />
-            <TextField label="보충내용" placeholder="내용을 적어주세요...." rows={2} fullWidth required multiline onChange={addSupplement} />
+            <TextField
+                label="강의주제"
+                placeholder="내용을 적어주세요...."
+                required
+                onChange={addTheme}
+            />
+            <TextField
+                label="강의내용"
+                placeholder="내용을 적어주세요...."
+                rows={4}
+                fullWidth
+                required
+                multiline
+                onChange={addContents}
+            />
+            <TextField
+                label="보충내용"
+                placeholder="내용을 적어주세요...."
+                rows={2}
+                fullWidth
+                required
+                multiline
+                onChange={addSupplement}
+            />
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Stack spacing={3}>
                     <DesktopDatePicker
@@ -83,7 +134,7 @@ const ModifyDialog = (props) => {
                         renderInput={(params) => <TextField {...params} />}
                     />
                 </Stack>
-    </LocalizationProvider>*/}
+            </LocalizationProvider>
         </Dialog>
     );
 };

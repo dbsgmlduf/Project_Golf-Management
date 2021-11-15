@@ -26,7 +26,7 @@ const DeleteStudy = (props) => {
             };
             if (result.isConfirmed) {
                 axios
-                    .patch('api/learners/enrollment', data)
+                    .patch(`api/instructors/enrollment/${props.username}`, data)
                     .then((response) => {
                         const isSuccess = response.data.isSelected.isenrolled;
                         if (!isSuccess) {

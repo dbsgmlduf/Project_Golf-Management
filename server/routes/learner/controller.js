@@ -20,10 +20,8 @@ exports.getList = async (req, res, next) => {
 exports.setEnrollment = async (req, res, next) => {
     try{
         const attendee = req.user.learner_no;
-        //const usertype = req.user.usertype;
         const { username } = req.body;
         const isSelected = await userApp.setEnrollment({ attendee, username });
-        console.log("응답 결과:",isSelected);
         res.status(CREATED).json({
             isSelected,
             message: '등록 요청 전송 성공!'
