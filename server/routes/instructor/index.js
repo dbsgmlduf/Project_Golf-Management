@@ -9,6 +9,6 @@ router.get('/mylearner', middlewares.jwtAuth, controller.getMylist);
 router.get('/mylist', middlewares.jwtAuth, controller.getList);
 router.post('/classinfo', middlewares.jwtAuth, controller.inputInfo);
 router.get('/getinfo/:username', middlewares.jwtAuth, controller.getInfo);
-router.patch('/:username', middlewares.jwtAuth, controller.updateClassInfo);
+router.patch('/:username/:session_no', middlewares.jwtAuth, controller.updateClassInfo);
 
 module.exports = router;
