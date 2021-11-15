@@ -37,7 +37,8 @@ const ModifyDialog = (props) => {
     const addNextDate = (newDate) => {
         setNextDate(newDate);
     };
-
+    const sessionNum = props.session_no;
+    console.log('fsdfsdf  ' + sessionNum);
     //modify save handler
     const handleSave = (e) => {
         e.preventDefault();
@@ -50,9 +51,12 @@ const ModifyDialog = (props) => {
             next_class_date: nextDate,
         };
         axios
-            .patch(`api/instructors/${props.username}`, data)
+            .patch(
+                `api/instructors/${props.username}/${props.session_no}`,
+                data
+            )
             .then((response) => {
-                const isSuccess = response.data.result;
+                const isSuccess = response.data.updateSuccess;
                 if (isSuccess) {
                     Swal.fire({
                         icon: 'success',

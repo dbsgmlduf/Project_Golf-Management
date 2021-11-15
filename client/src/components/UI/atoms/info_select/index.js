@@ -54,7 +54,10 @@ const SelectInfo = (props) => {
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <Infotable username={props.username} count={props.count} />
+                    <Infotable
+                        username={props.username}
+                        session_no={props.session_no}
+                    />
                 </Card>
             </Dialog>
         </Grid>
