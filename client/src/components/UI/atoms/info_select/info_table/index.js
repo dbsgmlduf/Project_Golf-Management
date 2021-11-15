@@ -18,7 +18,7 @@ const Infotable = (props) => {
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
             const response = await axios.get(
-                `/api/instructors/getinfo/${props.username}`
+                `/api/instructors/getinfo/${props.username}/${props.session_no}`
             );
             setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
