@@ -18,7 +18,7 @@ const Infotable = (props) => {
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
             const response = await axios.get(
-                `/api/instructors/getinfo/${props.username}/${props.session_no}`
+                `/api/instructors/detailinfo/${props.username}/${props.session_no}`
             );
             setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
@@ -50,7 +50,7 @@ const Infotable = (props) => {
                     gutterBottom
                     align="center"
                 >
-                    {users[0].session_no}주차
+                    {users.session_no}주차
                 </Typography>
                 <Typography
                     variant="h4"
@@ -66,7 +66,7 @@ const Infotable = (props) => {
                     gutterBottom
                     align="center"
                 >
-                    {users[0].lec_theme}
+                    {users.lec_theme}
                 </Typography>
                 <Typography
                     variant="h4"
@@ -82,7 +82,7 @@ const Infotable = (props) => {
                     gutterBottom
                     align="center"
                 >
-                    {users[0].lec_contents}
+                    {users.lec_contents}
                 </Typography>
                 <Typography
                     variant="h4"
@@ -98,7 +98,7 @@ const Infotable = (props) => {
                     gutterBottom
                     align="center"
                 >
-                    {users[0].supplement_item}
+                    {users.supplement_item}
                 </Typography>
                 <Typography
                     variant="h4"
@@ -114,7 +114,7 @@ const Infotable = (props) => {
                     gutterBottom
                     align="center"
                 >
-                    {users[0].class_date}
+                    {users.class_date}
                 </Typography>
                 <Typography
                     variant="h4"
@@ -130,7 +130,7 @@ const Infotable = (props) => {
                     gutterBottom
                     align="center"
                 >
-                    {users[0].next_class_date}
+                    {users.next_class_date}
                 </Typography>
             </Paper>
         </Grid>

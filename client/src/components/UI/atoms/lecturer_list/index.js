@@ -35,6 +35,8 @@ const LecturerList = () => {
                     key={c.username}
                     username={c.username}
                     data={c.username}
+                    id={c.id}
+                    enrollData={enrollData}
                 />
             );
         });
@@ -44,7 +46,7 @@ const LecturerList = () => {
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const [enrollData, setEnrollData] = useState(null);
     const fetchUsers = useCallback(async () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -52,8 +54,10 @@ const LecturerList = () => {
             setUsers(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-            const response = await axios.get('/api/learners/list');
-            setUsers(response.data.list); // 데이터는 response.data 안에 들어있습니다.
+            const responseAll = await axios.get('/api/learners/list'); //전체 강사list api
+            const responseEnroll = await axios.get('api/learners/');
+            setEnrollData(responseEnroll.data.status);
+            setUsers(responseAll.data.list); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
             setError(e);
         }
@@ -112,6 +116,8 @@ const LecturerList = () => {
                                               key={c.username}
                                               username={c.username}
                                               data={c.username}
+                                              id={c.id}
+                                              enrollData={enrollData}
                                           />
                                       );
                                   })}
