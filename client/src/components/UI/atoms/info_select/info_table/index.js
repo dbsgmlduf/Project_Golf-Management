@@ -25,7 +25,7 @@ const Infotable = (props) => {
             setError(e);
         }
         setLoading(false);
-    }, [props.username]);
+    }, [props.username, props.session_no]);
 
     useEffect(() => {
         fetchUsers();
@@ -53,7 +53,7 @@ const Infotable = (props) => {
                                 gutterBottom
                                 align="center"
                             >
-                                {users.session_no}주차
+                                {c.session_no}주차
                             </Typography>
                             <Typography
                                 variant="h4"
