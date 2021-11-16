@@ -7,10 +7,11 @@ const SelectLecturer = (props) => {
     //const [open,setOpen] = useState(false);
     const openHandler = (e) => {
         e.preventDefault();
+        console.log(props.enrollData);
+        console.log(props.enrollData.length);
         let data = {
-            username: props.data,
+            username: props.username,
         };
-        console.log(data);
         Swal.fire({
             title: '강사를 선택하시겠습니까???',
             showCancelButton: true,
@@ -20,6 +21,16 @@ const SelectLecturer = (props) => {
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.isConfirmed) {
+                //반복문 + 조건문 만약 enrollData[i].lecturer.id에 있는 값이 id와 일치하면
+                for (let i = 0; i < props.enrollData.length; i++) {
+                    if (props.id === props.enrollData[i].lecturer.id) {
+                        return Swal.fire({
+                            icon: 'error',
+                            title: 'FAIL!',
+                            text: '현재 요청 중이거나 등록완료된 강사입니다!',
+                        });
+                    }
+                }
                 axios
                     .post('api/learners/enrollment', data)
                     .then((response) => {
@@ -30,20 +41,22 @@ const SelectLecturer = (props) => {
                                 icon: 'success',
                                 title: 'SUCCESS!',
                                 text: '성공하셨습니다.',
+                            }).then(() => {
+                                window.location.replace(`/learner`);
                             });
                         }
                     })
                     .catch((err) => {
                         console.log(err);
                         Swal.fire({
-                            icon: 'fail',
+                            icon: 'error',
                             title: 'FAIL!',
                             text: '등록요청에 실패하셨습니다!',
                         });
                     });
             } else {
                 Swal.fire({
-                    icon: 'fail',
+                    icon: 'error',
                     title: 'FAIL!',
                     text: '등록을 취소하셨습니다!',
                 });
