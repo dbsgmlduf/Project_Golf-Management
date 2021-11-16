@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';
 import AddButton from '../button_add';
 
-const LearnerSearchBar = ({ props, value, handleSeachKey }) => {
+const LearnerSearchBar = ({ userName, value, handleSeachKey }) => {
     const classes = useStyles();
 
     return (
@@ -17,7 +17,7 @@ const LearnerSearchBar = ({ props, value, handleSeachKey }) => {
                     color="inherit"
                     noWrap
                 >
-                    님의 고객 관리 시스템
+                    {userName}님의 고객 관리 시스템
                 </Typography>
                 <AddButton />
                 <Search className={classes.search}>

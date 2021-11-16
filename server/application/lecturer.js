@@ -15,8 +15,9 @@ exports.setAgreement = async({ instructor, username, agreement }) => {
 
 //나의 회원정보 조회
 exports.getMyList = async({ instructor }) => {
+    const username = await db.selectLecturerName({ instructor });
     const myList = await db.selectMyList({ instructor });
-    return myList;
+    return { username, myList };
 };
 
 //전체 회원정보 조회
