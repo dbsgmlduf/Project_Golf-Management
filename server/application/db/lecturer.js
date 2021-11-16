@@ -96,21 +96,37 @@ exports.selectInfo = async({ instructor, username }) => {
         where: {
             [Op.and]: [
                 { lecturer_no: instructor },
-                { learner_no: attendee }
+                { learner_no: attendee },
             ]
         }
     });
     return result;
 };
 
-exports.updateInfo = async({ instructor, attendee, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
+exports.selectDetailInfo = async({ instructor, username, session_no }) => {
+    const attendee = await selectLearnerNo({ username });
+    const result = await ClassInfo.findAll({
+        attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
+        where: {
+            [Op.and]: [
+                { lecturer_no: instructor },
+                { learner_no: attendee },
+                { session_no: session_no }
+            ]
+        }
+    });
+    return result;
+};
+
+exports.updateInfo = async({ instructor, attendee, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
     console.log('러너;::', attendee);
     const result = await ClassInfo.update(
         {lec_theme, lec_contents, supplement_items, class_date, next_class_date},
         {where: {
             [Op.and]: [
                 { lecturer_no: instructor },
-                { learner_no: attendee }
+                { learner_no: attendee },
+                { session_no: session_no }
             ]
         }});
     return result[0];
