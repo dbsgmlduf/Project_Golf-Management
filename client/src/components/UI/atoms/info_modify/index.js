@@ -15,7 +15,6 @@ const ModifyButton = (props) => {
             `/api/instructors/getinfo/${props.username}`
         );
         setUsers(response.data); //data가 없을 경우 예외처리 필요!!
-        console.log(users);
     };
 
     const closeHandler = () => {

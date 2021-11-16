@@ -37,8 +37,6 @@ const ModifyDialog = (props) => {
     const addNextDate = (newDate) => {
         setNextDate(newDate);
     };
-    const sessionNum = props.session_no;
-    console.log('fsdfsdf  ' + sessionNum);
     //modify save handler
     const handleSave = (e) => {
         e.preventDefault();

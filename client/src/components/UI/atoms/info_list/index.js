@@ -32,13 +32,13 @@ const StudyInfo = (props) => {
             const response = await axios.get(
                 `/api/instructors/getinfo/${props.username}`
             );
-            console.log('ddd' + response);
             setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
             setError(e);
         }
         setLoading(false);
     }, [props.username]);
+
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
