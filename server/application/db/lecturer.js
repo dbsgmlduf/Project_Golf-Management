@@ -5,6 +5,14 @@ const lecturer = require('../../models/lecturer');
 const { selectLearnerNo } = require('../db/check');
 const Op = Sequelize.Op;
 
+exports.selectLecturerName = async({ instructor }) => {
+    const result = await Lecturer.findOne({
+        attributes: ['username'],
+        where: { lecturer_no: instructor }
+    });
+    return result;
+};
+
 exports.selectRequest = async({ instructor }) => {
     const result = await Enrollment.findAll({
         attributes: ['isEnrolled'],
