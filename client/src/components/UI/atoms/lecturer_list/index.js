@@ -43,9 +43,9 @@ const LecturerList = () => {
 
     //강사정보
     const [users, setUsers] = useState(null);
+    const [enrollData, setEnrollData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [enrollData, setEnrollData] = useState(null);
     const fetchUsers = useCallback(async () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -55,14 +55,28 @@ const LecturerList = () => {
             setLoading(true);
             const responseAll = await axios.get('/api/learners/list'); //전체 강사list api
             const responseEnroll = await axios.get('api/learners/');
-            setEnrollData(responseEnroll.data.status);
+            for (let i = 0; i < responseAll.data.list.length; i++) {
+                console.log(i);
+                for (let j = 0; j < responseEnroll.data.status.length; j++) {
+                    if (
+                        responseAll.data.list[i].id ===
+                        responseEnroll.data.status[j].lecturer.id
+                    ) {
+                        setEnrollData((prevList) => [
+                            ...prevList,
+                            responseEnroll.data.status[j],
+                        ]);
+                        console.log(j);
+                    }
+                }
+            }
             setUsers(responseAll.data.list); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
             setError(e);
         }
         setLoading(false);
     }, []);
-
+    console.log(enrollData);
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
