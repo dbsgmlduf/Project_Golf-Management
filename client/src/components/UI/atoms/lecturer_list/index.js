@@ -34,7 +34,6 @@ const LecturerList = () => {
                 <Lecturers
                     key={c.username}
                     username={c.username}
-                    data={c.username}
                     id={c.id}
                     enrollData={enrollData}
                 />
@@ -115,7 +114,6 @@ const LecturerList = () => {
                                           <Lecturers
                                               key={c.username}
                                               username={c.username}
-                                              data={c.username}
                                               id={c.id}
                                               enrollData={enrollData}
                                           />
