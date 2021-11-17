@@ -63,6 +63,15 @@ const SelectLecturer = (props) => {
             }
         });
     };
+    for (let i = 0; i < props.enrollData.length; i++) {
+        if (props.enrollData[i].id === props.id) {
+            return (
+                <Button aria-label="select" variant="contained">
+                    대기중
+                </Button>
+            );
+        }
+    }
     return (
         <Button aria-label="select" onClick={openHandler} variant="contained">
             강사선택
