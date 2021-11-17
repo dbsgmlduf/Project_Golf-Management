@@ -23,7 +23,7 @@ const SelectLecturer = (props) => {
             if (result.isConfirmed) {
                 //반복문 + 조건문 만약 enrollData[i].lecturer.id에 있는 값이 id와 일치하면
                 for (let i = 0; i < props.enrollData.length; i++) {
-                    if (props.id === props.enrollData[i].lecturer.id) {
+                    if (props.id === props.enrollData[i].id) {
                         return Swal.fire({
                             icon: 'error',
                             title: 'FAIL!',
@@ -63,6 +63,15 @@ const SelectLecturer = (props) => {
             }
         });
     };
+    for (let i = 0; i < props.enrollData.length; i++) {
+        if (props.enrollData[i].id === props.id) {
+            return (
+                <Button aria-label="select" variant="contained">
+                    대기중
+                </Button>
+            );
+        }
+    }
     return (
         <Button aria-label="select" onClick={openHandler} variant="contained">
             강사선택

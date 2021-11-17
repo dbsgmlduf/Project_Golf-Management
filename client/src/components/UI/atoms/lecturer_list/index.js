@@ -42,8 +42,9 @@ const LecturerList = () => {
     };
 
     //강사정보
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] = useState([]);
     const [enrollData, setEnrollData] = useState([]);
+    const [enrollYesData, setEnrollYesData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const fetchUsers = useCallback(async () => {
@@ -56,27 +57,34 @@ const LecturerList = () => {
             const responseAll = await axios.get('/api/learners/list'); //전체 강사list api
             const responseEnroll = await axios.get('api/learners/');
             for (let i = 0; i < responseAll.data.list.length; i++) {
-                console.log(i);
                 for (let j = 0; j < responseEnroll.data.status.length; j++) {
                     if (
                         responseAll.data.list[i].id ===
-                        responseEnroll.data.status[j].lecturer.id
+                            responseEnroll.data.status[j].lecturer.id &&
+                        responseEnroll.data.status[j].isenrolled
+                    ) {
+                        setEnrollYesData((prevList) => [
+                            ...prevList,
+                            responseAll.data.list[i],
+                        ]);
+                    } else if (
+                        responseAll.data.list[i].id ===
+                            responseEnroll.data.status[j].lecturer.id &&
+                        !responseEnroll.data.status[j].isenrolled
                     ) {
                         setEnrollData((prevList) => [
                             ...prevList,
-                            responseEnroll.data.status[j],
+                            responseAll.data.list[i],
                         ]);
-                        console.log(j);
                     }
+                    setUsers(responseAll.data.list);
                 }
             }
-            setUsers(responseAll.data.list); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
             setError(e);
         }
         setLoading(false);
     }, []);
-    console.log(enrollData);
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
@@ -124,6 +132,15 @@ const LecturerList = () => {
                                       (page + 1) * rowsPerPage
                                   )
                                   .map((c) => {
+                                      for (
+                                          let i = 0;
+                                          i < enrollYesData.length;
+                                          i++
+                                      ) {
+                                          if (c.id === enrollYesData[i].id) {
+                                              return null;
+                                          }
+                                      }
                                       return (
                                           <Lecturers
                                               key={c.username}
