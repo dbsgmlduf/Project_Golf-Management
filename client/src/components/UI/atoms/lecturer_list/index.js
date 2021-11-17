@@ -44,7 +44,7 @@ const LecturerList = () => {
     //강사정보
     const [users, setUsers] = useState([]);
     const [enrollData, setEnrollData] = useState([]);
-    const [enrollInfoData, setEnrollInfoData] = useState([]);
+    const [enrollYesData, setEnrollYesData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const fetchUsers = useCallback(async () => {
@@ -60,25 +60,33 @@ const LecturerList = () => {
                 for (let j = 0; j < responseEnroll.data.status.length; j++) {
                     if (
                         responseAll.data.list[i].id ===
-                        responseEnroll.data.status[j].lecturer.id
+                            responseEnroll.data.status[j].lecturer.id &&
+                        responseEnroll.data.status[j].isenrolled
+                    ) {
+                        setEnrollYesData((prevList) => [
+                            ...prevList,
+                            responseAll.data.list[i],
+                        ]);
+                    } else if (
+                        responseAll.data.list[i].id ===
+                            responseEnroll.data.status[j].lecturer.id &&
+                        !responseEnroll.data.status[j].isenrolled
                     ) {
                         setEnrollData((prevList) => [
                             ...prevList,
                             responseAll.data.list[i],
                         ]);
-                        setEnrollInfoData((prevList) => [
-                            ...prevList,
-                            responseEnroll.data.status[j],
-                        ]);
                     }
+                    setUsers(responseAll.data.list);
                 }
             }
-            setUsers(responseAll.data.list); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
             setError(e);
         }
         setLoading(false);
     }, []);
+    console.log(enrollData);
+    console.log(enrollYesData);
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
