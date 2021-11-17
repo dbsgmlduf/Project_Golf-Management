@@ -42,8 +42,9 @@ const LecturerList = () => {
     };
 
     //강사정보
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] = useState([]);
     const [enrollData, setEnrollData] = useState([]);
+    const [enrollInfoData, setEnrollInfoData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const fetchUsers = useCallback(async () => {
@@ -56,7 +57,6 @@ const LecturerList = () => {
             const responseAll = await axios.get('/api/learners/list'); //전체 강사list api
             const responseEnroll = await axios.get('api/learners/');
             for (let i = 0; i < responseAll.data.list.length; i++) {
-                console.log(i);
                 for (let j = 0; j < responseEnroll.data.status.length; j++) {
                     if (
                         responseAll.data.list[i].id ===
@@ -64,9 +64,12 @@ const LecturerList = () => {
                     ) {
                         setEnrollData((prevList) => [
                             ...prevList,
+                            responseAll.data.list[i],
+                        ]);
+                        setEnrollInfoData((prevList) => [
+                            ...prevList,
                             responseEnroll.data.status[j],
                         ]);
-                        console.log(j);
                     }
                 }
             }
@@ -76,7 +79,6 @@ const LecturerList = () => {
         }
         setLoading(false);
     }, []);
-    console.log(enrollData);
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
