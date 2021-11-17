@@ -85,8 +85,6 @@ const LecturerList = () => {
         }
         setLoading(false);
     }, []);
-    console.log(enrollData);
-    console.log(enrollYesData);
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
@@ -134,6 +132,15 @@ const LecturerList = () => {
                                       (page + 1) * rowsPerPage
                                   )
                                   .map((c) => {
+                                      for (
+                                          let i = 0;
+                                          i < enrollYesData.length;
+                                          i++
+                                      ) {
+                                          if (c.id === enrollYesData[i].id) {
+                                              return null;
+                                          }
+                                      }
                                       return (
                                           <Lecturers
                                               key={c.username}
