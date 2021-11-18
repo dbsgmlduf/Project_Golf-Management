@@ -102,7 +102,6 @@ const AddLearner = () => {
                                           <AddTable
                                               key={c.learner.username}
                                               username={c.learner.username}
-                                              data={c.learner.username}
                                           />
                                       );
                                   })}
