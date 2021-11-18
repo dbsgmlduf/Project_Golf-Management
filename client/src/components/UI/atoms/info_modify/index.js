@@ -7,7 +7,7 @@ import axios from 'axios';
 const ModifyButton = (props) => {
     const [open, setOpen] = useState(false);
     //해당 학생의 해당 주차 세부 강의내용 data
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]); //default 주기위한 데이터
     const openHandler = (e) => {
         e.preventDefault();
         setOpen(true);
