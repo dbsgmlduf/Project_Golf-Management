@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme) => ({
         width: '200px',
     },
     menuIcon: {
-        color: 'red',
         fontSize: '2rem',
     },
 }));

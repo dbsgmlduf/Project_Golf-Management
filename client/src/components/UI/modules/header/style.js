@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     appbar: {
+        backgroundColor: '#58555A',
         background: 'inherit',
     },
     title: {

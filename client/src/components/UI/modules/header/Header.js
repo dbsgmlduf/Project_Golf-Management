@@ -22,7 +22,7 @@ const Header = () => {
                         className={classes.title}
                         style={{ textDecoration: 'none' }}
                     >
-                        GOLFTAK
+                        치고보자
                     </Typography>
                     {!isLogin() ? (
                         <div>

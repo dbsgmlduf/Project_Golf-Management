@@ -6,7 +6,10 @@ const LoginButton = () => {
     return (
         //<Button variant = "signIn" href="/login" >SIGN IN</Button>
         <Button variant="signIn">
-            <Link to="/login" style={{ textDecoration: 'none', color: 'red' }}>
+            <Link
+                to="/login"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+            >
                 SIGN IN
             </Link>
         </Button>
