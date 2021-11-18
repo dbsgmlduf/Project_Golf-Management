@@ -6,7 +6,7 @@ const AddTable = (props) => {
         <TableRow>
             <TableCell align="center">{props.username}</TableCell>
             <TableCell align="center">
-                <SelectLearner data={props.data} />
+                <SelectLearner username={props.username} />
             </TableCell>
         </TableRow>
     );

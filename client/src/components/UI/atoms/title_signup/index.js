@@ -8,7 +8,7 @@ const RegisterButton = () => {
         <Button variant="register">
             <Link
                 to="/register"
-                style={{ textDecoration: 'none', color: 'red' }}
+                style={{ textDecoration: 'none', color: 'inherit' }}
             >
                 SIGN UP
             </Link>

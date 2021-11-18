@@ -126,30 +126,25 @@ const LecturerList = () => {
                     <TableBody>
                         {serchKeyword
                             ? filteredData(users)
-                            : users
-                                  .slice(
-                                      page * rowsPerPage,
-                                      (page + 1) * rowsPerPage
-                                  )
-                                  .map((c) => {
-                                      for (
-                                          let i = 0;
-                                          i < enrollYesData.length;
-                                          i++
-                                      ) {
-                                          if (c.id === enrollYesData[i].id) {
-                                              return null;
-                                          }
+                            : users.map((c) => {
+                                  for (
+                                      let i = 0;
+                                      i < enrollYesData.length;
+                                      i++
+                                  ) {
+                                      if (c.id === enrollYesData[i].id) {
+                                          return null;
                                       }
-                                      return (
-                                          <Lecturers
-                                              key={c.username}
-                                              username={c.username}
-                                              id={c.id}
-                                              enrollData={enrollData}
-                                          />
-                                      );
-                                  })}
+                                  }
+                                  return (
+                                      <Lecturers
+                                          key={c.username}
+                                          username={c.username}
+                                          id={c.id}
+                                          enrollData={enrollData}
+                                      />
+                                  );
+                              })}
                     </TableBody>
                     <TableFooter>
                         <TableRow>
