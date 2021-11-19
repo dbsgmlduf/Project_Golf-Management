@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import {
     Paper,
     Table,
@@ -12,47 +11,17 @@ import {
 import useStyles from './style';
 import UserProfile from '../info_profile';
 import InfoBody from '../info_body';
+
 const StudyInfo = (props) => {
     const classes = useStyles();
-
-    //상세페이지정보
-    const [users, setUsers] = useState(null); //현재선택된 강사
-    const [lecturers, setLecturers] = useState(null); //회원이 등록한 강사 리스트
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [count, setCount] = useState(0);
     const [currentLecturer, setCurrent] = useState(null);
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-                setError(null);
-                setUsers(null);
-                // loading 상태를 true 로 바꿉니다.
-                setLoading(true);
-                const response = await axios.get(
-                    `/api/instructors/${props.username}`
-                );
-                setUsers(response.data.list.user.username);
-                setLecturers(response.data.list.result);
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-        };
-        fetchUsers();
-    }, []);
-    console.log(users);
-    if (loading) return <div>로딩중..</div>;
-    if (error) return <div>에러가 발생했습니다</div>;
-    if (!users) return null;
     return (
         <Grid>
             <UserProfile
                 username={props.username}
-                count={count}
-                lecturers={lecturers}
-                setUsers={setUsers}
+                count={props.count}
+                lecturers={props.lecturers}
+                setUsers={props.setUsers}
                 setCurrent={setCurrent}
             />
             <TableContainer component={Paper} className={classes.paper}>
@@ -73,8 +42,8 @@ const StudyInfo = (props) => {
                     </TableHead>
                     <InfoBody
                         username={props.username}
-                        users={users}
-                        setCount={setCount}
+                        users={props.users}
+                        setCount={props.setCount}
                         currentLecturer={currentLecturer}
                     />
                 </Table>
