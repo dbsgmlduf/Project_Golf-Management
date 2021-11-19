@@ -22,9 +22,7 @@ const Main = (props) => {
                 setUsers(null);
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
-                const response = await axios.get(
-                    `/api/instructors/${props.username}`
-                );
+                const response = await axios.get(`/api/learners/mylecturer`);
                 setUsers(response.data.list.user.username);
                 setLecturers(response.data.list.result);
             } catch (e) {

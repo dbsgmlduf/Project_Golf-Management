@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    card: {
-        //  backgroundColor: '#6E6E6E',
+    lecturerCard: {
+        //backgroundColor: '#6E6E6E',
         padding: 30,
         width: 800,
         height: 'auto',
