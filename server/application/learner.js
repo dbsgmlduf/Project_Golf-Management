@@ -17,8 +17,9 @@ exports.getEnrollStatus = async ({attendee}) => {
 };
 
 exports.getMylecturer = async ({attendee}) => {
+    const username = await db.selectLearnerName({attendee});
     const result = await db.selectMylecturer({attendee});
-    return result;
+    return {username, result};
 };
 
 exports.getClassInfo = async({ username }) => {

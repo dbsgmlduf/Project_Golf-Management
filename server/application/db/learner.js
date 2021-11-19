@@ -2,6 +2,14 @@ const {Lecturer, Learner, Enrollment, sequelize, ClassInfo, Sequelize} = require
 const { selectLecturerNo } = require('../db/check');
 const Op = Sequelize.Op;
 
+exports.selectLearnerName = async({ attendee }) => {
+    const result = await Learner.findOne({
+        attributes: ['username'],
+        where: { learner_no: attendee }
+    });
+    return result;
+};
+
 exports.selectAllLecturer = async () => {
     const results = await Lecturer.findAll({
         attributes: ['username', 'id'],
