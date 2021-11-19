@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import AddStudy from '../add_study';
+import LecturersButton from '../info_lecturers';
 import useStyles from './style';
 
 const UserProfile = (props) => {
@@ -15,7 +16,16 @@ const UserProfile = (props) => {
                 >
                     {props.username}회원 정보
                 </Typography>
-                <AddStudy username={props.username} count={props.count} />
+                <LecturersButton
+                    lecturers={props.lecturers}
+                    setUsers={props.setUsers}
+                    setCurrent={props.setCurrent}
+                />
+                <AddStudy
+                    username={props.username}
+                    count={props.count}
+                    lecturers={props.lecturers}
+                />
             </Toolbar>
         </AppBar>
     );
