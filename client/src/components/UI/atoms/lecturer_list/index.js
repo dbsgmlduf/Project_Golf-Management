@@ -77,9 +77,9 @@ const LecturerList = () => {
                             responseAll.data.list[i],
                         ]);
                     }
-                    setUsers(responseAll.data.list);
                 }
             }
+            setUsers(responseAll.data.list);
         } catch (e) {
             setError(e);
         }

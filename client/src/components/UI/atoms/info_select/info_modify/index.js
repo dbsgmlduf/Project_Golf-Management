@@ -12,7 +12,7 @@ const ModifyButton = (props) => {
         e.preventDefault();
         setOpen(true);
         const response = axios.get(
-            `/api/instructors/getinfo/${props.username}`
+            `/api/instructors/detailinfo/${props.username}/${props.session_no}`
         );
         setUsers(response.data); //data가 없을 경우 예외처리 필요!!
     };

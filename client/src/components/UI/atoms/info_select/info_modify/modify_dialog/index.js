@@ -49,10 +49,7 @@ const ModifyDialog = (props) => {
             next_class_date: nextDate,
         };
         axios
-            .patch(
-                `api/instructors/${props.username}/${props.session_no}`,
-                data
-            )
+            .patch(`api/instructors//${props.username}`, data)
             .then((response) => {
                 const isSuccess = response.data.updateSuccess;
                 if (isSuccess) {
