@@ -5,10 +5,10 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './style';
 import AddButton from '../button_add';
 
-const LearnerSearchBar = ({ userName, value, handleSeachKey }) => {
+const SearchBar = ({ userName, value, handleSeachKey }) => {
     const classes = useStyles();
-
-    return (
+    const userType = localStorage.getItem('userType');
+    return userType === 'lecturer' ? (
         <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
                 <Typography
@@ -33,6 +33,31 @@ const LearnerSearchBar = ({ userName, value, handleSeachKey }) => {
                 </Search>
             </Toolbar>
         </AppBar>
+    ) : (
+        <AppBar position="static" className={classes.appbar} elevation={10}>
+            <Toolbar>
+                <Typography
+                    className={classes.searchTitle}
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                >
+                    {userName}님의 강사목록
+                </Typography>
+                <AddButton />
+                <Search className={classes.search}>
+                    <SearchIconWrapper>
+                        <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                        placeholder="강사 검색"
+                        inputProps={{ 'aria-label': 'search' }}
+                        value={value}
+                        onChange={handleSeachKey}
+                    />
+                </Search>
+            </Toolbar>
+        </AppBar>
     );
 };
-export default LearnerSearchBar;
+export default SearchBar;

@@ -3,7 +3,7 @@ import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Swal from 'sweetalert2';
 
-const DeleteLearner = () => {
+const DeleteButton = () => {
     //const [open,setOpen] = useState(false);
     const openHandler = () => {
         Swal.fire({
@@ -24,4 +24,4 @@ const DeleteLearner = () => {
     );
 };
 
-export default DeleteLearner;
+export default DeleteButton;

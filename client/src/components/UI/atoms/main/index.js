@@ -1,8 +1,8 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import DeleteLearner from '../learner_delete';
-const Learners = (props) => {
+import DeleteButton from '../main_delete';
+const Main = (props) => {
     return (
         <TableRow>
             <TableCell align="center">
@@ -14,10 +14,10 @@ const Learners = (props) => {
                 </Link>
             </TableCell>
             <TableCell align="center">
-                <DeleteLearner />
+                <DeleteButton />
             </TableCell>
         </TableRow>
     );
 };
 
-export default Learners;
+export default Main;

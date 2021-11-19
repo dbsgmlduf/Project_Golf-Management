@@ -7,7 +7,9 @@ import useStyles from './style';
 const AddButton = (props) => {
     const classes = useStyles();
 
-    return (
+    const userType = localStorage.getItem('userType');
+
+    return userType === 'lecturer' ? (
         <Button
             variant="contained"
             component={Link}
@@ -16,6 +18,16 @@ const AddButton = (props) => {
             className={classes.addButton}
         >
             회원추가
+        </Button>
+    ) : (
+        <Button
+            variant="contained"
+            component={Link}
+            to="/learner/addlecturer"
+            startIcon={<AddIcon />}
+            className={classes.addButton}
+        >
+            강사추가
         </Button>
     );
 };

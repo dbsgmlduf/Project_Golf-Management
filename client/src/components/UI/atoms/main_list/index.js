@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import {
     Table,
     TableBody,
@@ -10,12 +10,11 @@ import {
     TablePagination,
     Paper,
 } from '@material-ui/core';
-import Learners from '../learner';
 import useStyles from './style';
-import LearnerSearchBar from '../learner_search';
-import axios from 'axios';
+import Main from '../main';
+import SearchBar from '../main_search';
 
-const LearnerList = () => {
+const MainList = (props) => {
     const classes = useStyles();
 
     //search
@@ -25,38 +24,13 @@ const LearnerList = () => {
         setSearchKeyWord(e.currentTarget.value);
     };
 
-    //강사정보
-    const [users, setUsers] = useState(null);
-    const [userName, setUserName] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    const fetchUsers = useCallback(async () => {
-        try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setUsers(null);
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-            const response = await axios.get('/api/instructors/mylearner');
-            setUsers(response.data.myLearner); // 데이터는 response.data 안에 들어있습니다.
-            setUserName(response.data.userName);
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
-    }, []);
-
-    useEffect(() => {
-        fetchUsers();
-    }, [fetchUsers]);
     //data search
     const filteredData = (data) => {
         data = data.filter((c) => {
             return c.username.indexOf(serchKeyword) > -1;
         });
         return data.map((c) => {
-            return <Learners key={c.username} name={c.username} />;
+            return <Main key={c.username} name={c.username} />;
         });
     };
     //page
@@ -73,14 +47,10 @@ const LearnerList = () => {
         setPage(0);
     };
 
-    if (loading) return <div>로딩중..</div>;
-    if (error) return <div>에러가 발생했습니다</div>;
-    if (!users) return null;
-
     return (
         <div>
-            <LearnerSearchBar
-                userName={userName}
+            <SearchBar
+                userName={props.userName}
                 value={serchKeyword}
                 handleSeachKey={handleSeachKey}
             />
@@ -98,15 +68,15 @@ const LearnerList = () => {
                     </TableHead>
                     <TableBody>
                         {serchKeyword
-                            ? filteredData(users)
-                            : users
+                            ? filteredData(props.users)
+                            : props.users
                                   .slice(
                                       page * rowsPerPage,
                                       (page + 1) * rowsPerPage
                                   )
                                   .map((c) => {
                                       return (
-                                          <Learners
+                                          <Main
                                               key={c.username}
                                               name={c.username}
                                           />
@@ -117,7 +87,7 @@ const LearnerList = () => {
                         <TableRow>
                             <TablePagination
                                 rowsPerPageOptions={[5, 10, 25]}
-                                count={users.length}
+                                count={props.users.length}
                                 page={page}
                                 rowsPerPage={rowsPerPage}
                                 onPageChange={handleChangePage}
@@ -131,4 +101,4 @@ const LearnerList = () => {
     );
 };
 
-export default LearnerList;
+export default MainList;

@@ -20,9 +20,9 @@ const Main = () => {
             setUsers(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-            const response = await axios.get('/api/instructors/mylearner');
-            setUsers(response.data.myLearner); // 데이터는 response.data 안에 들어있습니다.
-            setUserName(response.data.userName);
+            const response = await axios.get('/api/learners/mylecturer');
+            setUsers(response.data.myLecturer); // 데이터는 response.data 안에 들어있습니다.
+            //setUserName(response.data.userName);
         } catch (e) {
             setError(e);
         }
