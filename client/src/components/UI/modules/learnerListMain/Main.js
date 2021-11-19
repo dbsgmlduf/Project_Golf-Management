@@ -21,8 +21,8 @@ const Main = () => {
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
             const response = await axios.get('/api/learners/mylecturer');
-            setUsers(response.data.myLecturer); // 데이터는 response.data 안에 들어있습니다.
-            //setUserName(response.data.userName);
+            setUsers(response.data.myLecturer.result); // 데이터는 response.data 안에 들어있습니다.
+            setUserName(response.data.myLecturer.username.username);
         } catch (e) {
             setError(e);
         }
@@ -38,7 +38,7 @@ const Main = () => {
     if (!users) return null;
 
     return (
-        <Card className={classes.lecturerCard}>
+        <Card className={classes.card}>
             <MainList users={users} userName={userName} />
         </Card>
     );
