@@ -15,38 +15,49 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 const DateDialog = (props) => {
-    const [classDate, setClassDate] = useState(new Date());
-    const [nextDate, setNextDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
+    const [finishDate, setFinishDate] = useState(new Date());
 
     const addClassDate = (newDate) => {
-        setClassDate(newDate);
+        setStartDate(newDate);
     };
     const addNextDate = (newDate) => {
-        setNextDate(newDate);
+        setFinishDate(newDate);
     };
 
     const subscribeHandle = (e) => {
         e.preventDefault();
         props.handleClose();
+        let dateData = {
+            username: props.username,
+            start_time: startDate,
+            finish_time: finishDate,
+        };
         let data = {
             agreement: 1,
             username: props.username,
         };
         axios
-            .patch('api/instructors/accept', data)
-            .then((response) => {
-                const isSuccess = response.data.result;
-                if (isSuccess) {
-                    //성공
-                    Swal.fire({
-                        icon: 'success',
-                        title: '성공!',
-                        text: '당신의 신규회원이 등록되었습니다!',
-                    }).then(() => {
-                        window.location.replace('/lecturer/addlearner');
-                    });
-                }
-            })
+            .all([
+                axios.post('api/instructors/dateinfo', dateData),
+                axios.patch('api/instructors/accept', data),
+            ])
+            .then(
+                axios.spread((res1, res2) => {
+                    const isSuccess1 = res1.data.inputSuccess;
+                    const isSuccess2 = res2.data.result;
+                    if (isSuccess1 && isSuccess2) {
+                        //성공
+                        Swal.fire({
+                            icon: 'success',
+                            title: '성공!',
+                            text: '당신의 신규회원이 등록되었습니다!',
+                        }).then(() => {
+                            window.location.replace('/lecturer/addlearner');
+                        });
+                    }
+                })
+            )
             .catch((err) => {
                 console.log(err);
             });
@@ -61,7 +72,7 @@ const DateDialog = (props) => {
                         <Stack spacing={3}>
                             <DesktopDatePicker
                                 label="강의시작날짜"
-                                value={classDate}
+                                value={startDate}
                                 onChange={addClassDate}
                                 renderInput={(params) => (
                                     <TextField {...params} />
@@ -69,7 +80,7 @@ const DateDialog = (props) => {
                             />
                             <DesktopDatePicker
                                 label="마지막강의날짜"
-                                value={nextDate}
+                                value={finishDate}
                                 onChange={addNextDate}
                                 renderInput={(params) => (
                                     <TextField {...params} />
