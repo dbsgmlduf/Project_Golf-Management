@@ -15,13 +15,13 @@ export const learnerListItems = (
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary="강사추가" />
+            <ListItemText primary="강사목록" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/learner/addlecturer">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="강사추가" />
         </ListItem>
     </div>
 );
