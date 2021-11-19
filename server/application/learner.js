@@ -22,8 +22,8 @@ exports.getMylecturer = async ({attendee}) => {
     return {username, result};
 };
 
-exports.getClassInfo = async({ username }) => {
+exports.getClassInfo = async({ username, instructor }) => {
     const attendee = await selectLearnerNo({ username });
-    const result = await db.selectClassInfo({ attendee });
+    const result = await db.selectClassInfo({ attendee, instructor });
     return result;
 };

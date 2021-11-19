@@ -70,8 +70,8 @@ exports.getMylecturer = async (req, res, next) => {
 // 회원(일반 사용자) --> 강의 정보 조회
 exports.getClassInfo = async (req, res, next) => {
     try{
-        const { username } = req.params
-        const info = await userApp.getClassInfo({ username });
+        const { username, instructor } = req.params
+        const info = await userApp.getClassInfo({ username, instructor });
         res.status(OK).json({
             info,
             message: '강의 정보 조회 성공!'
