@@ -1,5 +1,6 @@
 const db = require('./db/lecturer');
-const { selectLearnerNo } = require('./db/check');
+const { selectLearnerNo, selectLecturerNo } = require('./db/check');
+//const { selectLecturerNo } = require('./db/check');
 
 //요청서 확인
 exports.getRequest = async({ instructor }) => {
@@ -33,8 +34,9 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
 };
 
 //강의정보 조회
-exports.getInfo = async({ instructor, username }) => {
-    const result = await db.selectInfo({ instructor, username });
+exports.getInfo = async({ username, instructor }) => {
+    const attendee = await selectLearnerNo({ username });
+    const result = await db.selectInfo({ attendee, instructor });
     return result;
 };
 
@@ -50,3 +52,18 @@ exports.updateInfo = async({instructor, username, session_no, lec_theme, lec_con
     const result = await db.updateInfo({instructor, attendee, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date});
     return result;
 };
+
+//강의기간 정보 입력
+exports.createDateInfo = async({ instructor, username, start_time, finish_time }) => {
+    const attendee = await selectLearnerNo({ username });
+    const result = await db.createDateInfo({ instructor, attendee, start_time, finish_time });
+    return result;
+};
+
+//특정 강사 이름 조회.
+exports.getCertainLecturer = async({ instructor, username }) => {
+    const user = await db.selectLecturerName({ instructor });
+    const attendee = await selectLearnerNo({ username });
+    const result = await db.selectCertainLecturer({attendee});
+    return {user, result};
+}

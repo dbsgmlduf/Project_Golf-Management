@@ -8,6 +8,10 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false,
                 primaryKey: true,
             },
+            lecturer_no: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+            },
             learner_no: {
                 type: DataTypes.BIGINT,
                 allowNull: false,

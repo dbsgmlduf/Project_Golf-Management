@@ -23,6 +23,9 @@ db.Enrollment.belongsTo(db.Lecturer, {foreignKey: 'lecturer_no', sourceKey: 'lec
 db.Learner.hasMany(db.DateInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.DateInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 
+db.Lecturer.hasMany(db.DateInfo, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
+db.DateInfo.belongsTo(db.Lecturer, {foreignKey: 'lecturer_no', sourceKey: 'lecturer_no'});
+
 db.Learner.hasMany(db.ClassInfo, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 db.ClassInfo.belongsTo(db.Learner, {foreignKey: 'learner_no', sourceKey: 'learner_no'});
 

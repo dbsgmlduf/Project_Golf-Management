@@ -90,9 +90,8 @@ exports.inputInfo = async (req, res, next) => {
 //강사 --> 강의 정보 조회 API
 exports.getInfo = async (req, res, next) => {
     try{
-        const instructor = req.user.lecturer_no;
-        const { username } = req.params;
-        const info = await userApp.getInfo({instructor, username });
+        const { username, instructor } = req.params;
+        const info = await userApp.getInfo({ username, instructor });
         res.status(OK).json({
             info,
             message: '강의정보 조회 성공!'
@@ -142,5 +141,40 @@ exports.updateClassInfo = async (req, res, next) => {
         }
     } catch(error){
         next(error);
+    }
+};
+
+//강사 --> 강의 기간 입력 API
+exports.inputDateInfo = async (req, res, next) => {
+    try{
+        const instructor = req.user.lecturer_no;
+        const { username, start_time, finish_time } = req.body;
+        await userApp.createDateInfo({ instructor, username, start_time, finish_time });
+        res.status(CREATED).json({
+            inputSuccess: true,
+            message: '강의기간 정보 등록 성공!'
+        });
+    } catch (error) {
+        res.status(BAD_REQUEST).json({
+            message: "등록 실패!"
+        });
+    }
+};
+
+//강사 --> 자신의 회원을 강습하는 두명의 강사이름 조회
+exports.getCertainLecturer = async (req, res, next) => {
+    try{
+        const instructor = req.user.lecturer_no;
+
+        const { username } = req.params;
+        const lecturerList = await userApp.getCertainLecturer({ instructor, username });
+        res.status(OK).json({
+            list: lecturerList,
+            message: '특정 강사 정보 조회 성공!'
+        });
+    } catch (error) {
+        res.status(BAD_REQUEST).json({
+            message: "조회 실패!"
+        });
     }
 };

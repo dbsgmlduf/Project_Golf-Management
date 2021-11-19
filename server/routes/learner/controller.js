@@ -48,3 +48,37 @@ exports.getStatus = async (req, res, next) => {
         });
     }
 };
+
+// 회원(일반 사용자) --> 나의 강사 목록 조회
+exports.getMylecturer = async (req, res, next) => {
+    try{
+        const attendee = req.user.learner_no;
+        const myLecturer = await userApp.getMylecturer({ attendee });
+        const data = myLecturer.username;
+        console.log(data);
+        res.status(OK).json({
+            myLecturer,
+            message: '나의 강사 목록  조회 성공!'
+        })
+    } catch (error){
+        res.status(BAD_REQUEST).json({
+            message: '나의 강사 목록  조회 실패!'
+        });
+    }
+};
+
+// 회원(일반 사용자) --> 강의 정보 조회
+exports.getClassInfo = async (req, res, next) => {
+    try{
+        const { username } = req.params
+        const info = await userApp.getClassInfo({ username });
+        res.status(OK).json({
+            info,
+            message: '강의 정보 조회 성공!'
+        })
+    } catch (error){
+        res.status(BAD_REQUEST).json({
+            message: '강의 정보 조회 실패!'
+        });
+    }
+};

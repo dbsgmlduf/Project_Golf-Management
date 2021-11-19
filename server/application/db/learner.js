@@ -36,3 +36,27 @@ exports.selectStatus = async({attendee}) => {
     })
     return results;
 };
+
+exports.selectMylecturer = async ({ attendee }) => {
+    const results = await Lecturer.findAll({
+        attributes: ['username'],
+        include: [{
+            model: Enrollment,
+            where: {
+                [Op.and]: [
+                    {learner_no: attendee},
+                    {isenrolled: 1}
+                ]
+            }
+        }]
+    });
+    return results;
+};
+
+exports.selectClassInfo = async ( {attendee} ) => {
+    const results = await ClassInfo.findAll({
+        attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
+        where: {learner_no: attendee}
+    });
+    return results;
+};
