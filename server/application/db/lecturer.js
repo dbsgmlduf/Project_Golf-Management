@@ -1,8 +1,8 @@
-const {Lecturer, Learner, Enrollment, sequelize, ClassInfo, Sequelize} = require('../../models');
+const {Lecturer, Learner, Enrollment, DateInfo, sequelize, ClassInfo, Sequelize} = require('../../models');
 const enrollment = require('../../models/enrollment');
 const learner = require('../../models/learner');
 const lecturer = require('../../models/lecturer');
-const { selectLearnerNo } = require('../db/check');
+const { selectLearnerNo, selectLecturerNo } = require('../db/check');
 const Op = Sequelize.Op;
 
 exports.selectLecturerName = async({ instructor }) => {
@@ -52,20 +52,20 @@ exports.updateEnrollment = async({ instructor, username, agreement }) => {
 };
 
 exports.selectMyList = async ({ instructor }) => {
-    const result = await Learner.findAll({
-        attributes: ['username'],
-        include: [{
-            model: Enrollment,
-            attributes:[],
-            where: {
-                [Op.and]:[
-                    { lecturer_no: instructor },
-                    { isEnrolled: 1 }
-                ]
-            }
-        }]
-    })
-    return result;
+        const result = await Learner.findAll({
+            attributes: ['username'],
+            include: [{
+                model: Enrollment,
+                attributes:[],
+                where: {
+                    [Op.and]:[
+                        { lecturer_no: instructor },
+                        { isEnrolled: 1 }
+                    ]
+                }
+            }]
+        })
+        return result;
 };
 
 exports.selectList = async ({ instructor }) => {
@@ -97,16 +97,14 @@ exports.createInfo = async({ instructor, username, session_no, lec_theme, lec_co
     return result;
 };
 
-exports.selectInfo = async({ instructor, username }) => {
-    const attendee = await selectLearnerNo({ username });
+exports.selectInfo = async({ attendee, instructor }) => {
     const result = await ClassInfo.findAll({
         attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
-        where: {
-            [Op.and]: [
-                { lecturer_no: instructor },
-                { learner_no: attendee },
-            ]
-        }
+        include: [{
+            model: Lecturer,
+            where: {username: instructor}
+        }],
+        where: {learner_no: attendee },
     });
     return result;
 };
@@ -127,7 +125,6 @@ exports.selectDetailInfo = async({ instructor, username, session_no }) => {
 };
 
 exports.updateInfo = async({ instructor, attendee, session_no, lec_theme, lec_contents, supplement_items, class_date, next_class_date }) => {
-    console.log('러너;::', attendee);
     const result = await ClassInfo.update(
         {lec_theme, lec_contents, supplement_items, class_date, next_class_date},
         {where: {
@@ -139,3 +136,31 @@ exports.updateInfo = async({ instructor, attendee, session_no, lec_theme, lec_co
         }});
     return result[0];
 }
+
+exports.createDateInfo = async({ instructor, attendee, start_time, finish_time }) => {
+   const dateInfo = {
+        lecturer_no: instructor,
+        learner_no: attendee,
+        start_time: start_time,
+        finish_time: finish_time
+   };
+   const result = await DateInfo.create(dateInfo);
+   return result;
+};
+
+exports.selectCertainLecturer = async({ attendee }) => {
+    const result = await Lecturer.findAll({
+        attributes: ['username'],
+        include: [{
+            model: Enrollment,
+            attributes: [],
+            where: {
+                [Op.and]: [
+                    {learner_no: attendee},
+                    {isEnrolled: 1}
+                ]
+            }
+        }]
+    })
+    return result;
+};
