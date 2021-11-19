@@ -9,6 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { Grid, Card } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Infotable from './info_table';
+import ModifyButton from './info_modify';
 import useStyles from './style';
 
 const SelectInfo = (props) => {
@@ -52,6 +53,10 @@ const SelectInfo = (props) => {
                             >
                                 강의내용등록
                             </Typography>
+                            <ModifyButton
+                                username={props.username}
+                                session_no={props.session_no}
+                            />
                         </Toolbar>
                     </AppBar>
                     <Infotable
