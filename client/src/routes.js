@@ -9,7 +9,8 @@ import LoginPage from './components/page/LoginPage';
 import LecturerMainPage from './components/page/LecturerMainPage';
 import LecturerInfoPage from './components/page/LecturerInfoPage';
 import LecturerAddPage from './components/page/LecturerAddPage';
-import LearnerPage from './components/page/LearnerPage';
+import LearnerMainPage from './components/page/LearnerMainPage';
+import LearnerAddPage from './components/page/LearnerAddPage';
 import ProfilePage from './components/page/ProfilePage';
 
 const Routes = () => {
@@ -53,7 +54,12 @@ const Routes = () => {
                 path="/lecturer/myprofile"
                 exact
             />
-            <LearnerRoute component={LearnerPage} path="/learner" exact />
+            <LearnerRoute component={LearnerMainPage} path="/learner" exact />
+            <LearnerRoute
+                component={LearnerAddPage}
+                path="/learner/addlecturer"
+                exact
+            />
             <LearnerRoute
                 component={ProfilePage}
                 path="/learner/myprofile"
