@@ -55,6 +55,11 @@ const Routes = () => {
                 exact
             />
             <LearnerRoute component={LearnerMainPage} path="/learner" exact />
+            <LecturerRoute
+                component={LecturerInfoPage}
+                path="/learner/info/:username"
+                exact
+            />
             <LearnerRoute
                 component={LearnerAddPage}
                 path="/learner/addlecturer"
