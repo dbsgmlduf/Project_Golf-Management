@@ -5,7 +5,8 @@ import useStyles from './style';
 
 const UserProfile = (props) => {
     const classes = useStyles();
-    return (
+    const userType = localStorage.getItem('userType');
+    return userType === 'lecturer' ? (
         <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
                 <Typography
@@ -26,6 +27,19 @@ const UserProfile = (props) => {
                     count={props.count}
                     lecturers={props.lecturers}
                 />
+            </Toolbar>
+        </AppBar>
+    ) : (
+        <AppBar position="static" className={classes.appbar} elevation={10}>
+            <Toolbar>
+                <Typography
+                    className={classes.title}
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                >
+                    {props.username}회원 정보
+                </Typography>
             </Toolbar>
         </AppBar>
     );
