@@ -14,8 +14,9 @@ import InfoBody from '../info_body';
 
 const StudyInfo = (props) => {
     const classes = useStyles();
-    const [currentLecturer, setCurrent] = useState(null);
-    return (
+    const [currentLecturer, setCurrent] = useState('React');
+    const userType = localStorage.getItem('userType');
+    return userType === 'lecturer' ? (
         <Grid>
             <UserProfile
                 username={props.username}
@@ -43,6 +44,34 @@ const StudyInfo = (props) => {
                     <InfoBody
                         username={props.username}
                         users={props.users}
+                        setCount={props.setCount}
+                        currentLecturer={currentLecturer}
+                    />
+                </Table>
+            </TableContainer>
+        </Grid>
+    ) : (
+        <Grid>
+            <UserProfile username={props.username} />
+            <TableContainer component={Paper} className={classes.paper}>
+                <Table
+                    aria-label="customer week study info"
+                    className={classes.table}
+                    sx={{ minWidth: 650 }}
+                >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">회차</TableCell>
+                            <TableCell align="center" className={classes.topic}>
+                                강의주제
+                            </TableCell>
+                            <TableCell align="center">강의진행날짜</TableCell>
+                            <TableCell align="center">세부조회</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <InfoBody
+                        username={props.username}
+                        user={props.user}
                         setCount={props.setCount}
                         currentLecturer={currentLecturer}
                     />
