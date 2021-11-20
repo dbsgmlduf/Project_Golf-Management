@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
 
     appbar: {
         backgroundColor: '#58555A',
-        background: 'inherit',
+        minHeight: '10vh',
+        gridArea: 'header',
     },
     title: {
         flexGrow: '1',

@@ -4,9 +4,11 @@ const useStyles = makeStyles((theme) => ({
     lecturerCard: {
         //backgroundColor: 'inherit',
         padding: 30,
-        width: 800,
-        height: 'auto',
-        margin: '90px auto',
+        width: '50vw',
+        height: '80vh',
+        margin: 'auto',
+        marginTop: 0,
+        marginBottom: 0,
     },
 }));
 

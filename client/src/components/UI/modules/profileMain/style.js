@@ -2,11 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     profileCard: {
-        backgroundColor: '#6E6E6E',
+        //backgroundColor: 'inherit',
         padding: 30,
-        width: 1000,
-        height: 500,
-        margin: '50px auto',
+        width: '50vw',
+        height: '80vh',
+        margin: 'auto',
+        marginTop: 0,
+        marginBottom: 0,
     },
 }));
 
