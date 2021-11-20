@@ -9,7 +9,7 @@ import {
     Grid,
 } from '@material-ui/core';
 import useStyles from './style';
-import UserProfile from '../info_profile';
+import InfoAppBar from '../info_appbar';
 import InfoBody from '../info_body';
 
 const StudyInfo = (props) => {
@@ -18,11 +18,11 @@ const StudyInfo = (props) => {
     const userType = localStorage.getItem('userType');
     return userType === 'lecturer' ? (
         <Grid>
-            <UserProfile
+            <InfoAppBar
                 username={props.username}
                 count={props.count}
                 lecturers={props.lecturers}
-                setUsers={props.setUsers}
+                setUser={props.setUser}
                 setCurrent={setCurrent}
             />
             <TableContainer component={Paper} className={classes.paper}>
@@ -43,16 +43,17 @@ const StudyInfo = (props) => {
                     </TableHead>
                     <InfoBody
                         username={props.username}
-                        users={props.users}
+                        user={props.user}
                         setCount={props.setCount}
                         currentLecturer={currentLecturer}
+                        myName={props.myName}
                     />
                 </Table>
             </TableContainer>
         </Grid>
     ) : (
         <Grid>
-            <UserProfile username={props.username} />
+            <InfoAppBar username={props.username} />
             <TableContainer component={Paper} className={classes.paper}>
                 <Table
                     aria-label="customer week study info"

@@ -3,7 +3,7 @@ import AddStudy from '../add_study';
 import LecturersButton from '../info_lecturers';
 import useStyles from './style';
 
-const UserProfile = (props) => {
+const InfoAppBar = (props) => {
     const classes = useStyles();
     const userType = localStorage.getItem('userType');
     return userType === 'lecturer' ? (
@@ -19,7 +19,7 @@ const UserProfile = (props) => {
                 </Typography>
                 <LecturersButton
                     lecturers={props.lecturers}
-                    setUsers={props.setUsers}
+                    setUser={props.setUser}
                     setCurrent={props.setCurrent}
                 />
                 <AddStudy
@@ -45,4 +45,4 @@ const UserProfile = (props) => {
     );
 };
 
-export default UserProfile;
+export default InfoAppBar;
