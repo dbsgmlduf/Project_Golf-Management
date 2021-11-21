@@ -14,26 +14,16 @@ import useStyles from './style';
 
 const SelectInfo = (props) => {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
 
     /*EVENT HANDLER*/
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+
     const handleClose = () => {
-        setOpen(false);
+        props.setOpen(false);
     };
 
     return props.myName === props.user ? (
         <Grid>
-            <Button
-                variant="contained"
-                startIcon={<AddIcon />}
-                onClick={handleClickOpen}
-            >
-                조회
-            </Button>
-            <Dialog fullScreen open={open} onClose={handleClose}>
+            <Dialog fullScreen open={props.open} onClose={handleClose}>
                 <Card className={classes.lecturerCard}>
                     <DialogTitle>
                         <AppBar sx={{ position: 'relative' }}>
@@ -71,14 +61,7 @@ const SelectInfo = (props) => {
         </Grid>
     ) : (
         <Grid>
-            <Button
-                variant="contained"
-                startIcon={<AddIcon />}
-                onClick={handleClickOpen}
-            >
-                조회
-            </Button>
-            <Dialog fullScreen open={open} onClose={handleClose}>
+            <Dialog fullScreen open={props.open} onClose={handleClose}>
                 <Card className={classes.lecturerCard}>
                     <DialogTitle>
                         <AppBar sx={{ position: 'relative' }}>
