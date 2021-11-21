@@ -1,18 +1,10 @@
 import React from 'react';
-import { Grid, Avatar, TextField } from '@material-ui/core';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { TextField } from '@material-ui/core';
 import useStyles from './style';
 const RegisterInfo = (props) => {
     const classes = useStyles();
     return (
         <>
-            <Grid align="center">
-                <Avatar className={classes.avatar}>
-                    <MenuBookIcon className={classes.icon} />
-                </Avatar>
-                <h2>SIGN UP</h2>
-            </Grid>
-
             <TextField
                 label="Name"
                 placeholder="Enter User Name"

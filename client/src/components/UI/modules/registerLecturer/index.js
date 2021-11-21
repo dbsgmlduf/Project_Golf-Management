@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Paper, Button } from '@material-ui/core';
+import { Paper, Button, Avatar, Grid } from '@material-ui/core';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 import useStyles from './style';
 import RegisterInfo from '../../atoms/register_info';
 
@@ -42,8 +43,6 @@ const Main = (props) => {
     };
     const hasNotSameError = (passwordEntered) =>
         password && password !== confirmPassword ? true : false;
-    console.log(checkEmail());
-    console.log(hasError());
     const submitHandler = (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
@@ -87,6 +86,12 @@ const Main = (props) => {
     return (
         <form onSubmit={submitHandler}>
             <Paper elevation={10} className={classes.registerPaper}>
+                <Grid align="center">
+                    <Avatar className={classes.avatar}>
+                        <MenuBookIcon className={classes.icon} />
+                    </Avatar>
+                    <h2>Lecturer Sign Up</h2>
+                </Grid>
                 <RegisterInfo
                     nameHandler={nameHandler}
                     emailHandler={emailHandler}
