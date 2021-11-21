@@ -8,8 +8,6 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    TableFooter,
-    TablePagination,
 } from '@material-ui/core';
 import useStyles from './style';
 import Lecturers from '../lecturer';
@@ -30,6 +28,11 @@ const LecturerList = () => {
             return c.username.indexOf(serchKeyword) > -1;
         });
         return data.map((c) => {
+            for (let i = 0; i < enrollYesData.length; i++) {
+                if (c.id === enrollYesData[i].id) {
+                    return null;
+                }
+            }
             return (
                 <Lecturers
                     key={c.username}
@@ -88,18 +91,6 @@ const LecturerList = () => {
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
-    //Table
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-
-    const handleChangePage = (e, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (e) => {
-        setRowsPerPage(parseInt(e.target.value, 10));
-        setPage(0);
-    };
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
@@ -115,7 +106,9 @@ const LecturerList = () => {
                 <Table
                     aria-label="lecturer list"
                     className={classes.table}
+                    size="small"
                     sx={{ minWidth: 650 }}
+                    stickyHeader
                 >
                     <TableHead>
                         <TableRow>
@@ -146,18 +139,6 @@ const LecturerList = () => {
                                   );
                               })}
                     </TableBody>
-                    <TableFooter>
-                        <TableRow>
-                            <TablePagination
-                                rowsPerPageOptions={[5, 10, 25]}
-                                count={users.length}
-                                page={page}
-                                rowsPerPage={rowsPerPage}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
-                        </TableRow>
-                    </TableFooter>
                 </Table>
             </TableContainer>
         </Grid>
