@@ -14,7 +14,6 @@ import useStyles from './style';
 
 const SelectInfo = (props) => {
     const classes = useStyles();
-
     const [open, setOpen] = useState(false);
 
     /*EVENT HANDLER*/
@@ -25,7 +24,7 @@ const SelectInfo = (props) => {
         setOpen(false);
     };
 
-    return (
+    return props.myName === props.user ? (
         <Grid>
             <Button
                 variant="contained"
@@ -58,6 +57,47 @@ const SelectInfo = (props) => {
                                     username={props.username}
                                     session_no={props.session_no}
                                 />
+                            </Toolbar>
+                        </AppBar>
+                    </DialogTitle>
+                    <DialogContent>
+                        <Infotable
+                            username={props.username}
+                            session_no={props.session_no}
+                        />
+                    </DialogContent>
+                </Card>
+            </Dialog>
+        </Grid>
+    ) : (
+        <Grid>
+            <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={handleClickOpen}
+            >
+                조회
+            </Button>
+            <Dialog fullScreen open={open} onClose={handleClose}>
+                <Card className={classes.lecturerCard}>
+                    <DialogTitle>
+                        <AppBar sx={{ position: 'relative' }}>
+                            <Toolbar>
+                                <IconButton
+                                    edge="start"
+                                    color="inherit"
+                                    onClick={handleClose}
+                                    aria-label="close"
+                                >
+                                    <CloseIcon />
+                                </IconButton>
+                                <Typography
+                                    sx={{ ml: 2, flex: 1 }}
+                                    variant="h6"
+                                    component="div"
+                                >
+                                    강의내용등록
+                                </Typography>
                             </Toolbar>
                         </AppBar>
                     </DialogTitle>

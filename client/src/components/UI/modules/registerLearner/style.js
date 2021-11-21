@@ -1,12 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    list: {
-        width: '200px',
+    registerPaper: {
+        padding: 30,
+        width: 350,
+        margin: '90px auto',
     },
-    menuIcon: {
-        fontSize: '2rem',
-        color: '#F6F6F6',
+    signinButton: {
+        top: '3vh',
     },
 }));
 

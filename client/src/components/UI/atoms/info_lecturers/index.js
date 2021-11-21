@@ -25,7 +25,7 @@ const LecturersButton = (props) => {
                                 <ListItem
                                     button
                                     onClick={() => {
-                                        props.setUsers(c.username);
+                                        props.setUser(c.username);
                                         props.setCurrent(c.username);
                                         setOpen(false);
                                     }}

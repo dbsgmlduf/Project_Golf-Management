@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from '../UI/modules/header/Header';
 import Main from '../UI/modules/learnerInfoMain/Main';
 import Footer from '../UI/modules/footer/Footer';

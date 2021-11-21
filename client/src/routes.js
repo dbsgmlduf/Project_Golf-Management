@@ -4,7 +4,9 @@ import PublicRoute from './lib/PublicRoute';
 import LecturerRoute from './lib/LecturerRoute';
 import LearnerRoute from './lib/LearnerRoute';
 import LandingPage from './components/page/LandingPage';
-import RegisterPage from './components/page/RegisterPage';
+import RegisterMainPage from './components/page/RegisterMainPage';
+import RegisterLecturerPage from './components/page/RegisterLecturerPage';
+import RegisterLearnerPage from './components/page/RegisterLearnerPage';
 import LoginPage from './components/page/LoginPage';
 import LecturerMainPage from './components/page/LecturerMainPage';
 import LecturerInfoPage from './components/page/LecturerInfoPage';
@@ -25,8 +27,20 @@ const Routes = () => {
             />
             <PublicRoute
                 restricted={true}
-                component={RegisterPage}
+                component={RegisterMainPage}
                 path="/register"
+                exact
+            />
+            <PublicRoute
+                restricted={true}
+                component={RegisterLecturerPage}
+                path="/register/lecturer"
+                exact
+            />
+            <PublicRoute
+                restricted={true}
+                component={RegisterLearnerPage}
+                path="/register/learner"
                 exact
             />
             <PublicRoute

@@ -2,11 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        //  backgroundColor: '#6E6E6E',
+        //backgroundColor: 'inherit',
         padding: 30,
-        width: 800,
-        height: 'auto',
-        margin: '90px auto',
+        width: '50vw',
+        height: '80vh',
+        margin: 'auto',
+        marginTop: '1em',
+        marginBottom: '1em',
     },
 }));
 

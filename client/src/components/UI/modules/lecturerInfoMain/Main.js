@@ -8,8 +8,9 @@ const Main = (props) => {
     const classes = useStyles();
 
     //상세페이지정보
-    const [users, setUsers] = useState(null); //현재선택된 강사
-    const [lecturers, setLecturers] = useState(null); //회원이 등록한 강사 리스트
+    const [myName, setMyName] = useState(null);
+    const [user, setUser] = useState(null); //현재 선택된 강사의 이름
+    const [lecturers, setLecturers] = useState(null); //회원이 등록한 정체 강사 리스트
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [count, setCount] = useState(0);
@@ -17,15 +18,14 @@ const Main = (props) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
                 setError(null);
-                setUsers(null);
-                // loading 상태를 true 로 바꿉니다.
+                setUser(null);
                 setLoading(true);
                 const response = await axios.get(
                     `/api/instructors/${props.username}`
                 );
-                setUsers(response.data.list.user.username);
+                setUser(response.data.list.user.username);
+                setMyName(response.data.list.user.username);
                 setLecturers(response.data.list.result);
             } catch (e) {
                 setError(e);
@@ -34,10 +34,10 @@ const Main = (props) => {
         };
         fetchUsers();
     }, []);
-    console.log(users);
+    console.log(user);
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    if (!users) return null;
+    if (!user) return null;
 
     return (
         <Card className={classes.lecturerCard} elevation={10}>
@@ -45,9 +45,10 @@ const Main = (props) => {
                 username={props.username}
                 count={count}
                 lecturers={lecturers}
-                setUsers={setUsers}
-                users={users}
+                setUser={setUser}
+                user={user}
                 setCount={setCount}
+                myName={myName}
             />
         </Card>
     );
