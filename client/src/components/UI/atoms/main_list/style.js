@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        maxHeight: '100%',
+        margin: 0,
+        maxHeight: '60vh',
         width: 'auto',
     },
 }));

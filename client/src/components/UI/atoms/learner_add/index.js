@@ -8,8 +8,6 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    TableFooter,
-    TablePagination,
 } from '@material-ui/core';
 import AddTable from './add_table';
 import AddSearchBar from './add_searchbar';
@@ -34,18 +32,6 @@ const AddLearner = () => {
                 />
             );
         });
-    };
-    //Table
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-
-    const handleChangePage = (e, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (e) => {
-        setRowsPerPage(parseInt(e.target.value, 10));
-        setPage(0);
     };
 
     //등록요청학생정보
@@ -92,32 +78,15 @@ const AddLearner = () => {
                     <TableBody>
                         {serchKeyword
                             ? filteredData(users)
-                            : users
-                                  .slice(
-                                      page * rowsPerPage,
-                                      (page + 1) * rowsPerPage
-                                  )
-                                  .map((c) => {
-                                      return (
-                                          <AddTable
-                                              key={c.learner.username}
-                                              username={c.learner.username}
-                                          />
-                                      );
-                                  })}
+                            : users.map((c) => {
+                                  return (
+                                      <AddTable
+                                          key={c.learner.username}
+                                          username={c.learner.username}
+                                      />
+                                  );
+                              })}
                     </TableBody>
-                    <TableFooter>
-                        <TableRow>
-                            <TablePagination
-                                rowsPerPageOptions={[5, 10, 25]}
-                                count={users.length}
-                                page={page}
-                                rowsPerPage={rowsPerPage}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
-                        </TableRow>
-                    </TableFooter>
                 </Table>
             </TableContainer>
         </Grid>
