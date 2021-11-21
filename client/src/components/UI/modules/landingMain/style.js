@@ -4,11 +4,10 @@ const useStyles = makeStyles((theme) => ({
     main: {
         //backgroundColor: 'inherit',
         padding: 30,
-        width: '50vw',
         height: '80vh',
-        margin: 'auto',
-        marginTop: 0,
-        marginBottom: 0,
+        alignItems: 'center',
+        margin: 0,
+        color: '#F6F6F6',
     },
 }));
 

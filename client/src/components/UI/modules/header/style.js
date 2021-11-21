@@ -6,13 +6,12 @@ const useStyles = makeStyles((theme) => ({
     },
 
     appbar: {
-        backgroundColor: '#58555A',
         minHeight: '10vh',
         gridArea: 'header',
     },
     title: {
         flexGrow: '1',
-        color: '#000000',
+        color: '#F6F6F6',
         fontSize: '2rem',
     },
 }));

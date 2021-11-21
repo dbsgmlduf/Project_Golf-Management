@@ -6,8 +6,8 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: 30,
-        width: 300,
-        height: 300,
+        width: 350,
+        height: 350,
         margin: '90px auto',
     },
     registerPaper: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         width: 'auto',
     },
     button: {
-        top: '3vh',
+        top: '5vh',
     },
     radio: {
         top: '2vh',

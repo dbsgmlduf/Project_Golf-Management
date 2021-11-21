@@ -5,10 +5,14 @@ import useStyles from './style';
 const Footer = () => {
     const classes = useStyles();
     return (
-        <AppBar position="static" className={classes.footer}>
+        <AppBar
+            position="static"
+            style={{ background: '#2F4858' }}
+            className={classes.footer}
+        >
             <Container maxWidth="md">
                 <Toolbar>
-                    <Typography variant="body1" color="inherit">
+                    <Typography variant="body1" color="#F6F6F6">
                         © 2021 치고보자
                     </Typography>
                 </Toolbar>
