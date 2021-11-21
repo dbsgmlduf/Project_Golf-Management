@@ -23,8 +23,14 @@ const useStyles = makeStyles((theme) => ({
         padding: '30px',
         width: 'auto',
     },
+    id: {
+        bottom: '1vh',
+    },
+    password: {
+        top: '1vh',
+    },
     button: {
-        top: '5vh',
+        top: '4vh',
     },
     radio: {
         top: '2vh',

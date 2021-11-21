@@ -77,6 +77,7 @@ const LoginPage = (props) => {
                         placeholder="Enter Username"
                         fullWidth
                         required
+                        className={classes.id}
                         onChange={onIdHandler}
                     />
                     <TextField
