@@ -26,6 +26,12 @@ const RegisterInfo = (props) => {
                 fullWidth
                 required
                 onChange={props.emailHandler}
+                error={!props.checkEmail(props.email)}
+                helperText={
+                    !props.checkEmail(props.email)
+                        ? '형식에 맞지 않습니다.'
+                        : null
+                }
             />
             <TextField
                 label="Id"
@@ -35,13 +41,18 @@ const RegisterInfo = (props) => {
                 onChange={props.idHandler}
             />
             <TextField
-                label="Password(5글자 이상 필수)"
+                label="Password"
                 type="password"
                 placeholder="Enter Password"
                 fullWidth
                 required
                 onChange={props.passwordHandler}
-                error={props.hasError('password')}
+                error={!props.hasError(props.password)}
+                helperText={
+                    !props.hasError(props.password)
+                        ? '8 ~ 10자 영문, 숫자 조합'
+                        : null
+                }
             />
             <TextField
                 label="ConfirmPassword"
@@ -50,9 +61,9 @@ const RegisterInfo = (props) => {
                 fullWidth
                 required
                 onChange={props.confirmPWHandler}
-                error={props.hasNotSameError('confirmPassword')}
+                error={props.hasNotSameError(props.confirmPassword)}
                 helperText={
-                    props.hasNotSameError('confirmPassword')
+                    props.hasNotSameError(props.confirmPassword)
                         ? '입력한 비밀번호와 일치하지 않습니다.'
                         : null
                 }

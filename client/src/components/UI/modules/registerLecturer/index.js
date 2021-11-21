@@ -30,15 +30,22 @@ const Main = (props) => {
     const confirmPWHandler = (e) => {
         setUserConfirmPWReg(e.currentTarget.value);
     };
+    const checkEmail = (asValue) => {
+        var regExp =
+            /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+        return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+    };
 
-    const hasError = (passwordEntered) =>
-        password && password.length < 5 ? true : false;
-
+    const hasError = (passwordEntered) => {
+        var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
+        return regExp.test(password); // 형식에 맞는 경우 true 리턴
+    };
+    console.log(hasError());
     const hasNotSameError = (passwordEntered) =>
         password && password !== confirmPassword ? true : false;
     const submitHandler = (e) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
+        if (password !== confirmPassword && checkEmail && hasError) {
             return alert('비밀번호가 일치하지 않습니다.');
         }
         let data = {
@@ -78,7 +85,11 @@ const Main = (props) => {
                     nameHandler={nameHandler}
                     emailHandler={emailHandler}
                     idHandler={idHandler}
+                    email={email}
+                    password={password}
+                    confirmPassword={confirmPassword}
                     passwordHandler={passwordHandler}
+                    checkEmail={checkEmail}
                     hasError={hasError}
                     confirmPWHandler={confirmPWHandler}
                     hasNotSameError={hasNotSameError}
