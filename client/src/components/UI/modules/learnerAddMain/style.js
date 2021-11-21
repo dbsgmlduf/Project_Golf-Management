@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
         width: '50vw',
         height: '80vh',
         margin: 'auto',
-        marginTop: '1em',
-        marginBottom: '1em',
+        marginTop: 0,
+        marginBottom: 0,
     },
 }));
 

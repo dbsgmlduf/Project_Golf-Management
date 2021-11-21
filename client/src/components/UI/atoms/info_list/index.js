@@ -29,7 +29,9 @@ const StudyInfo = (props) => {
                 <Table
                     aria-label="customer week study info"
                     className={classes.table}
+                    size="small"
                     sx={{ minWidth: 650 }}
+                    stickyHeader
                 >
                     <TableHead>
                         <TableRow>
@@ -57,8 +59,10 @@ const StudyInfo = (props) => {
             <TableContainer component={Paper} className={classes.paper}>
                 <Table
                     aria-label="customer week study info"
+                    size="small"
                     className={classes.table}
                     sx={{ minWidth: 650 }}
+                    stickyHeader
                 >
                     <TableHead>
                         <TableRow>
