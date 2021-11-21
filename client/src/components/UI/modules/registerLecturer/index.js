@@ -30,23 +30,30 @@ const Main = (props) => {
     const confirmPWHandler = (e) => {
         setUserConfirmPWReg(e.currentTarget.value);
     };
-    const checkEmail = (asValue) => {
+    const checkEmail = (emailEntered) => {
         var regExp =
             /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-        return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+        return regExp.test(email); // 형식에 맞는 경우 true 리턴
     };
 
     const hasError = (passwordEntered) => {
         var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
         return regExp.test(password); // 형식에 맞는 경우 true 리턴
     };
-    console.log(hasError());
     const hasNotSameError = (passwordEntered) =>
         password && password !== confirmPassword ? true : false;
+    console.log(checkEmail());
+    console.log(hasError());
     const submitHandler = (e) => {
         e.preventDefault();
-        if (password !== confirmPassword && checkEmail && hasError) {
+        if (password !== confirmPassword) {
             return alert('비밀번호가 일치하지 않습니다.');
+        }
+        if (!checkEmail) {
+            return alert('email이 형식에 맞지 않습니다..');
+        }
+        if (!hasError) {
+            return alert('비밀번호가 형식에 맞지 않습니다.');
         }
         let data = {
             usertype: 'lecturer',
@@ -77,7 +84,6 @@ const Main = (props) => {
                 });
             });
     };
-    console.log(name);
     return (
         <form onSubmit={submitHandler}>
             <Paper elevation={10} className={classes.registerPaper}>
