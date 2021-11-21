@@ -61,9 +61,13 @@ exports.selectMylecturer = async ({ attendee }) => {
     return results;
 };
 
-exports.selectClassInfo = async ( {attendee} ) => {
+exports.selectClassInfo = async ( {attendee, instructor} ) => {
     const results = await ClassInfo.findAll({
         attributes: ['session_no', 'lec_theme', 'lec_contents', 'supplement_item', 'class_date', 'next_class_date'],
+        include: [{
+            model: Lecturer,
+            where: {username: instructor}
+        }],
         where: {learner_no: attendee}
     });
     return results;

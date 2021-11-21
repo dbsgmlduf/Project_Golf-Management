@@ -3,9 +3,10 @@ import AddStudy from '../add_study';
 import LecturersButton from '../info_lecturers';
 import useStyles from './style';
 
-const UserProfile = (props) => {
+const InfoAppBar = (props) => {
     const classes = useStyles();
-    return (
+    const userType = localStorage.getItem('userType');
+    return userType === 'lecturer' ? (
         <AppBar position="static" className={classes.appbar} elevation={10}>
             <Toolbar>
                 <Typography
@@ -18,7 +19,7 @@ const UserProfile = (props) => {
                 </Typography>
                 <LecturersButton
                     lecturers={props.lecturers}
-                    setUsers={props.setUsers}
+                    setUser={props.setUser}
                     setCurrent={props.setCurrent}
                 />
                 <AddStudy
@@ -28,7 +29,20 @@ const UserProfile = (props) => {
                 />
             </Toolbar>
         </AppBar>
+    ) : (
+        <AppBar position="static" className={classes.appbar} elevation={10}>
+            <Toolbar>
+                <Typography
+                    className={classes.title}
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                >
+                    {props.username}회원 정보
+                </Typography>
+            </Toolbar>
+        </AppBar>
     );
 };
 
-export default UserProfile;
+export default InfoAppBar;

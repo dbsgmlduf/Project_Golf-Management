@@ -11,6 +11,8 @@ const Info = (props) => {
                 <SelectInfo
                     username={props.username}
                     session_no={props.session_no}
+                    myName={props.myName}
+                    user={props.user}
                 />
             </TableCell>
         </TableRow>

@@ -8,6 +8,6 @@ router.get('/', middlewares.jwtAuth, controller.getStatus);
 
 //추가
 router.get('/mylecturer', middlewares.jwtAuth, controller.getMylecturer);
-router.get('/classinfo/:username', middlewares.jwtAuth, controller.getClassInfo);
+router.get('/classinfo/:username/:instructor', middlewares.jwtAuth, controller.getClassInfo);
 
 module.exports = router;

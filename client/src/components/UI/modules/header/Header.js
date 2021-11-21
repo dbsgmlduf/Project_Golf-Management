@@ -14,7 +14,7 @@ const Header = () => {
 
     return (
         <div>
-            <AppBar className={classes.appbar} elevation={0}>
+            <AppBar className={classes.appbar} elevation={0} position="static">
                 <Toolbar>
                     <Typography
                         component={Link}
