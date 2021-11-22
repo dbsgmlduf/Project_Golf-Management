@@ -16,7 +16,7 @@ const THEME = createTheme({
     typography: {
         fontFamily: 'CookieRun Bold',
         h6: {
-            fontSize: '1.3rem',
+            fontSize: '1rem',
         },
     },
     overrides: {
