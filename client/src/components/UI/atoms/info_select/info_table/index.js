@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Grid } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 
 import axios from 'axios';
 import { Paper, Typography } from '@material-ui/core';
@@ -45,16 +45,9 @@ const Infotable = (props) => {
                                 gutterBottom
                                 align="center"
                             >
-                                {props.username}
+                                {c.session_no}주차 {props.username}
                             </Typography>
-                            <Typography
-                                variant="h4"
-                                component="div"
-                                gutterBottom
-                                align="center"
-                            >
-                                {c.session_no}주차
-                            </Typography>
+                            <Divider />
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -71,9 +64,10 @@ const Infotable = (props) => {
                             >
                                 {c.lec_theme}
                             </Typography>
+                            <Divider />
                             <Typography
-                                variant="h4"
-                                component="div"
+                                variant="subtitle1"
+                                component={Typography}
                                 gutterBottom
                                 align="center"
                             >
@@ -87,6 +81,7 @@ const Infotable = (props) => {
                             >
                                 {c.lec_contents}
                             </Typography>
+                            <Divider />
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -96,13 +91,15 @@ const Infotable = (props) => {
                                 보충내용
                             </Typography>
                             <Typography
-                                variant="h6"
+                                variant="string"
                                 component="div"
                                 gutterBottom
+                                //align="inline-block"
                                 align="center"
                             >
                                 {c.supplement_item}
                             </Typography>
+                            <Divider />
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -119,6 +116,7 @@ const Infotable = (props) => {
                             >
                                 {c.class_date}
                             </Typography>
+                            <Divider />
                             <Typography
                                 variant="h4"
                                 component="div"

@@ -24,39 +24,37 @@ const SelectInfo = (props) => {
     return props.myName === props.user ? (
         <Grid>
             <Dialog fullScreen open={props.open} onClose={handleClose}>
-                <Card className={classes.lecturerCard}>
-                    <DialogTitle>
-                        <AppBar sx={{ position: 'relative' }}>
-                            <Toolbar>
-                                <IconButton
-                                    edge="start"
-                                    color="inherit"
-                                    onClick={handleClose}
-                                    aria-label="close"
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                                <Typography
-                                    sx={{ ml: 2, flex: 1 }}
-                                    variant="h6"
-                                    component="div"
-                                >
-                                    강의내용등록
-                                </Typography>
-                                <ModifyButton
-                                    username={props.username}
-                                    session_no={props.session_no}
-                                />
-                            </Toolbar>
-                        </AppBar>
-                    </DialogTitle>
-                    <DialogContent>
-                        <Infotable
-                            username={props.username}
-                            session_no={props.session_no}
-                        />
-                    </DialogContent>
-                </Card>
+                <DialogTitle>
+                    <AppBar sx={{ position: 'relative' }}>
+                        <Toolbar>
+                            <IconButton
+                                edge="start"
+                                color="inherit"
+                                onClick={handleClose}
+                                aria-label="close"
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                            <Typography
+                                sx={{ ml: 2, flex: 1 }}
+                                variant="h6"
+                                component="div"
+                            >
+                                강의내용등록
+                            </Typography>
+                            <ModifyButton
+                                username={props.username}
+                                session_no={props.session_no}
+                            />
+                        </Toolbar>
+                    </AppBar>
+                </DialogTitle>
+                <DialogContent>
+                    <Infotable
+                        username={props.username}
+                        session_no={props.session_no}
+                    />
+                </DialogContent>
             </Dialog>
         </Grid>
     ) : (
