@@ -1,16 +1,16 @@
 import React from 'react';
+import useStyles from './style';
 import { Divider, Grid } from '@mui/material';
-
 import { Paper, Typography } from '@material-ui/core';
 
 const Infotable = (props) => {
-    console.log(props.users);
+    const classes = useStyles();
     return (
-        <Grid>
-            <Paper>
-                {props.users.map((c) => {
-                    return (
-                        <>
+        <Paper className={classes.paper}>
+            {props.users.map((c) => {
+                return (
+                    <Grid wrap="nowrap" spacing={2}>
+                        <Grid item>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -19,7 +19,9 @@ const Infotable = (props) => {
                             >
                                 {c.session_no}주차 {props.username}
                             </Typography>
-                            <Divider />
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -33,12 +35,15 @@ const Infotable = (props) => {
                                 component="div"
                                 gutterBottom
                                 align="center"
+                                style={{ overflowWrap: 'break-word' }}
                             >
                                 {c.lec_theme}
                             </Typography>
-                            <Divider />
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
-                                variant="subtitle1"
+                                variant="h4"
                                 component={Typography}
                                 gutterBottom
                                 align="center"
@@ -49,11 +54,13 @@ const Infotable = (props) => {
                                 variant="h6"
                                 component="div"
                                 gutterBottom
-                                align="center"
+                                style={{ overflowWrap: 'break-word' }}
                             >
                                 {c.lec_contents}
                             </Typography>
-                            <Divider />
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -66,12 +73,13 @@ const Infotable = (props) => {
                                 variant="string"
                                 component="div"
                                 gutterBottom
-                                //align="inline-block"
-                                align="center"
+                                style={{ overflowWrap: 'break-word' }}
                             >
                                 {c.supplement_item}
                             </Typography>
-                            <Divider />
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -88,7 +96,9 @@ const Infotable = (props) => {
                             >
                                 {c.class_date}
                             </Typography>
-                            <Divider />
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -105,11 +115,11 @@ const Infotable = (props) => {
                             >
                                 {c.next_class_date}
                             </Typography>
-                        </>
-                    );
-                })}
-            </Paper>
-        </Grid>
+                        </Grid>
+                    </Grid>
+                );
+            })}
+        </Paper>
     );
 };
 
