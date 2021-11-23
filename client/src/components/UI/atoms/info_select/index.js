@@ -57,7 +57,7 @@ const SelectInfo = (props) => {
         props.setOpen(false);
     };
 
-    return props.myName === props.user ? (
+    return (
         <Grid>
             <Dialog fullScreen open={props.open} onClose={handleClose}>
                 <DialogTitle>
@@ -78,55 +78,22 @@ const SelectInfo = (props) => {
                             >
                                 강의내용등록
                             </Typography>
-                            <ModifyButton
-                                username={props.username}
-                                session_no={props.session_no}
-                                users={users}
-                                openModify={openModify}
-                                openHandler={openHandler}
-                                closeHandler={closeHandler}
-                            />
+                            {props.myName === props.user ? (
+                                <ModifyButton
+                                    username={props.username}
+                                    session_no={props.session_no}
+                                    users={users}
+                                    openModify={openModify}
+                                    openHandler={openHandler}
+                                    closeHandler={closeHandler}
+                                />
+                            ) : null}
                         </Toolbar>
                     </AppBar>
                 </DialogTitle>
                 <DialogContent>
                     <Infotable username={props.username} users={users} />
                 </DialogContent>
-            </Dialog>
-        </Grid>
-    ) : (
-        <Grid>
-            <Dialog fullScreen open={props.open} onClose={handleClose}>
-                <Card className={classes.lecturerCard}>
-                    <DialogTitle>
-                        <AppBar sx={{ position: 'relative' }}>
-                            <Toolbar>
-                                <IconButton
-                                    edge="start"
-                                    color="inherit"
-                                    onClick={handleClose}
-                                    aria-label="close"
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                                <Typography
-                                    sx={{ ml: 2, flex: 1 }}
-                                    variant="h6"
-                                    component="div"
-                                >
-                                    강의내용등록
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                    </DialogTitle>
-                    <DialogContent>
-                        <Infotable
-                            username={props.username}
-                            session_no={props.session_no}
-                            users={users}
-                        />
-                    </DialogContent>
-                </Card>
             </Dialog>
         </Grid>
     );
