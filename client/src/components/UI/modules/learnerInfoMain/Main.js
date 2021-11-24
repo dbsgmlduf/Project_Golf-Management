@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { Card } from '@material-ui/core';
+import { Card, useMediaQuery } from '@material-ui/core';
 import StudyInfo from '../../atoms/info_list';
 import useStyles from './style';
 
 const Main = (props) => {
     const classes = useStyles();
+    //media query
+    const isMobile = useMediaQuery('(max-width:600px)');
+    const isTablet = useMediaQuery('(max-width:1024px)');
 
     const [user, setUser] = useState(null); //본인이름
     const [loading, setLoading] = useState(false);
@@ -36,7 +39,16 @@ const Main = (props) => {
 
     //상세페이지정보
     return (
-        <Card className={classes.lecturerCard} elevation={10}>
+        <Card
+            className={
+                isMobile
+                    ? classes.cardModible
+                    : isTablet
+                    ? classes.cardTablet
+                    : classes.card
+            }
+            elevation={10}
+        >
             <StudyInfo user={user} username={props.username} />
         </Card>
     );

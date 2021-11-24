@@ -5,7 +5,7 @@ import { alpha } from '@mui/material/styles';
 const useStyles = makeStyles((theme) => ({
     searchTitle: {
         flexGrow: '1',
-        display: 'none',
+        //display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },

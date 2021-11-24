@@ -6,13 +6,13 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: 30,
-        width: 350,
-        height: 350,
+        width: 300,
+        height: 300,
         margin: '90px auto',
     },
     registerPaper: {
         padding: 30,
-        width: 350,
+        width: 300,
         margin: '90px auto',
     },
     icon: {

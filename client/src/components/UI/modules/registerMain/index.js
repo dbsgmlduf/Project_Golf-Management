@@ -15,20 +15,23 @@ const Main = () => {
                     </Avatar>
                     <h2>SIGN UP</h2>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item>
                     <Button
                         size="large"
                         component={Link}
                         to="/register/lecturer"
+                        className={classes.lecturerButton}
+                        variant="contained"
                     >
                         강사
                     </Button>
-                </Grid>
-                <Grid item xs={5}>
+
                     <Button
                         size="large"
                         component={Link}
                         to="/register/learner"
+                        className={classes.learnerButton}
+                        variant="contained"
                     >
                         학생
                     </Button>
