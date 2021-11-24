@@ -17,7 +17,7 @@ import axios from 'axios';
 
 const AddStudy = (props) => {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    //data state
     const [theme, setTheme] = useState();
     const [contents, setContents] = useState();
     const [supplement, setSupplement] = useState();
@@ -25,12 +25,7 @@ const AddStudy = (props) => {
     const [nextDate, setNextDate] = useState(new Date());
 
     /*EVENT HANDLER*/
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
+
     const handleSave = () => {
         let data = {
             username: props.username,
@@ -46,7 +41,7 @@ const AddStudy = (props) => {
             .then((response) => {
                 const isSuccess = response.data.inputSuccess;
                 if (isSuccess) {
-                    setOpen(false);
+                    props.setOpenStudy(false);
                     window.location.replace(`/lecturer/info/${props.username}`);
                 }
             })
@@ -76,18 +71,22 @@ const AddStudy = (props) => {
                 variant="contained"
                 startIcon={<AddIcon />}
                 className={classes.addButton}
-                onClick={handleClickOpen}
+                onClick={props.handleOpenStudy}
             >
                 등록
             </Button>
-            <Dialog fullScreen open={open} onClose={handleClose}>
+            <Dialog
+                fullScreen
+                open={props.openStudy}
+                onClose={props.handleCloseStudy}
+            >
                 <DialogTitle>
                     <AppBar sx={{ position: 'relative' }}>
                         <Toolbar>
                             <IconButton
                                 edge="start"
                                 color="inherit"
-                                onClick={handleClose}
+                                onClick={props.handleCloseStudy}
                                 aria-label="close"
                             >
                                 <CloseIcon />
