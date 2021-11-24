@@ -1,60 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Grid } from '@mui/material';
-
-import axios from 'axios';
+import React from 'react';
+import useStyles from './style';
+import { Divider, Grid } from '@mui/material';
 import { Paper, Typography } from '@material-ui/core';
 
 const Infotable = (props) => {
-    //강사정보
-    const [users, setUsers] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    const fetchUsers = useCallback(async () => {
-        try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setUsers(null);
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-            const response = await axios.get(
-                `/api/instructors/detailinfo/${props.username}/${props.session_no}`
-            );
-            setUsers(response.data.info); // 데이터는 response.data 안에 들어있습니다.
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
-    }, [props.username, props.session_no]);
-
-    useEffect(() => {
-        fetchUsers();
-    }, [fetchUsers]);
-    if (loading) return <div>로딩중..</div>;
-    if (error) return <div>에러가 발생했습니다</div>;
-    if (!users) return null;
+    const classes = useStyles();
     return (
-        <Grid>
-            <Paper>
-                {users.map((c) => {
-                    return (
-                        <>
+        <Paper className={classes.paper}>
+            {props.users.map((c) => {
+                return (
+                    <Grid wrap="nowrap" spacing={2}>
+                        <Grid item>
                             <Typography
                                 variant="h4"
                                 component="div"
                                 gutterBottom
                                 align="center"
                             >
-                                {props.username}
+                                {c.session_no}주차 {props.username}
                             </Typography>
-                            <Typography
-                                variant="h4"
-                                component="div"
-                                gutterBottom
-                                align="center"
-                            >
-                                {c.session_no}주차
-                            </Typography>
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -68,12 +35,16 @@ const Infotable = (props) => {
                                 component="div"
                                 gutterBottom
                                 align="center"
+                                style={{ overflowWrap: 'break-word' }}
                             >
                                 {c.lec_theme}
                             </Typography>
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
-                                component="div"
+                                component={Typography}
                                 gutterBottom
                                 align="center"
                             >
@@ -83,10 +54,13 @@ const Infotable = (props) => {
                                 variant="h6"
                                 component="div"
                                 gutterBottom
-                                align="center"
+                                style={{ overflowWrap: 'break-word' }}
                             >
                                 {c.lec_contents}
                             </Typography>
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -96,13 +70,16 @@ const Infotable = (props) => {
                                 보충내용
                             </Typography>
                             <Typography
-                                variant="h6"
+                                variant="string"
                                 component="div"
                                 gutterBottom
-                                align="center"
+                                style={{ overflowWrap: 'break-word' }}
                             >
                                 {c.supplement_item}
                             </Typography>
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -119,6 +96,9 @@ const Infotable = (props) => {
                             >
                                 {c.class_date}
                             </Typography>
+                        </Grid>
+                        <Divider />
+                        <Grid item xs zeroMinWidth>
                             <Typography
                                 variant="h4"
                                 component="div"
@@ -135,11 +115,11 @@ const Infotable = (props) => {
                             >
                                 {c.next_class_date}
                             </Typography>
-                        </>
-                    );
-                })}
-            </Paper>
-        </Grid>
+                        </Grid>
+                    </Grid>
+                );
+            })}
+        </Paper>
     );
 };
 

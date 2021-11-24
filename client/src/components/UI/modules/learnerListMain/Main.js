@@ -1,4 +1,4 @@
-import { Card } from '@material-ui/core';
+import { Card, useMediaQuery } from '@material-ui/core';
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import useStyles from './style';
@@ -6,6 +6,9 @@ import MainList from '../../atoms/main_list';
 
 const Main = () => {
     const classes = useStyles();
+    //media query
+    const isMobile = useMediaQuery('(max-width:600px)');
+    const isTablet = useMediaQuery('(max-width:1024px)');
 
     //강사정보
     const [users, setUsers] = useState(null);
@@ -38,7 +41,15 @@ const Main = () => {
     if (!users) return null;
 
     return (
-        <Card className={classes.card}>
+        <Card
+            className={
+                isMobile
+                    ? classes.cardModible
+                    : isTablet
+                    ? classes.cardTablet
+                    : classes.card
+            }
+        >
             <MainList users={users} userName={userName} />
         </Card>
     );

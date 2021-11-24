@@ -21,18 +21,19 @@ const Header = () => {
                         to="/"
                         className={classes.title}
                         style={{ textDecoration: 'none' }}
+                        noWrap
                     >
                         치고보자
                     </Typography>
                     {!isLogin() ? (
-                        <div>
-                            <LoginButton />
-                            <RegisterButton />
-                        </div>
+                        <>
+                            <LoginButton className={classes.login} />
+                            <RegisterButton className={classes.register} />
+                        </>
                     ) : userType === 'learner' ? (
-                        <LearnerMenu />
+                        <LearnerMenu className={classes.menu} />
                     ) : (
-                        <LecturerMenu />
+                        <LecturerMenu className={classes.menu} />
                     )}
                 </Toolbar>
             </AppBar>

@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     paper: {
         padding: 30,
-        width: 350,
-        height: 350,
+        width: 300,
+        height: 300,
         margin: '90px auto',
     },
     avatar: {
@@ -13,6 +13,19 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         color: '#0C4BC4',
         fontSize: 'large',
+    },
+    lecturerButton: {
+        width: '100px',
+        height: '100px',
+        margin: '10px',
+        left: 10,
+    },
+    learnerButton: {
+        width: '100px',
+        height: '100px',
+        margin: '10px',
+        alignItems: 'right',
+        left: 20,
     },
 }));
 

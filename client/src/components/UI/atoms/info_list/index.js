@@ -40,7 +40,6 @@ const StudyInfo = (props) => {
                                 강의주제
                             </TableCell>
                             <TableCell align="center">강의진행날짜</TableCell>
-                            <TableCell align="center">세부조회</TableCell>
                         </TableRow>
                     </TableHead>
                     <InfoBody
@@ -71,7 +70,6 @@ const StudyInfo = (props) => {
                                 강의주제
                             </TableCell>
                             <TableCell align="center">강의진행날짜</TableCell>
-                            <TableCell align="center">세부조회</TableCell>
                         </TableRow>
                     </TableHead>
                     <InfoBody
