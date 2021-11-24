@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card } from '@material-ui/core';
+import { Card, useMediaQuery } from '@material-ui/core';
 import StudyInfo from '../../atoms/info_list';
 import useStyles from './style';
 
 const Main = (props) => {
     const classes = useStyles();
-
+    //media query
+    const isMobile = useMediaQuery('(max-width:600px)');
+    const isTablet = useMediaQuery('(max-width:1024px)');
     //상세페이지정보
     const [myName, setMyName] = useState(null);
     const [user, setUser] = useState(null); //현재 선택된 강사의 이름
@@ -40,7 +42,16 @@ const Main = (props) => {
     if (!user) return null;
 
     return (
-        <Card className={classes.lecturerCard} elevation={10}>
+        <Card
+            className={
+                isMobile
+                    ? classes.cardModible
+                    : isTablet
+                    ? classes.cardTablet
+                    : classes.card
+            }
+            elevation={10}
+        >
             <StudyInfo
                 username={props.username}
                 count={count}
