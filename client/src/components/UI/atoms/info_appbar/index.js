@@ -47,15 +47,17 @@ const InfoAppBar = (props) => {
                             handleOpenLecturers={handleOpenLecturers}
                             handleCloseLecturers={handleCloseLecturers}
                         />
-                        <AddStudy
-                            username={props.username}
-                            count={props.count}
-                            lecturers={props.lecturers}
-                            openStudy={openStudy}
-                            setOpenStudy={setOpenStudy}
-                            handleOpenStudy={handleOpenStudy}
-                            handleCloseStudy={handleCloseStudy}
-                        />
+                        {props.user === props.myName ? (
+                            <AddStudy
+                                username={props.username}
+                                count={props.count}
+                                lecturers={props.lecturers}
+                                openStudy={openStudy}
+                                setOpenStudy={setOpenStudy}
+                                handleOpenStudy={handleOpenStudy}
+                                handleCloseStudy={handleCloseStudy}
+                            />
+                        ) : null}
                     </>
                 ) : null}
             </Toolbar>

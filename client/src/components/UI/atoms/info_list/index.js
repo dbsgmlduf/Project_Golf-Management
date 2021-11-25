@@ -16,15 +16,21 @@ const StudyInfo = (props) => {
     const classes = useStyles();
     const [currentLecturer, setCurrent] = useState('React');
     const userType = localStorage.getItem('userType');
-    return userType === 'lecturer' ? (
+    return (
         <Grid>
-            <InfoAppBar
-                username={props.username}
-                count={props.count}
-                lecturers={props.lecturers}
-                setUser={props.setUser}
-                setCurrent={setCurrent}
-            />
+            {userType === 'lecturer' ? (
+                <InfoAppBar
+                    username={props.username}
+                    count={props.count}
+                    lecturers={props.lecturers}
+                    setUser={props.setUser}
+                    setCurrent={setCurrent}
+                    myName={props.myName}
+                    user={props.user}
+                />
+            ) : (
+                <InfoAppBar username={props.username} />
+            )}
             <TableContainer component={Paper} className={classes.paper}>
                 <Table
                     aria-label="customer week study info"
@@ -42,42 +48,22 @@ const StudyInfo = (props) => {
                             <TableCell align="center">강의진행날짜</TableCell>
                         </TableRow>
                     </TableHead>
-                    <InfoBody
-                        username={props.username}
-                        user={props.user}
-                        setCount={props.setCount}
-                        currentLecturer={currentLecturer}
-                        myName={props.myName}
-                    />
-                </Table>
-            </TableContainer>
-        </Grid>
-    ) : (
-        <Grid>
-            <InfoAppBar username={props.username} />
-            <TableContainer component={Paper} className={classes.paper}>
-                <Table
-                    aria-label="customer week study info"
-                    size="small"
-                    className={classes.table}
-                    sx={{ minWidth: 650 }}
-                    stickyHeader
-                >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">회차</TableCell>
-                            <TableCell align="center" className={classes.topic}>
-                                강의주제
-                            </TableCell>
-                            <TableCell align="center">강의진행날짜</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <InfoBody
-                        username={props.username}
-                        user={props.user}
-                        setCount={props.setCount}
-                        currentLecturer={currentLecturer}
-                    />
+                    {userType === 'lecturer' ? (
+                        <InfoBody
+                            username={props.username}
+                            user={props.user}
+                            setCount={props.setCount}
+                            currentLecturer={currentLecturer}
+                            myName={props.myName}
+                        />
+                    ) : (
+                        <InfoBody
+                            username={props.username}
+                            user={props.user}
+                            setCount={props.setCount}
+                            currentLecturer={currentLecturer}
+                        />
+                    )}
                 </Table>
             </TableContainer>
         </Grid>
