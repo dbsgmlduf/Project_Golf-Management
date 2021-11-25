@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import { DialogTitle, List, ListItem, ListItemText } from '@mui/material';
+import {
+    DialogTitle,
+    List,
+    ListItem,
+    ListItemText,
+    useMediaQuery,
+} from '@mui/material';
 const LecturersButton = (props) => {
+    //media query
+    const isMobile = useMediaQuery('(max-width:600px)');
     return (
         <>
-            <Button onClick={props.handleOpenLecturers} variant="contained">
-                강사 선택
+            <Button
+                onClick={props.handleOpenLecturers}
+                variant="contained"
+                size="small"
+            >
+                {isMobile ? '강사' : '강사 선택'}
             </Button>
             <Dialog
                 open={props.openLecturers}

@@ -12,11 +12,18 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import useStyles from './style';
 import AddIcon from '@material-ui/icons/Add';
-import { DialogTitle, DialogContent, TextField } from '@mui/material';
+import {
+    DialogTitle,
+    DialogContent,
+    TextField,
+    useMediaQuery,
+} from '@mui/material';
 import axios from 'axios';
 
 const AddStudy = (props) => {
     const classes = useStyles();
+    //media query
+    const isMobile = useMediaQuery('(max-width:600px)');
     //data state
     const [theme, setTheme] = useState();
     const [contents, setContents] = useState();
@@ -67,14 +74,26 @@ const AddStudy = (props) => {
     };
     return (
         <div>
-            <Button
-                variant="contained"
-                startIcon={<AddIcon />}
-                className={classes.addButton}
-                onClick={props.handleOpenStudy}
-            >
-                등록
-            </Button>
+            {isMobile ? (
+                <IconButton
+                    color="primary"
+                    className={classes.addButton}
+                    onClick={props.handleOpenStudy}
+                    size="small"
+                >
+                    <AddIcon />
+                </IconButton>
+            ) : (
+                <Button
+                    variant="contained"
+                    startIcon={<AddIcon />}
+                    className={classes.addButton}
+                    onClick={props.handleOpenStudy}
+                    size="small"
+                >
+                    등록
+                </Button>
+            )}
             <Dialog
                 fullScreen
                 open={props.openStudy}
