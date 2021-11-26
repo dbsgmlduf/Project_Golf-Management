@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TableFooter,
-    TablePagination,
-    Paper,
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import useStyles from './style';
 import Main from '../main';
 import SearchBar from '../main_search';
@@ -34,40 +24,19 @@ const MainList = (props) => {
         });
     };
     return (
-        <div>
+        <Grid>
             <SearchBar
                 userName={props.userName}
                 value={serchKeyword}
                 handleSeachKey={handleSeachKey}
             />
-            <TableContainer component={Paper} className={classes.paper}>
-                <Table
-                    sx={{ minWidth: 650 }}
-                    aria-label="lecturer main table"
-                    className={classes.table}
-                    stickyHeader
-                >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">이름</TableCell>
-                            <TableCell align="center">삭제</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {serchKeyword
-                            ? filteredData(props.users)
-                            : props.users.map((c) => {
-                                  return (
-                                      <Main
-                                          key={c.username}
-                                          name={c.username}
-                                      />
-                                  );
-                              })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
+
+            {serchKeyword
+                ? filteredData(props.users)
+                : props.users.map((c) => {
+                      return <Main key={c.username} name={c.username} />;
+                  })}
+        </Grid>
     );
 };
 
