@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-    Grid,
-    Table,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import AddTable from './add_table';
 import AddSearchBar from './add_searchbar';
 
@@ -67,28 +59,17 @@ const AddLearner = () => {
                 value={serchKeyword}
                 handleSeachKey={handleSeachKey}
             />
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">회원 이름</TableCell>
-                            <TableCell align="center">회원 추가</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {serchKeyword
-                            ? filteredData(users)
-                            : users.map((c) => {
-                                  return (
-                                      <AddTable
-                                          key={c.learner.username}
-                                          username={c.learner.username}
-                                      />
-                                  );
-                              })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+
+            {serchKeyword
+                ? filteredData(users)
+                : users.map((c) => {
+                      return (
+                          <AddTable
+                              key={c.learner.username}
+                              username={c.learner.username}
+                          />
+                      );
+                  })}
         </Grid>
     );
 };

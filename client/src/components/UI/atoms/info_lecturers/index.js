@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import { DialogTitle, List, ListItem, ListItemText } from '@mui/material';
+import {
+    DialogTitle,
+    List,
+    ListItem,
+    ListItemText,
+    useMediaQuery,
+} from '@mui/material';
 const LecturersButton = (props) => {
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
+    //media query
+    const isMobile = useMediaQuery('(max-width:600px)');
     return (
         <>
-            <Button onClick={handleOpen} variant="contained">
-                강사 선택
+            <Button
+                onClick={props.handleOpenLecturers}
+                variant="contained"
+                size="small"
+            >
+                {isMobile ? '강사' : '강사 선택'}
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog
+                open={props.openLecturers}
+                onClose={props.handleCloseLecturers}
+            >
                 <DialogTitle>강사 선택</DialogTitle>
                 <List>
                     {props.lecturers &&
@@ -27,7 +34,7 @@ const LecturersButton = (props) => {
                                     onClick={() => {
                                         props.setUser(c.username);
                                         props.setCurrent(c.username);
-                                        setOpen(false);
+                                        props.setOpenLecturers(false);
                                     }}
                                 >
                                     <ListItemText primary={c.username} />
