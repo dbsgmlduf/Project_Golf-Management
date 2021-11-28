@@ -51,7 +51,7 @@ const LecturerList = () => {
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
                 const responseAll = await axios.get('/api/learners/list'); //전체 강사list api
-                const responseEnroll = await axios.get('api/learners/');
+                const responseEnroll = await axios.get('/api/learners/');
                 for (let i = 0; i < responseAll.data.list.length; i++) {
                     for (
                         let j = 0;
