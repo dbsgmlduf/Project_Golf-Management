@@ -1,6 +1,7 @@
 import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import EventNoteIcon from '@material-ui/icons/EventNote';
 import React from 'react';
 
 export const learnerListItems = (
@@ -23,6 +24,12 @@ export const learnerListItems = (
             </ListItemIcon>
             <ListItemText primary="강사추가" />
         </ListItem>
+        <ListItem button component={Link} to="/learner/calendar">
+            <ListItemIcon>
+                <EventNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="캘린더" />
+        </ListItem>
     </div>
 );
 export const lecturerListItems = (
@@ -44,6 +51,12 @@ export const lecturerListItems = (
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="회원추가" />
+        </ListItem>
+        <ListItem button component={Link} to="/learner/calendar">
+            <ListItemIcon>
+                <EventNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="캘린더" />
         </ListItem>
     </div>
 );

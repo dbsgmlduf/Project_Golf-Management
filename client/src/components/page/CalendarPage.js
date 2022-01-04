@@ -1,11 +1,10 @@
 import Header from '../UI/modules/header/Header';
-import Main from '../UI/modules/lecturerListMain';
 import Footer from '../UI/modules/footer/Footer';
-import { Grid } from '@material-ui/core';
-
-const LecturerMainPage = (props) => {
+import { Grid } from '@mui/material';
+import Main from '../UI/modules/calendarMain';
+const CalendarPage = (props) => {
     return (
-        <Grid>
+        <Grid sx={{ m: 0 }}>
             <Header />
             <Main />
             <Footer />
@@ -13,4 +12,4 @@ const LecturerMainPage = (props) => {
     );
 };
 
-export default LecturerMainPage;
+export default CalendarPage;

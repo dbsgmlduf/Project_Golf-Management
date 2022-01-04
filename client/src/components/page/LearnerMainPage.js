@@ -1,5 +1,5 @@
 import Header from '../UI/modules/header/Header';
-import Main from '../UI/modules/learnerListMain/Main';
+import Main from '../UI/modules/learnerListMain';
 import Footer from '../UI/modules/footer/Footer';
 import { CssBaseline, Grid } from '@material-ui/core';
 

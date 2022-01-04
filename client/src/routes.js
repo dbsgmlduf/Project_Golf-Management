@@ -15,6 +15,7 @@ import LearnerMainPage from './components/page/LearnerMainPage';
 import LearnerInfoPage from './components/page/LearnerInfoPage';
 import LearnerAddPage from './components/page/LearnerAddPage';
 import ProfilePage from './components/page/ProfilePage';
+import CalendarPage from './components/page/CalendarPage';
 
 const Routes = () => {
     return (
@@ -69,6 +70,11 @@ const Routes = () => {
                 path="/lecturer/myprofile"
                 exact
             />
+            <LecturerRoute
+                component={CalendarPage}
+                path="/lecturer/calendar"
+                exact
+            />
             <LearnerRoute component={LearnerMainPage} path="/learner" exact />
             <LearnerRoute
                 component={LearnerInfoPage}
@@ -83,6 +89,11 @@ const Routes = () => {
             <LearnerRoute
                 component={ProfilePage}
                 path="/learner/myprofile"
+                exact
+            />
+            <LearnerRoute
+                component={CalendarPage}
+                path="/learner/calendar"
                 exact
             />
         </Switch>
