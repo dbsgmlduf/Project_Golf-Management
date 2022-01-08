@@ -7,7 +7,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 
 const localizer = momentLocalizer(moment);
-
+// ★★★★★★★달력 배경색 변경 필요★★★★★★★★★
+// 효과적으로 잘 안보임 (글씨,날짜 등)
 const CalendarPage = (props) => {
     return (
         <Grid sx={{ m: 0 }}>
