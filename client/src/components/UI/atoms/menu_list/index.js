@@ -52,7 +52,7 @@ export const lecturerListItems = (
             </ListItemIcon>
             <ListItemText primary="회원추가" />
         </ListItem>
-        <ListItem button component={Link} to="/learner/calendar">
+        <ListItem button component={Link} to="/lecturer/calendar">
             <ListItemIcon>
                 <EventNoteIcon />
             </ListItemIcon>
