@@ -9,6 +9,7 @@ import moment from 'moment';
 const localizer = momentLocalizer(moment);
 // ★★★★★★★달력 배경색 변경 필요★★★★★★★★★
 // 효과적으로 잘 안보임 (글씨,날짜 등)
+// 예약시 현재 예약가능한 강사 보이도록 추가
 const CalendarPage = (props) => {
     return (
         <Grid sx={{ m: 0 }}>
